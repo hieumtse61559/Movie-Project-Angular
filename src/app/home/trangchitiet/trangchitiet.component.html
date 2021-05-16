@@ -1,0 +1,9 @@
+<img [src]="ChiTietPhim?.hinhAnh" height="400px" width="250px" alt="">
+<p class="lead">{{ChiTietPhim?.tenPhim}}</p>
+<iframe width="600" height="400" [src]="ChiTietPhim?.trailer | safe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<button class="btn btn-outline-success m-2" [routerLink]="['/datve', lichchieu.maLichChieu]" *ngFor="let lichchieu  of ChiTietPhim?.lichChieu">
+  {{lichchieu?.ngayChieuGioChieu | date:"dd/MM, hh:mm"}}
+</button>
+
+

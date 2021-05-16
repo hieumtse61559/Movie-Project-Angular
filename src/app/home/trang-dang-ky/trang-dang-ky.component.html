@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <!-- Angular sẽ có FormModules giúp xử lí form như bên dưới
+            tại tag form thêm cái properties #formDangKy="ngForm"
+            một sự kiện (ngSubmit)="method(formDangKy.value)"
+            formDangKy.value được truyền trong method là một obj được tạo bởi tất cả các VALUES có trong form
+      -->
+      <form #formDangKy="ngForm" class="mt-2" (ngSubmit)="DangKy(formDangKy.value)">
+        <h1 style="font-size: 40px;">Đăng ký</h1>
+        <div class="form-group">
+          <label for="">Tài khoản</label>
+          <!-- Mặc định angular form sẽ không lấy hết các value của input, nên muốn lấy input nào thì phải
+          thêm property name="key" (key nãy sẽ được lấy để điền vào obj nói ở dòng 7)
+        và phải thêm ngModel  -->
+          <input #taiKhoan="ngModel" required type="text" class="form-control" name="taiKhoan" ngModel>
+          <div *ngIf="taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)">
+            <div class="alert alert-danger" *ngIf="taiKhoan.errors.required">Vui lòng nhập tài khoảng</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Mật khẩu</label>
+          <input #matKhau="ngModel" type="text" class="form-control" required minlength="10" maxlength="20"
+            name="matKhau" ngModel>
+          <div *ngIf="matKhau.errors && (matKhau.touched || matKhau.dirty)">
+            <!-- Kiểm tra rỗng -->
+            <div class="alert alert-danger" *ngIf="matKhau.errors.required"> Vui lòng nhập mật khẩu</div>
+            <!-- Kiểm tra minlength và maxlength -->
+            <div class="alert alert-danger" *ngIf="matKhau.errors.minlength || matKhau.errors.maxlength">
+              Mật khẩu phải từ 10 tới 20 ký tự
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="form-group">
+          <label for="">Họ Tên:</label>
+          <input #hoTen="ngModel" [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+          "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+          "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"' required type="text" class="form-control" name="hoTen" ngModel>
+          <div *ngIf="hoTen.errors && (hoTen.touched || hoTen.dirty)">
+            <div *ngIf="hoTen.errors.pattern" class="alert alert-danger">
+              Vui lòng nhập họ tên là chữ
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Mã nhóm</label>
+          <input #maNhom="ngModel" list="maNhoms" name="maNhom" class="form-control" required ngModel>
+          <datalist id="maNhoms">
+            <option value="GP01">
+            <option value="GP02">
+            <option value="GP03">
+            <option value="GP04">
+            <option value="GP05">
+            <option value="GP06">
+            <option value="GP07">
+            <option value="GP08">
+            <option value="GP09">
+            <option value="GP10">
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="">Email</label>
+          <input #email="ngModel" required [pattern]='"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+          + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"' type="email" class="form-control" name="email"
+            ngModel>
+          <div *ngIf="email.errors && (email.touched || email.dirty)">
+            <div *ngIf="email.errors.pattern" class="alert alert-danger">
+              Vui lòng nhập đúng format email
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Số ĐT</label>
+          <input type="text" class="form-control" name="soDT" ngModel>
+        </div>
+
+        <div class="form-group">
+          <label for="">Loại người dùng: </label>
+          <input type="radio" ngModel value="khachHang" name="maLoaiNguoiDung">Khách hàng
+          <input type="radio" ngModel value="QuanTri" name="maLoaiNguoiDung">Admin
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success" [disabled]="formDangKy.invalid" type="submit">Đăng ký</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

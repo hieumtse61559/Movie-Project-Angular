@@ -1,0 +1,21 @@
+<div class="container mx-auto bg-info p-4 text-center">
+  <h1>Screen</h1>
+  <div class="row">
+    <div class="col-8 bg-danger mx-auto" >
+      <div class="row">
+        <div class="col-1 my-2" *ngFor="let ghe of gheArray">
+          <app-ghe-item [itemGhe]="ghe" ></app-ghe-item>
+        </div>
+      </div>
+      
+      <hr>
+      <p class="lead">Số ghế đã chọn: <span class="font-weight-bold">{{soGheDaChon}}</span></p>
+      <p class="lead">Số ghế còn trống: <span class="font-weight-bold">{{soGheConTrong}}</span></p>
+      <hr>
+      <p *ngFor="let gheDuocChon of MangGheDangChon">
+        <span>Tên Ghế: {{gheDuocChon.tenGhe}}</span>
+        <span>Giá: {{gheDuocChon.giaVe}}</span>
+      </p>
+    </div>
+  </div>
+</div>

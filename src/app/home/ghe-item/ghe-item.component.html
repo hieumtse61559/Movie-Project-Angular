@@ -1,0 +1,6 @@
+<ng-container  *ngIf="!itemGhe.daDat;else GheDaDat">
+  <button class="btn btn-secondary" >{{itemGhe.tenGhe}}</button>
+</ng-container>
+<ng-template #GheDaDat>
+  <button class="btn btn-danger mr-2 mb-2" disabled>{{itemGhe.tenGhe}}</button>
+</ng-template>

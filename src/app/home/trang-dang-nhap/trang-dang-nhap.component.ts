@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
@@ -9,7 +9,8 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
   styleUrls: ['./trang-dang-nhap.component.scss']
 })
 export class TrangDangNhapComponent implements OnInit {
-
+  nameUser!:string;
+  @Output() loginStatus = new EventEmitter<string>();
   constructor(private fb:FormBuilder, private nguoiDungSV: NguoidungService, private router: Router) {
     this.createForm();
    }
@@ -40,9 +41,11 @@ export class TrangDangNhapComponent implements OnInit {
         if(success.hoTen)
         {
           localStorage.setItem('nguoiDungDangNhap', JSON.stringify(success)); 
-          success.maLoaiNguoiDung === "KhachHang" ? this.router.navigate(['/']) : this.router.navigate(['/admin'])
+          success.maLoaiNguoiDung === "KhachHang" ? this.router.navigate(['/']) : this.router.navigate(['/admin']);
+          this.nameUser = success.hoTen;
+          this.loginStatus.emit(this.nameUser);
+          
         }
-        
       },
       // Đăng nhập thất bại
       (fail: any) => {

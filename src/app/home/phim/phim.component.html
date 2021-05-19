@@ -1,1 +1,19 @@
-<p>phim works!</p>
+<div class="container my-4">
+  <div class="row mb-2">
+    <div class="col-12 text-center">
+      <button class="btn-phim" (click)="hienPhimDangChieu()">Phim đang chiếu</button>
+      <button class="btn-phim" (click)="hienPhimSapChieu()">Phim sắp chiếu</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngIf="dangChieuStatus; else phimSapChieu">
+      <app-phim-dang-chieu [phimDangChieu]="danhSachPhimDangChieu"></app-phim-dang-chieu>
+    </div>
+    <ng-template #phimSapChieu>
+      <div class="col-12">
+        <app-phim-sap-chieu [phimSapChieu]="danhSachPhimSapChieu"></app-phim-sap-chieu>
+      </div>
+    </ng-template>
+    
+  </div>
+</div>

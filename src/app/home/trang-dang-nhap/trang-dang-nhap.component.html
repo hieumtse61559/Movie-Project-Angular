@@ -6,24 +6,24 @@
         <div class="form-group">
           <label for="">Tài khoản</label>
           <input type="text" class="form-control" formControlName="TaiKhoan">
-          <div *ngIf="formDangNhap.controls['TaiKhoan'].invalid && formDangNhap.controls['TaiKhoan'].touched">
+          <!-- <div *ngIf="formDangNhap.controls['TaiKhoan'].invalid && formDangNhap.controls['TaiKhoan'].touched">
             <div *ngIf="formDangNhap.controls['TaiKhoan'].errors?.required" class="alert alert-danger">Vui lòng nhập tàikhoản
-            </div>
-            <!-- <div *ngIf="formDangNhap.controls['TaiKhoan'].errors?.pattern" class="alert alert-danger">Tài khoản không đúng 
-            </div> -->
-          </div>
+            </div> 
+             <div *ngIf="formDangNhap.controls['TaiKhoan'].errors?.pattern" class="alert alert-danger">Tài khoản không đúng 
+            </div> 
+          </div> -->
         </div>
 
         <div class="form-group">
           <label for="">Mật khẩu</label>
-          <input type="text" class="form-control" formControlName="MatKhau">
-          <div *ngIf="formDangNhap.controls['MatKhau'].invalid && formDangNhap.controls['MatKhau'].touched">
+          <input type="password" class="form-control" formControlName="MatKhau">
+          <!-- <div *ngIf="formDangNhap.controls['MatKhau'].invalid && formDangNhap.controls['MatKhau'].touched">
             <div *ngIf="formDangNhap.controls['MatKhau'].errors?.required" class="alert alert-danger">Vui lòng mật khẩu
             </div>
           </div>
           <div *ngIf="formDangNhap.controls['MatKhau'].errors?.minlength" class="alert alert-danger">
             Mật khẩu ít nhất phải 5 kí tự
-          </div>
+          </div> -->
         </div>
         <div class="form-group text-center">
           <button type="submit" class="btn btn-success">Đăng nhập</button>

@@ -10,6 +10,7 @@ import { PhimService } from 'src/app/services/phim.service';
 export class TrangchitietComponent implements OnInit {
   public MaPhim?:string;
   public ChiTietPhim:any;
+  tenRapChieu!: string
   constructor(private activated:ActivatedRoute, private phimSV:PhimService) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class TrangchitietComponent implements OnInit {
         this.phimSV.LayThongTinPhim(this.MaPhim).subscribe(
           (chiTiet) => {
             this.ChiTietPhim = chiTiet;
+            // this.tenRapChieu = chiTiet.lichChieu[0].tenCumRap;
           }
         )
 

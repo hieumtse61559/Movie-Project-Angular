@@ -14,6 +14,11 @@ import { RouterModule } from '@angular/router';
 import { PipeModule } from '../pipe/pipe.module';
 import { DatveComponent } from './datve/datve.component';
 import { GheItemComponent } from './ghe-item/ghe-item.component';
+import { HeroCarouselComponent } from './hero-carousel/hero-carousel.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { PhimDangChieuComponent } from './phim-dang-chieu/phim-dang-chieu.component';
+import { PhimSapChieuComponent } from './phim-sap-chieu/phim-sap-chieu.component';
+import { PhimItemComponent } from './phim-item/phim-item.component';
 
 
 
@@ -30,13 +35,18 @@ import { GheItemComponent } from './ghe-item/ghe-item.component';
     TrangDangNhapComponent,
     DatveComponent,
     GheItemComponent,
+    HeroCarouselComponent,
+    PhimDangChieuComponent,
+    PhimSapChieuComponent,
+    PhimItemComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    PipeModule
+    PipeModule,
+    CarouselModule,
 
   ],
   exports: [
@@ -48,7 +58,8 @@ import { GheItemComponent } from './ghe-item/ghe-item.component';
     FooterComponent,
     PhimComponent,
     TrangDangKyComponent,
-    TrangDangNhapComponent
+    TrangDangNhapComponent,
+    HeroCarouselComponent,
   ],
 })
 export class HomeModule { }

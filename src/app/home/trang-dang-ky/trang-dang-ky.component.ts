@@ -20,15 +20,16 @@ export class TrangDangKyComponent implements OnInit {
     this.nguoiDungSV.ThemNguoiDung(nguoiDung).subscribe(
       // Thành công
       (kq:any) => {
-        console.log(kq);
-
+        alert("Đăng ký thành công")
+        this.formDK.resetForm();
       },
       // Thất bại
       (error:any) => {
         console.log(error)
+        alert(error.error);
       }
     )
-    this.formDK.resetForm();
+    
   }
   ngOnInit(): void {
     // Gọi lấy danh sách người dùng ra xem trả về cái gì, nhớ phải subscribe

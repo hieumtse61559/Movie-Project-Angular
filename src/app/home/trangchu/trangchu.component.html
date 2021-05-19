@@ -1,14 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3" *ngFor="let phim of DanhSachPhim | slice:0:11">
-      <div class="card" >
-        <img class="card-img-top" [src]="phim.hinhAnh" alt="" height="300px">
-        <div class="card-body">
-          <h4 class="card-title">{{phim.tenPhim}}</h4>
-          <!-- <p class="card-text">{{phim.moTa | uppercase}}</p> -->
-          <button class="btn btn-block btn-success" [routerLink]="['/chitiet', phim.maPhim]" >Xem chi tiết</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- HERO-SLIDER -->
+<div class="container-fluid" style="padding: 0;">
+  <app-hero-carousel></app-hero-carousel>
 </div>
+<!-- PHIM(phimDangChieu, phimSapChieu) -->
+<app-phim id="DanhSachPhim"></app-phim>

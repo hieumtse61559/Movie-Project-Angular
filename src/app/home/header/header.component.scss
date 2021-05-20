@@ -1,11 +1,10 @@
 nav {
-  padding: 15px;
   margin: 0;
   .collapse {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    ul {
+    .navbar-nav {
       li {
         a {
           text-transform: uppercase;
@@ -16,8 +15,17 @@ nav {
         }
       }
     }
+    .header__left{
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      span{
+        color: #a3270b;
+        font-size: 3rem;
+      }
+    }
     .header__right {
-      .account-user{
+      .account-user, span{
         color: white;
         border: none;
         font-size: 1rem;
@@ -38,7 +46,20 @@ nav {
         }
         
       }
+      .dropdown-menu{
+        min-width: 2rem;
+        cursor: pointer;
+      }
       
     }
+  }
+}
+
+.modal__form{
+  position: relative;
+  .close{
+    position: absolute;
+    right: 20px;
+    top: 0;
   }
 }

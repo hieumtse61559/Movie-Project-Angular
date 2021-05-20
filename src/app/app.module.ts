@@ -11,6 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     CarouselModule,
     MatMenuModule,
     MatIconModule,
+    FontAwesomeModule,
     
   ],
   providers: [],

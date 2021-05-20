@@ -19,6 +19,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { PhimDangChieuComponent } from './phim-dang-chieu/phim-dang-chieu.component';
 import { PhimSapChieuComponent } from './phim-sap-chieu/phim-sap-chieu.component';
 import { PhimItemComponent } from './phim-item/phim-item.component';
+import { CumRapComponent } from './cum-rap/cum-rap.component';
 
 
 
@@ -39,6 +40,7 @@ import { PhimItemComponent } from './phim-item/phim-item.component';
     PhimDangChieuComponent,
     PhimSapChieuComponent,
     PhimItemComponent,
+    CumRapComponent,
   ],
   imports: [
     CommonModule,

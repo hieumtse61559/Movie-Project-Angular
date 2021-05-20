@@ -9,32 +9,45 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
   styleUrls: ['./trang-dang-ky.component.scss']
 })
 export class TrangDangKyComponent implements OnInit {
-  @ViewChild('formDangKy') formDK!:NgForm;
+  @ViewChild('formDangKy') formDK!: NgForm;
   mangNguoiDung: NguoiDung[] = [];
+  isConfirmPass: boolean = false;
   constructor(private nguoiDungSV: NguoidungService) { }
 
-  DangKy(nguoiDung: NguoiDung){
-    console.log(nguoiDung)
-    
-    // Gọi API để PUT value(đây là một object bao gồm thông tin người đăng ký)
-    this.nguoiDungSV.ThemNguoiDung(nguoiDung).subscribe(
-      // Thành công
-      (kq:any) => {
-        alert("Đăng ký thành công")
-        this.formDK.resetForm();
-      },
-      // Thất bại
-      (error:any) => {
-        console.log(error)
-        alert(error.error);
-      }
-    )
-    
+  DangKy(nguoiDung: any) {
+    if (nguoiDung.matKhau == nguoiDung.xacNhanMK) {
+      this.isConfirmPass = true;
+      delete nguoiDung.xacNhanMK;
+      // Hardcode maNhom và maLoaiNguoiDung vì chỉ để cho khách hàng đăng ký thôi
+      nguoiDung = { ...nguoiDung, maNhom: "GP10", maLoaiNguoiDung: "KhachHang" }
+      console.log(nguoiDung)
+      // Gọi API để PUT value(đây là một object bao gồm thông tin người đăng ký)
+      this.nguoiDungSV.ThemNguoiDung(nguoiDung).subscribe(
+        // Thành công
+        (kq: any) => {
+          alert("Đăng ký thành công")
+          this.formDK.resetForm();
+        },
+        // Thất bại
+        (error: any) => {
+          console.log(error)
+          alert(error.error);
+        }
+      )
+    }
+    else{
+      alert("Xác nhận mật khẩu chưa chính xác")
+    }
+
+
+
+
+
   }
   ngOnInit(): void {
     // Gọi lấy danh sách người dùng ra xem trả về cái gì, nhớ phải subscribe
     this.nguoiDungSV.LayDanhSachNguoiDung().subscribe(
-      (kq:any) => {
+      (kq: any) => {
         console.log(kq)
         this.mangNguoiDung = kq;
       }

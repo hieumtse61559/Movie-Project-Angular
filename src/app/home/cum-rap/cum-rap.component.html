@@ -1,0 +1,51 @@
+<div class="container text-center Hethongrap__container">
+  <h1>Hệ thống rạp phim</h1>
+  <div class="logos__container">
+    <div class="row">
+      <hr>
+      <div class="col-2 logo-cumrap" *ngFor="let cumRap of lstCumRap"
+        (click)="handleClickLogo(cumRap.maHeThongRap, cumRap.tenHeThongRap)">
+        <img [src]="cumRap.logo" width="55px" height="55px" alt="">
+        <p>{{cumRap.tenHeThongRap}}</p>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="CumRap__container">
+    <div class="row">
+      <div class="col-6">
+        <h2>Danh sách rạp của {{heThongRapName}}</h2>
+      </div>
+      <div class="col-6">
+        <h2>Danh sách phim đang chiếu</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 DanhSachRap">
+        <!-- lstRapPhim : [{tenCumRap: , diaChi: , danhSachPhim: [] }, {}, {}] -->
+        <!-- rapPhim : {tenCumRap: , diaChi:, danhSachPhim:[] } -->
+        <button class="rapPhim" *ngFor="let rapPhim of lstRapPhim" (click)="hienThiDSPhimTheoRap(rapPhim.danhSachPhim)">
+          <p>{{rapPhim.tenCumRap}}</p>
+          <p>Địa chỉ: {{rapPhim.diaChi}}</p>
+          <hr>
+        </button>
+      </div>
+      <div class="col-6 DanhSachPhim">
+        <!-- phim : {lstLichChieuTheoPhim: [], maPhim: number, tenPhim: string, hinhAnh: string } -->
+        <!-- Lưu ý làm tiếp: click vào đây thì sẽ gửi maPhim đi để vào trang chi tiết -->
+        <div class="phimCuaRap" *ngFor="let phim of lstDanhSachPhim">
+          <img [src]="phim.hinhAnh" width="150" height="200" alt="">
+
+          <div>
+            <p>Tên phim: {{phim.tenPhim}}</p>
+            <p>Giá vé: {{phim.lstLichChieuTheoPhim[0].giaVe}}</p>
+            <button class="btn btn-success">Xem chi tiết</button>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

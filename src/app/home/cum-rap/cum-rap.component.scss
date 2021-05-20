@@ -1,0 +1,56 @@
+.Hethongrap__container{
+  h1{
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 30px 0 ;
+  }
+  h2{
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+  .logos__container{
+    .logo-cumrap{
+      cursor: pointer;
+      img{
+        padding-bottom: 5px;
+        transition: transform 0.3s linear;
+      }
+      p{
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+      &:hover{
+        img{
+          transform: scale(1.2);
+        }
+      }
+    } 
+  }
+  .CumRap__container{
+    .DanhSachRap{
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid gray;
+      .rapPhim{
+        border: none;
+        background-color: transparent;
+        &:focus-within{
+          
+          p{
+            color: #a3270b;
+            font-weight: 500;
+            transform: scale(1.3);
+          }
+        }
+      }
+    }
+    .DanhSachPhim{
+      .phimCuaRap{
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+      }
+    }
+    
+  }
+}

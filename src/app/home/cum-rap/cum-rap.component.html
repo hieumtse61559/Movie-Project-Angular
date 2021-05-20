@@ -25,7 +25,7 @@
       <div class="col-6 DanhSachRap">
         <!-- lstRapPhim : [{tenCumRap: , diaChi: , danhSachPhim: [] }, {}, {}] -->
         <!-- rapPhim : {tenCumRap: , diaChi:, danhSachPhim:[] } -->
-        <button class="rapPhim" *ngFor="let rapPhim of lstRapPhim" (click)="hienThiDSPhimTheoRap(rapPhim.danhSachPhim)">
+        <button class="rapPhim" *ngFor="let rapPhim of lstRapPhim.slice(0,7)" (click)="hienThiDSPhimTheoRap(rapPhim.danhSachPhim)">
           <p>{{rapPhim.tenCumRap}}</p>
           <p>Địa chỉ: {{rapPhim.diaChi}}</p>
           <hr>
@@ -40,7 +40,7 @@
           <div>
             <p>Tên phim: {{phim.tenPhim}}</p>
             <p>Giá vé: {{phim.lstLichChieuTheoPhim[0].giaVe}}</p>
-            <button class="btn btn-success">Xem chi tiết</button>
+            <button class="btn btn-success" [routerLink]="['/chitiet', phim.maPhim]" >Xem chi tiết</button>
           </div>
 
           

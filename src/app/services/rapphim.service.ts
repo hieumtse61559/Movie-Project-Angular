@@ -23,4 +23,9 @@ export class RapphimService {
     const api =`https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP10`;
     return this._http.get(api);
   }
+
+  layThongTinLichChieuPhim(maPhim:any):Observable<any>{
+    const api = `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`;
+    return this._http.get(api);
+  }
 }

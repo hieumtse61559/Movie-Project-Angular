@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PhimService } from 'src/app/services/phim.service';
+// import { PhimService } from 'src/app/services/phim.service';
+import { RapphimService } from 'src/app/services/rapphim.service';
 
 @Component({
   selector: 'app-trangchitiet',
@@ -8,23 +9,34 @@ import { PhimService } from 'src/app/services/phim.service';
   styleUrls: ['./trangchitiet.component.scss']
 })
 export class TrangchitietComponent implements OnInit {
-  public MaPhim?:string;
-  public ChiTietPhim:any;
+  public maPhim?:string;
+  public chiTietPhim:any;
   tenRapChieu!: string
-  constructor(private activated:ActivatedRoute, private phimSV:PhimService) { }
+  constructor(private activated:ActivatedRoute, private rapphimSV: RapphimService) { }
 
   ngOnInit(): void {
     // params của ActivatedRoute là một Observerable
     // Lấy params trên thanh url và subscribe 
     this.activated.params.subscribe(
       (kq) => {
-        this.MaPhim = kq.maphim;
-        this.phimSV.LayThongTinPhim(this.MaPhim).subscribe(
-          (chiTiet) => {
-            this.ChiTietPhim = chiTiet;
-            // this.tenRapChieu = chiTiet.lichChieu[0].tenCumRap;
+        this.maPhim = kq.maphim; //maphim này xem bên appRouting
+        this.rapphimSV.layThongTinLichChieuPhim(this.maPhim).subscribe(
+          (chiTiet)=>{
+            console.log(chiTiet);
+            this.chiTietPhim = chiTiet;
+
+          },
+          (error)=>{
+            console.log(error)
+            alert(error);
           }
         )
+        // this.phimSV.LayThongTinPhim(this.MaPhim).subscribe(
+        //   (chiTiet) => {
+        //     this.ChiTietPhim = chiTiet;
+        //     // this.tenRapChieu = chiTiet.lichChieu[0].tenCumRap;
+        //   }
+        // )
 
       }
     )

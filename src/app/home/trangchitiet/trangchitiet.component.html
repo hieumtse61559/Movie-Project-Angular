@@ -1,4 +1,4 @@
-<img [src]="ChiTietPhim?.hinhAnh" height="400px" width="250px" alt="">
+<!-- <img [src]="ChiTietPhim?.hinhAnh" height="400px" width="250px" alt="">
 <p class="lead">{{ChiTietPhim?.tenPhim}}</p>
 <iframe width="600" height="400" [src]="ChiTietPhim?.trailer | safe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
@@ -12,8 +12,45 @@
       </button>
     </div>
   </div>
+</div> -->
+
+
+<div class="container my-4">
+  <div class="row">
+    <div class="col-4 phim-image">
+      <img [src]="chiTietPhim?.hinhAnh" width="100%" alt="Hình ảnh phim">
+    </div>
+    <div class="col-8 phim-content">
+      <div class="phim-detail">
+        <p>Tên phim : {{chiTietPhim.tenPhim}}</p>
+        <p>Đánh giá : {{chiTietPhim.danhGia}} <i class="bx bxs-star"></i></p>
+        <p>Ngày khởi chiếu: {{chiTietPhim.ngayKhoiChieu | date:"dd-MM-yyyy"}}</p>
+        <p>Nội dung: {{chiTietPhim.moTa}}</p>
+      </div>
+      
+
+      <div class="phim-time">
+        <div class="HeThongRap" *ngFor="let heThongRap of chiTietPhim.heThongRapChieu">
+          <div class="rapPhim-logo">
+            <img [src]="heThongRap.logo" width="50px" height="50px" alt="Logo hệ thống rạp">
+            <!-- <span style="font-weight: 600; font-size: 1.4rem;">{{heThongRap.tenHeThongRap}}</span> -->
+          </div>
+
+          <div class="rapTheoHeThong-container">
+            <div *ngFor="let rapPhim of heThongRap.cumRapChieu">
+              <p style="font-size: 1.2rem; font-weight: 500;">{{rapPhim.tenCumRap}}</p>
+              <div class="buttons-container row">
+                <div class="col-3" *ngFor="let rap of rapPhim.lichChieuPhim.slice(0,7)">
+                  <button class="btn btn-outline-success m-2" [routerLink]="['/datve', rap.maLichChieu]">
+                    {{rap.ngayChieuGioChieu | date:"dd-MM, hh:mm"}}
+                  </button>
+                </div>
+              </div>           
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
 

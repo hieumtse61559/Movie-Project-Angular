@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // import { PhimService } from 'src/app/services/phim.service';
 import { RapphimService } from 'src/app/services/rapphim.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-trangchitiet',
@@ -11,8 +12,9 @@ import { RapphimService } from 'src/app/services/rapphim.service';
 export class TrangchitietComponent implements OnInit {
   public maPhim?:string;
   public chiTietPhim:any;
-  tenRapChieu!: string
-  constructor(private activated:ActivatedRoute, private rapphimSV: RapphimService) { }
+  tenRapChieu!: string;
+  closeResult = '';
+  constructor(private activated:ActivatedRoute, private rapphimSV: RapphimService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     // params của ActivatedRoute là một Observerable
@@ -43,4 +45,8 @@ export class TrangchitietComponent implements OnInit {
 
   }
 
+  open(content:any) {
+    this.modalService.open(content, { size: 'lg' });
+  }
+  
 }

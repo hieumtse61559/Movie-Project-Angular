@@ -2,7 +2,7 @@
   <h1>Hệ thống rạp phim</h1>
   <div class="logos__container">
     <div class="row">
-      <hr>
+      
       <div class="col-2 logo-cumrap" *ngFor="let cumRap of lstCumRap"
         (click)="handleClickLogo(cumRap.maHeThongRap, cumRap.tenHeThongRap)">
         <img [src]="cumRap.logo" width="55px" height="55px" alt="">

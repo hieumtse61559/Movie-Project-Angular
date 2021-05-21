@@ -1,22 +1,58 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-trangdatghe',
   templateUrl: './trangdatghe.component.html',
   styleUrls: ['./trangdatghe.component.scss']
 })
-export class TrangdatgheComponent implements OnInit {
+export class TrangdatgheComponent implements OnInit, OnChanges {
   @Input() gheArray?:any[] = [];
 
   soGheDaChon: number = 0;
   soGheConTrong?: number = this.gheArray?.length
 
   MangGheDangChon = [] as any;
+  danhSachGheDaDat:any[] = [];
+
+
   constructor() { }
 
   ngOnInit(): void {
-    // console.log(this.gheArray)
+    console.log(this.gheArray)
+    
   }
+
+  ngOnChanges(){
+    this.gheArray?.map( (ghe:any)=>{
+      if(ghe.daDat){
+        this.danhSachGheDaDat.push(ghe);
+      }
+    })
+
+    this.soGheDaChon = this.danhSachGheDaDat.length;
+    this.soGheConTrong = this.gheArray!.length - this.danhSachGheDaDat.length;
+  }
+
+  nhanStatusFromGheItem(statusDatGhe:any, gheObj:any){
+    // console.log(statusDatGhe);
+    // console.log(gheObj);
+    if(statusDatGhe){
+      this.soGheDaChon++;
+      this.soGheConTrong!--;
+      this.MangGheDangChon.push(gheObj);
+    }else{
+      this.soGheDaChon--;
+      this.soGheConTrong!++;
+      this.MangGheDangChon.map((item:any, index:number)=>{
+        if(item.maGhe === gheObj.maGhe){
+          this.MangGheDangChon.splice(index,1);
+        }
+      })
+    }
+    console.log(this.MangGheDangChon);
+  }
+
+
   // ngOnChanges(changes:SimpleChange){
   //   this.soGheConTrong = this.gheArray?.length
   // }

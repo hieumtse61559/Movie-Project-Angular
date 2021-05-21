@@ -1,5 +1,5 @@
 <ng-container  *ngIf="!itemGhe.daDat;else GheDaDat">
-  <button class="btn btn-secondary" >{{itemGhe.tenGhe}}</button>
+  <button class="btn" [class.btn-secondary]="status===false" [ngClass]="{'btn-primary': status}" (click)="datGhe()">{{itemGhe.tenGhe}}</button>
 </ng-container>
 <ng-template #GheDaDat>
   <button class="btn btn-danger mr-2 mb-2" disabled>{{itemGhe.tenGhe}}</button>

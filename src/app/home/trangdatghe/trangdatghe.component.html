@@ -1,21 +1,29 @@
-<div class="container mx-auto bg-info p-4 text-center">
-  <h1>Screen</h1>
+<div class="container mx-auto bg-warning p-4">
+  <div class="text-left">
+    <p class="lead text-left">Số ghế đã chọn: <span class="font-weight-bold">{{soGheDaChon}}</span></p>
+    <p class="lead text-left">Số ghế còn trống: <span class="font-weight-bold">{{soGheConTrong}}</span></p>
+  </div>
+  
+  
   <div class="row">
-    <div class="col-8 bg-danger mx-auto" >
+    <h1 class="text-center">Screen</h1>
+    <div class="col-11 bg-success mx-auto">
       <div class="row">
         <div class="col-1 my-2" *ngFor="let ghe of gheArray">
-          <app-ghe-item [itemGhe]="ghe" ></app-ghe-item>
+          <app-ghe-item (emitStatus)="nhanStatusFromGheItem($event, ghe)" [itemGhe]="ghe"></app-ghe-item>
         </div>
       </div>
-      
-      <hr>
-      <p class="lead">Số ghế đã chọn: <span class="font-weight-bold">{{soGheDaChon}}</span></p>
-      <p class="lead">Số ghế còn trống: <span class="font-weight-bold">{{soGheConTrong}}</span></p>
-      <hr>
-      <p *ngFor="let gheDuocChon of MangGheDangChon">
+
+
+      <!-- <p *ngFor="let gheDuocChon of MangGheDangChon">
         <span>Tên Ghế: {{gheDuocChon.tenGhe}}</span>
         <span>Giá: {{gheDuocChon.giaVe}}</span>
-      </p>
+      </p> -->
+    </div>
+    <div class="ghichu d-flex justify-content-around">
+      <span>Còn trống: <button class="btn btn-secondary" disabled></button></span>
+      <span>Đã đặt: <button class="btn btn-danger" disabled></button></span>
+      <span>Đang đặt: <button class="btn btn-primary" disabled></button></span>
     </div>
   </div>
 </div>

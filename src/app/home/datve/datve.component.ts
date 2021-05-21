@@ -11,6 +11,7 @@ import { DatveService } from 'src/app/services/datve.service';
 export class DatveComponent implements OnInit {
   public MaLichChieu?:string;
   public DanhSachGheNgoi?:any[] =[];
+  movieDetails:any;
   constructor(private activateRoute:ActivatedRoute, private datveSV: DatveService) { }
 
   ngOnInit(): void {
@@ -21,7 +22,9 @@ export class DatveComponent implements OnInit {
         this.datveSV.LayDanhSachPhongVe(this.MaLichChieu).subscribe(
           (result) => {
             console.log(result)
+            this.movieDetails = result.thongTinPhim;
             this.DanhSachGheNgoi = result.danhSachGhe;
+            console.log(this.DanhSachGheNgoi)
           }
         )
       },

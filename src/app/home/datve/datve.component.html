@@ -1,9 +1,10 @@
-<app-trangdatghe [gheArray]="DanhSachGheNgoi"></app-trangdatghe>
 <div class="container">
-  <div class="row">
-    <div class="col-6 mx-auto">
-      <button class="btn btn-success">Đặt Ghế</button>
+  <div class="details">
+    <p>Tên phim: {{movieDetails?.tenPhim}}</p>
+    <p>Tên rạp: {{movieDetails?.tenCumRap}} - {{movieDetails?.tenRap}}</p>
+    <p>Địa chỉ: {{movieDetails?.diaChi}}</p>
+    <p>Thời gian chiếu: {{movieDetails?.gioChieu}}, {{movieDetails?.ngayChieu}}</p>
 
-    </div>
   </div>
+  <app-trangdatghe [gheArray]="DanhSachGheNgoi"></app-trangdatghe>
 </div>

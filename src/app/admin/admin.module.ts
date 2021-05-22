@@ -6,6 +6,7 @@ import { TrangQuanLyPhimComponent } from './trang-quan-ly-phim/trang-quan-ly-phi
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DanhSachPhimComponent } from './danh-sach-phim/danh-sach-phim.component';
 import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     QuanlyUsersComponent,
     TrangQuanLyPhimComponent,
     SidebarComponent,
-    DanhSachPhimComponent
+    DanhSachPhimComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

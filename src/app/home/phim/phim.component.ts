@@ -16,8 +16,8 @@ export class PhimComponent implements OnInit {
   ngOnInit(): void {
     this.phimSV.LayDanhSachPhim().subscribe(
       (danhSachPhim)=> {
-        this.danhSachPhimDangChieu = danhSachPhim.slice(0,7);
-        this.danhSachPhimSapChieu = danhSachPhim.slice(8,15);
+        this.danhSachPhimDangChieu = danhSachPhim.slice(0,8);
+        this.danhSachPhimSapChieu = danhSachPhim.slice(15,23);
       },
       (error) => {
         console.log(error)

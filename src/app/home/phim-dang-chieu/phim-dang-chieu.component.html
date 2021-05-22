@@ -1,4 +1,4 @@
-<owl-carousel-o [options]="owlOptions">
+<!-- <owl-carousel-o [options]="owlOptions">
   <ng-template carouselSlide *ngFor="let phim of phimDangChieu">
     <div class="card">
       <div class="card-header">
@@ -10,9 +10,19 @@
           <i class="bx bxs-star"></i>
           <span>{{phim.danhGia}}</span>
         </div>
-        <!-- <p class="card-text">{{phim.moTa | uppercase}}</p> -->
+        <span class="card-text">{{phim.moTa | shortCut:20}}</span>
         <button class="btn btn-block btn-success" [routerLink]="['/chitiet', phim.maPhim]">Xem chi tiết</button>
       </div>
     </div>
   </ng-template>
-</owl-carousel-o>
+</owl-carousel-o> -->
+
+<div class="container phimDangChieu__container">
+  <div class="row">
+      <div class="col-sm-6 col-lg-3 phim__item" *ngFor="let phim of phimDangChieu" >
+        <img class="card-img-top" [src]="phim.hinhAnh" alt="" width="100%" height="100%">
+        <button class="btn btn-block btn-outline-light" [routerLink]="['/chitiet', phim.maPhim]">Xem chi tiết</button>
+        <p class="phim__name">{{phim.tenPhim}}</p>
+      </div>
+  </div>
+</div>

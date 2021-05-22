@@ -41,7 +41,7 @@ export class TrangDangNhapComponent implements OnInit {
         if(success.hoTen)
         {
           localStorage.setItem('nguoiDungDangNhap', JSON.stringify(success)); 
-          success.maLoaiNguoiDung === "KhachHang" ? this.router.navigate(['/']) : this.router.navigate(['/admin']);
+          success.maLoaiNguoiDung === "KhachHang" ? this.router.navigate(['/']) : this.router.navigate(['/admin/dashboard']);
           this.nameUser = success.hoTen;
           this.loginStatus.emit(this.nameUser);
           

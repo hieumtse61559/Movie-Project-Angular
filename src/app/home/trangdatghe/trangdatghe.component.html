@@ -3,8 +3,8 @@
     <p class="lead text-left">Số ghế đã chọn: <span class="font-weight-bold">{{soGheDaChon}}</span></p>
     <p class="lead text-left">Số ghế còn trống: <span class="font-weight-bold">{{soGheConTrong}}</span></p>
   </div>
-  
-  
+
+
   <div class="row">
     <h1 class="text-center">Screen</h1>
     <div class="col-11 bg-success mx-auto">
@@ -20,10 +20,53 @@
         <span>Giá: {{gheDuocChon.giaVe}}</span>
       </p> -->
     </div>
-    <div class="ghichu d-flex justify-content-around">
+
+    <div class="col-5 ghichu d-flex justify-content-around">
       <span>Còn trống: <button class="btn btn-secondary" disabled></button></span>
       <span>Đã đặt: <button class="btn btn-danger" disabled></button></span>
       <span>Đang đặt: <button class="btn btn-primary" disabled></button></span>
     </div>
+    <div class="text-center">
+      <button class="btn btn-success" (click)="handlePay(bill)">Thanh toán</button>
+    </div>
+
+
   </div>
 </div>
+
+
+<ng-template #bill let-modal class="modal__form">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hóa đơn xác nhận thanh toán</h4>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-6">
+        <p>Ghế đã chọn</p>
+      </div>
+      <div class="col-6">
+        <p>Giá tiền</p>
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let gheDaChon of MangGheDaChon">
+      <div class="col-6">
+        <p>{{gheDaChon.tenGhe}}</p>
+      </div>
+      <div class="col-6">
+        <p>{{gheDaChon.giaVe}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="confirmPayment()" >Xác nhận</button>
+    <button type="button" class="btn btn-danger"
+      (click)="modal.close('Ok click')">Hủy</button>
+  </div>
+
+
+
+</ng-template>

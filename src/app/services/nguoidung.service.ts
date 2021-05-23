@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { account } from '../models/account';
 import { NguoiDung } from '../models/nguoidung';
@@ -10,7 +10,13 @@ import { NguoiDung } from '../models/nguoidung';
 })
 export class NguoidungService {
 
-  constructor(private _http:HttpClient) { }
+  public storeUser = new BehaviorSubject({});
+  public account = this.storeUser.asObservable();
+
+
+  constructor(private _http:HttpClient) {
+    this.storeUser.next(false);
+   }
   LayDanhSachNguoiDung():Observable<any>{
     let url = "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP10";
     let obServe = this._http.get(url);

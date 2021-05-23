@@ -37,11 +37,11 @@ export class TrangDangNhapComponent implements OnInit {
       // Đăng nhập thành công
       (success:any) => {
         console.log("Đăng nhập thành công")
-        
+        this.nguoiDungSV.storeUser.next(true);
         if(success.hoTen)
         {
           localStorage.setItem('nguoiDungDangNhap', JSON.stringify(success)); 
-          success.maLoaiNguoiDung === "KhachHang" ? this.router.navigate(['/']) : this.router.navigate(['/admin/dashboard']);
+          success.maLoaiNguoiDung === "KhachHang" ? alert(`Xin chào ${success.hoTen}`) : this.router.navigate(['/admin/dashboard']);
           this.nameUser = success.hoTen;
           this.loginStatus.emit(this.nameUser);
           

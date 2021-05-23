@@ -1,4 +1,8 @@
 import { AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ve } from 'src/app/models/ve';
+import { DatveService } from 'src/app/services/datve.service';
+import { NguoidungService } from 'src/app/services/nguoidung.service';
 
 @Component({
   selector: 'app-trangdatghe',
@@ -6,25 +10,27 @@ import { AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChan
   styleUrls: ['./trangdatghe.component.scss']
 })
 export class TrangdatgheComponent implements OnInit, OnChanges {
-  @Input() gheArray?:any[] = [];
-
+  @Input() gheArray?: any[] = [];
+  @Input() maLichChieu?: number;
+  danhSachVe:any[]  =[];
   soGheDaChon: number = 0;
   soGheConTrong?: number = this.gheArray?.length
 
-  MangGheDangChon = [] as any;
-  danhSachGheDaDat:any[] = [];
+  MangGheDaChon = [] as any;
+  danhSachGheDaDat: any[] = [];
+  totalCost: number = 0;
 
 
-  constructor() { }
+  constructor(private nguoiDungSV: NguoidungService, private modalService: NgbModal, private datVeSV : DatveService) { }
 
   ngOnInit(): void {
     console.log(this.gheArray)
-    
+
   }
 
-  ngOnChanges(){
-    this.gheArray?.map( (ghe:any)=>{
-      if(ghe.daDat){
+  ngOnChanges() {
+    this.gheArray?.map((ghe: any) => {
+      if (ghe.daDat) {
         this.danhSachGheDaDat.push(ghe);
       }
     })
@@ -33,23 +39,74 @@ export class TrangdatgheComponent implements OnInit, OnChanges {
     this.soGheConTrong = this.gheArray!.length - this.danhSachGheDaDat.length;
   }
 
-  nhanStatusFromGheItem(statusDatGhe:any, gheObj:any){
+  nhanStatusFromGheItem(statusDatGhe: any, gheObj: any) {
     // console.log(statusDatGhe);
     // console.log(gheObj);
-    if(statusDatGhe){
+    // 
+    if (statusDatGhe) {
+      // Click chọn ghế
       this.soGheDaChon++;
       this.soGheConTrong!--;
-      this.MangGheDangChon.push(gheObj);
-    }else{
+      this.MangGheDaChon.push(gheObj);
+      this.danhSachVe.push({maGhe: gheObj.maGhe, giaVe: gheObj.giaVe})
+      this.totalCost = this.totalCost + gheObj.giaVe;
+    } else {
+      // Click bỏ chọn ghế
       this.soGheDaChon--;
       this.soGheConTrong!++;
-      this.MangGheDangChon.map((item:any, index:number)=>{
-        if(item.maGhe === gheObj.maGhe){
-          this.MangGheDangChon.splice(index,1);
+      this.MangGheDaChon.map((item: any, index: number) => {
+        if (item.maGhe === gheObj.maGhe) {
+          this.totalCost = this.totalCost - gheObj.giaVe;
+          this.MangGheDaChon.splice(index, 1);
         }
       })
     }
-    console.log(this.MangGheDangChon);
+    console.log(this.MangGheDaChon);
+  }
+
+  handlePay(billModal: any) {
+    // Kiểm tra xem đăng nhập hay chưa
+    this.nguoiDungSV.storeUser.subscribe(
+      (data) => {
+        console.log(this.nguoiDungSV.storeUser.value) // true: đã đăng nhập, false: chưa đăng nhập
+        //Chưa đăng nhập
+        if (this.nguoiDungSV.storeUser.value == false) {
+          alert("Vui lòng đăng nhập để thanh toán")
+        } else {
+          // Đã đăng nhập
+          // Mở popup hiện #bill lên để người dùng xác nhận thông tin mua vé
+          this.modalService.open(billModal, { centered: true });
+        }
+
+
+      },
+      (error) => {
+        console.log(error)
+        alert("error")
+      }
+    )
+  }
+
+  confirmPayment(){
+    const username = JSON.parse(localStorage.getItem("nguoiDungDangNhap") as string).taiKhoan;
+    console.log(username);
+    let ticket:any = {
+      maLichChieu: this.maLichChieu,
+      danhSachVe: this.danhSachVe,
+      taiKhoanNguoiDung: username,
+    }
+    this.datVeSV.DatVe(ticket).subscribe(
+      (success)=>{
+        
+        console.log("success")
+      },
+      (error)=>{
+
+        this.modalService.dismissAll();
+        console.log(error)
+        alert("Đặt vé thành công")
+      }
+    )
   }
 
 
@@ -80,3 +137,6 @@ export class TrangdatgheComponent implements OnInit, OnChanges {
   // }
 
 }
+
+
+

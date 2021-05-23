@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NguoidungService } from 'src/app/services/nguoidung.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   clickedButtonName!: string
   closeResult!: string;
   isLogined:boolean = false;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private nguoiDungSV : NguoidungService) { }
 
   
 
@@ -34,8 +35,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
+    // Xóa localStorage
     localStorage.clear();
+    // Reset lại hoTenUser thành rỗng để hiện lại 2 button đăng nhập và đăng ký
     this.hoTenUser = "";
+    // Đẩy false lên store để xác nhận là chưa đăng nhập
+    this.nguoiDungSV.storeUser.next(false);
   }
   
 }

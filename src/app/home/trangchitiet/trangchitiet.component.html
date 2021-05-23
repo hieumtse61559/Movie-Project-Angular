@@ -24,16 +24,16 @@
     </div>
     <div class="col-7 phim-content">
       <div class="phim-detail">
-        <p>Tên phim : {{chiTietPhim.tenPhim}}</p>
-        <p>Đánh giá : {{chiTietPhim.danhGia}} <i class="bx bxs-star"></i></p>
-        <p>Ngày khởi chiếu: {{chiTietPhim.ngayKhoiChieu | date:"dd-MM-yyyy"}}</p>
-        <p>Nội dung: {{chiTietPhim.moTa}}</p>
+        <p>Tên phim : {{chiTietPhim?.tenPhim}}</p>
+        <p>Đánh giá : {{chiTietPhim?.danhGia}} <i class="bx bxs-star"></i></p>
+        <p>Ngày khởi chiếu: {{chiTietPhim?.ngayKhoiChieu | date:"dd-MM-yyyy"}}</p>
+        <p>Nội dung: {{chiTietPhim?.moTa}}</p>
         <!-- <p>Trailer: {{chiTietPhim.trailer}}</p> -->
       </div>
       
 
       <div class="phim-time">
-        <div class="HeThongRap" *ngFor="let heThongRap of chiTietPhim.heThongRapChieu">
+        <div class="HeThongRap" *ngFor="let heThongRap of chiTietPhim?.heThongRapChieu">
           <!-- <div class="rapPhim-logo">
             <img [src]="heThongRap.logo" width="50px" height="50px" alt="Logo hệ thống rạp">
             <span style="font-weight: 600; font-size: 1.4rem;">{{heThongRap.tenHeThongRap}}</span>

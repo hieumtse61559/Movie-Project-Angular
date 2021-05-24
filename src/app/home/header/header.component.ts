@@ -10,7 +10,7 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
 })
 export class HeaderComponent implements OnInit {
   hoTenUser!:string;
-  clickedButtonName!: string
+  clickedTagName!: string
   closeResult!: string;
   isLogined:boolean = false;
   constructor(private modalService: NgbModal, private nguoiDungSV : NguoidungService) { }
@@ -26,10 +26,10 @@ export class HeaderComponent implements OnInit {
   }
 
   // Phương thức này mở modal tại trung tâm screen với size lg
-  openVerticallyCentered(content:any, button:any) {
-    console.log(button.name)
+  openVerticallyCentered(content:any, tagObj:any) {
+    
     this.modalService.open(content, { centered: true, size: 'lg' });
-    this.clickedButtonName = button.name;
+    this.clickedTagName = tagObj.name;
   }
 
 

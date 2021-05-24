@@ -46,7 +46,7 @@ export class TrangchitietComponent implements OnInit {
   }
 
   open(content:any) {
-    this.modalService.open(content, { size: 'lg' });
+    this.modalService.open(content, { size: 'lg' , centered: true});
   }
   
 }

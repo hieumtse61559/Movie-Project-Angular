@@ -46,4 +46,18 @@ export class NguoidungService {
     let obServe = this._http.post(url, account);
     return obServe;
   }
+
+  layThongTinNguoiDung(taiKhoan:object):Observable<any>{
+    const url = "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan";
+    return this._http.post(url, taiKhoan);
+  }
+
+  capNhatThongTinNguoiDung(newTaiKhoan:object, auth_token:any):Observable<any>{
+    const url = "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this._http.put(url, newTaiKhoan, {headers});
+  }
 }

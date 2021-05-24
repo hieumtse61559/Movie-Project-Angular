@@ -20,6 +20,7 @@ import { PhimDangChieuComponent } from './phim-dang-chieu/phim-dang-chieu.compon
 import { PhimSapChieuComponent } from './phim-sap-chieu/phim-sap-chieu.component';
 import { PhimItemComponent } from './phim-item/phim-item.component';
 import { CumRapComponent } from './cum-rap/cum-rap.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -41,6 +42,7 @@ import { CumRapComponent } from './cum-rap/cum-rap.component';
     PhimSapChieuComponent,
     PhimItemComponent,
     CumRapComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

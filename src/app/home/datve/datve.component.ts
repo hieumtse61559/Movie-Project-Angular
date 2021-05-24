@@ -32,6 +32,22 @@ export class DatveComponent implements OnInit {
         console.log(error)
       }
     )
+
+    // Theo dõi trên store xem là trạng thái đặt vé có thay đổi thành true để gọi lại API lấy danh sách ghế load lại giao diện
+    this.datveSV.statusBooking.subscribe(
+      (checkStatusBooking) =>{
+        if(checkStatusBooking){
+          this.datveSV.LayDanhSachPhongVe(this.MaLichChieu).subscribe(
+            (result) => {
+              console.log(result)
+              this.movieDetails = result.thongTinPhim;
+              this.DanhSachGheNgoi = result.danhSachGhe;
+              console.log(this.DanhSachGheNgoi)
+            }
+          )
+        }
+      }
+    )
   }
 
   // layTaiKhoanNguoiDung(){

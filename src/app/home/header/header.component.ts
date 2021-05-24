@@ -18,7 +18,11 @@ export class HeaderComponent implements OnInit {
   
 
   ngOnInit(): void {
-    
+    const accountUser = JSON.parse(localStorage.getItem("nguoiDungDangNhap") as string);
+    if(accountUser && accountUser.maLoaiNguoiDung =="KhachHang"){
+      this.hoTenUser = accountUser.hoTen;
+      this.nguoiDungSV.storeUser.next(true);
+    }
   }
 
   // Phương thức này mở modal tại trung tâm screen với size lg

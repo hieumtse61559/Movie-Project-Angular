@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ve } from 'src/app/models/ve';
 import { DatveService } from 'src/app/services/datve.service';
@@ -12,6 +12,7 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
 export class TrangdatgheComponent implements OnInit, OnChanges {
   @Input() gheArray?: any[] = [];
   @Input() maLichChieu?: number;
+  
   danhSachVe:any[]  =[];
   soGheDaChon: number = 0;
   soGheConTrong?: number = this.gheArray?.length
@@ -101,6 +102,8 @@ export class TrangdatgheComponent implements OnInit, OnChanges {
         console.log("success")
       },
       (error)=>{
+
+        this.datVeSV.store.next(true);
 
         this.modalService.dismissAll();
         console.log(error)

@@ -44,20 +44,28 @@
 
     <div class="row">
       <div class="col-6">
-        <p>Ghế đã chọn</p>
+        <p style="font-size: larger; font-weight: 500;">Ghế đã chọn :</p>
       </div>
       <div class="col-6">
-        <p>Giá tiền</p>
+        <p style="font-size: larger; font-weight: 500;">Giá tiền :</p>
       </div>
     </div>
 
-    <div class="row" *ngFor="let gheDaChon of MangGheDaChon">
-      <div class="col-6">
-        <p>{{gheDaChon.tenGhe}}</p>
+    <hr>
+
+    <div class="row " *ngFor="let gheDaChon of MangGheDaChon">
+      <div class="col-6 d-flex justify-content-end">
+        <p class="text-left">{{gheDaChon.tenGhe}}</p>
       </div>
-      <div class="col-6">
-        <p>{{gheDaChon.giaVe}}</p>
+      <div class="col-6 d-flex justify-content-end">
+        <p class="text-left">{{gheDaChon.giaVe}}</p>
       </div>
+    </div>
+
+    <hr>
+
+    <div class="row ">
+      <p class="text-left">Tổng số tiền: {{totalCost}}</p>
     </div>
   </div>
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ve } from '../models/ve';
 
 @Injectable({
@@ -8,7 +8,13 @@ import { ve } from '../models/ve';
 })
 export class DatveService {
 
-  constructor(private _http:HttpClient) { }
+  public store = new BehaviorSubject({});
+  public statusBooking = this.store.asObservable();
+
+
+  constructor(private _http:HttpClient) { 
+    this.store.next(false);
+  }
 
   LayDanhSachPhongVe(maLichChieu:any): Observable<any>{
     let url = `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`;

@@ -55,17 +55,17 @@
 
     <div class="row " *ngFor="let gheDaChon of MangGheDaChon">
       <div class="col-6 d-flex justify-content-end">
-        <p class="text-left">{{gheDaChon.tenGhe}}</p>
+        <p>{{gheDaChon.tenGhe}}</p>
       </div>
       <div class="col-6 d-flex justify-content-end">
-        <p class="text-left">{{gheDaChon.giaVe}}</p>
+        <p>{{gheDaChon.giaVe}}</p>
       </div>
     </div>
 
     <hr>
 
-    <div class="row ">
-      <p class="text-left">Tổng số tiền: {{totalCost}}</p>
+    <div class="d-flex justify-content-end" style="font-size: larger; font-weight: 500;">
+      <p>Tổng số tiền: <span class="text-danger">{{totalCost}}</span> </p>
     </div>
   </div>
 

@@ -1,10 +1,15 @@
-<div class="container">
-  <div class="details">
-    <p>Tên phim: {{movieDetails?.tenPhim}}</p>
-    <p>Tên rạp: {{movieDetails?.tenCumRap}} - {{movieDetails?.tenRap}}</p>
-    <p>Địa chỉ: {{movieDetails?.diaChi}}</p>
-    <p>Thời gian chiếu: {{movieDetails?.gioChieu}}, {{movieDetails?.ngayChieu}}</p>
-
+<div class="container-fluid py-4" style="margin-top: 100px;">
+  <div class="row">
+    <div class="col-2">
+      <div class="details">
+        <p><span>Tên phim:</span> {{movieDetails?.tenPhim}}</p>
+        <p><span>Tên rạp:</span>  {{movieDetails?.tenCumRap}} - {{movieDetails?.tenRap}}</p>
+        <p><span>Địa chỉ:</span>  {{movieDetails?.diaChi}}</p>
+        <p><span>Thời gian chiếu:</span> {{movieDetails?.gioChieu}}, {{movieDetails?.ngayChieu}}</p>
+      </div>
+    </div>
+    <div class="col-10">
+      <app-trangdatghe [gheArray]="DanhSachGheNgoi" [maLichChieu]="movieDetails?.maLichChieu"></app-trangdatghe>
+    </div>
   </div>
-  <app-trangdatghe [gheArray]="DanhSachGheNgoi" [maLichChieu]="movieDetails?.maLichChieu"></app-trangdatghe>
 </div>

@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   // Phương thức này mở modal tại trung tâm screen với size lg
   openVerticallyCentered(content:any, tagObj:any) {
     
-    this.modalService.open(content, { centered: true, size: 'lg' });
+    this.modalService.open(content, { centered: true, size: 'xl' });
     this.clickedTagName = tagObj.name;
   }
 

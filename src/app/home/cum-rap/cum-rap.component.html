@@ -38,7 +38,7 @@
           <img [src]="phim.hinhAnh" width="150" height="200" alt="">
 
           <div>
-            <p>Tên phim: {{phim.tenPhim}}</p>
+            <p>{{phim.tenPhim}}</p>
             <p>Giá vé: {{phim.lstLichChieuTheoPhim[0].giaVe}}</p>
             <button class="btn btn-success" [routerLink]="['/chitiet', phim.maPhim]" >Xem chi tiết</button>
           </div>

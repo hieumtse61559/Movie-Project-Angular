@@ -9,7 +9,7 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
 export class ProfileComponent implements OnInit {
   userInfo:any ={};
   confirmPass:any;
-  lichSuDatVe:object[] = [];
+  lichSuDatVe:any[] = [];
   constructor(private nguoiDungSV: NguoidungService) { }
 
   ngOnInit(): void {
@@ -22,11 +22,14 @@ export class ProfileComponent implements OnInit {
         this.confirmPass = this.userInfo.matKhau;
 
         // Lấy được thongTinDatVe của tài khoản
-        this.lichSuDatVe = this.userInfo.thongTinDatVe;
+        this.lichSuDatVe = this.userInfo.thongTinDatVe.reverse().slice(0,7);
+        console.log(this.lichSuDatVe);
       }
     )
   }
   
+
+  // Thay đổi thông tin người dùng rồi bấm Lưu thông tin
   saveProfile(valueProfileForm:any){
     console.log(valueProfileForm) // {matKhau: , soDT: , email:, hoTen:, xacNhanMK}
 

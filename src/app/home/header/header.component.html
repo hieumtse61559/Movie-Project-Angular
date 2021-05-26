@@ -1,7 +1,8 @@
 <header class="bg-dark">
+  
   <a class="header__left d-none d-lg-block" href="#">
     <div class="d-flex align-items-center">
-      <img src="../../../assets/images/logo.png" alt="panda_logo" width="75" height="44">
+      <img src="../../../assets/images/logo.png" alt="panda_logo" width="75" height="60">
       <span>Pánda</span>
     </div>
   </a>
@@ -12,16 +13,38 @@
       [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item pt-1">
           <a class="nav-link" href="#DanhSachPhim">PHIM</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item pt-1">
           <a class="nav-link" href="#CumRap">CỤM RẠP</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item pt-1">
           <a class="nav-link" href="#">TIN TỨC</a>
+        </li>
+        <li class="nav-item pt-1">
+          <a class="nav-link" href="#">ỨNG DỤNG</a>
+        </li>
+        <li class="nav-item">
+          <div class="search__container ml-4">
+            <div class="row align-items-center">
+              <div class="col-10">
+                <input #search list="movielist" class="search__input" type="text" name="" placeholder="Tìm phim theo tên...">
+                <datalist id="movielist">
+                    <div *ngFor="let phim of danhSachPhim">
+                      <option>{{phim.tenPhim}}</option>
+                    </div>
+                </datalist>
+              </div>
+              <div class="col-2">
+                <button class="search__icon"  (click)="handleSearch(search)"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
         </li>
 
         <!-- <li class="nav-item">
@@ -31,7 +54,7 @@
     </div>
   </nav>
 
-  <div class="search__container">
+  <!-- <div class="search__container">
     <div class="row">
       <div class="col-10">
         <input #search list="movielist" class="search__input" type="text" name="" placeholder="Tìm phim theo tên...">
@@ -45,7 +68,11 @@
         <button class="search__icon"  (click)="handleSearch(search)"><i class="fas fa-search"></i></button>
       </div>
     </div>
-  </div>
+  </div> -->
+  <a href="#" class="logo__temp d-md-block d-lg-none">
+    <img src="../../../assets/images/logo.png" width="75" height="60" alt="">
+  </a>
+  
 
   <div class="header__right">
     <div ngbDropdown *ngIf="hoTenUser">

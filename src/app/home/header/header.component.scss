@@ -48,7 +48,9 @@ header {
     //     color: #e74c3c;
     //   }
     // }
-    
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
     .search__input {
       color: white;
       border: 0;
@@ -73,9 +75,9 @@ header {
       color: red;
       text-decoration: none;
       transition: all 0.4s linear;
-      &:hover{
+      &:hover {
         background: red;
-        color: white ;
+        color: white;
       }
     }
   }
@@ -123,41 +125,61 @@ header {
 }
 
 @media all and (max-width: 992px) {
-  .search__container {
+  // .search__container {
+  //   position: absolute;
+  //   top: 10px;
+  //   right: 35%;
+  //   .search__input {
+  //     width: 300px !important;
+  //   }
+  // }
+  .logo__temp{
     position: absolute;
-    top: 10px;
-    right: 35%;
-    .search__input {
-      width: 300px !important;
-    }
+    top: 5px;
+    right: 45%;
   }
+  
   .header__right {
     position: absolute;
     top: 20px;
     right: 0;
   }
+  .collapse{
+    ul{
+      padding-left: 5px;
+      .search__container{
+        margin-left: 0 !important;
+      }
+    }
+    
+  }
+  
 }
 
 @media all and (max-width: 700px) {
-  .search__container {
-    position: absolute;
-    top: 10px;
-    right: 35%;
-    .search__input {
-      width: 250px !important;
-    }
-  }
-  
+  // .search__container {
+  //   position: absolute;
+  //   top: 10px;
+  //   right: 35%;
+  //   .search__input {
+  //     width: 250px !important;
+  //   }
+  // }
 }
 
 @media all and (max-width: 576px) {
-  .search__container {
-    position: absolute;
-    top: 10px;
-    right: 35%;
-    .search__input {
-      width: 150px !important;
+  // .search__container {
+  //   position: absolute;
+  //   top: 10px;
+  //   right: 35%;
+  //   .search__input {
+  //     width: 150px !important;
+  //   }
+  // }
+  .header__right {
+    .btn {
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
     }
   }
-  
 }

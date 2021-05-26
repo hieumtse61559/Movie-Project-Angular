@@ -1,4 +1,13 @@
-img{
+img {
   height: 600px;
+  width: 100%;
   // max-width: 500px;
+}
+
+.slide{
+  height: 500px;
+  min-width: 320px;
+  background-position: 50% 50%;
+  background-size: cover;
+  
 }

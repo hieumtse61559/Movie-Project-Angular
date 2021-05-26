@@ -16,7 +16,6 @@ export class HeroCarouselComponent implements OnInit {
     
   }
   owlOptions: OwlOptions = {
-    items: 1,
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -26,6 +25,24 @@ export class HeroCarouselComponent implements OnInit {
     nav: false,
     autoplay:false,
     autoplayTimeout:3000,
+    autoWidth:true,
+    responsive : {
+      320 :{
+        items: 1
+      },
+      576 :{
+        items: 1
+      },
+      768 :{
+        items: 1
+      },
+      992 :{
+        items: 1
+      },
+      1200 :{
+        items: 1
+      }
+    }
   }
 
 }

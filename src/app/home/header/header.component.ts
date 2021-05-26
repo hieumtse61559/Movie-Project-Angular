@@ -1,6 +1,8 @@
 import { Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
+import { PhimService } from 'src/app/services/phim.service';
 
 
 @Component({
@@ -9,12 +11,15 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isCollapsed:boolean = true;
   hoTenUser!:string;
   clickedTagName!: string
   closeResult!: string;
   isLogined:boolean = false;
-  constructor(private modalService: NgbModal, private nguoiDungSV : NguoidungService) { }
-
+  movieID:any;
+  constructor(private modalService: NgbModal, private nguoiDungSV : NguoidungService, private phimSV: PhimService, private router:Router) { }
+  danhSachPhim:any[] = [];
+  
   
 
   ngOnInit(): void {
@@ -23,6 +28,20 @@ export class HeaderComponent implements OnInit {
       this.hoTenUser = accountUser.hoTen;
       this.nguoiDungSV.storeUser.next(true);
     }
+
+    // Lấy danh sách phim trên store (phim đang chiếu + phim sắp chiếu)
+    this.phimSV.danhSachPhim.subscribe(
+      (kq)=>{
+        this.danhSachPhim = kq.map((phim)=> {
+          return {tenPhim: phim.tenPhim, maPhim: phim.maPhim}
+        })
+        console.log(this.danhSachPhim)
+      },
+      (error)=>{
+        alert(error)
+      }
+    )
+
   }
 
   // Phương thức này mở modal tại trung tâm screen với size lg
@@ -46,5 +65,20 @@ export class HeaderComponent implements OnInit {
     // Đẩy false lên store để xác nhận là chưa đăng nhập
     this.nguoiDungSV.storeUser.next(false);
   }
-  
+
+  // Đưa input search vào để lấy value, rồi gửi maPhim đi đến trang chi tiết
+  handleSearch(searchInput:any){
+    console.log(searchInput.value)
+    if(searchInput.value){
+      this.danhSachPhim.map(
+        (phim)=>{
+          if(phim.tenPhim == searchInput.value){
+            this.movieID = phim.maPhim
+          }
+        }
+      )
+      console.log(this.movieID);
+      this.router.navigate(['/chitiet', this.movieID]);
+    }
+  }
 }

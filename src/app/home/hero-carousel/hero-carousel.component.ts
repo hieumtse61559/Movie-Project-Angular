@@ -24,7 +24,7 @@ export class HeroCarouselComponent implements OnInit {
     dots: true,
     navSpeed: 700,
     nav: false,
-    autoplay:true,
+    autoplay:false,
     autoplayTimeout:3000,
   }
 

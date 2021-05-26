@@ -16,8 +16,11 @@ export class PhimComponent implements OnInit {
   ngOnInit(): void {
     this.phimSV.LayDanhSachPhim().subscribe(
       (danhSachPhim)=> {
-        this.danhSachPhimDangChieu = danhSachPhim.slice(0,8);
-        this.danhSachPhimSapChieu = danhSachPhim.slice(15,23);
+        this.danhSachPhimDangChieu = danhSachPhim.slice(12,20);
+        this.danhSachPhimSapChieu = danhSachPhim.slice(21,29); //15,23
+        const danhSachPhimTongHop = this.danhSachPhimDangChieu.concat(this.danhSachPhimSapChieu);
+        // Đẩy 2 danh sách lên store để các header có thể lấy mà sử lý việc tìm kiếm
+        this.phimSV.store.next(danhSachPhimTongHop);
       },
       (error) => {
         console.log(error)

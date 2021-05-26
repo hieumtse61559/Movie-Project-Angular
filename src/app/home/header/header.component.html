@@ -1,21 +1,21 @@
-<header>
-  <nav class="navbar navbar-expand navbar-dark bg-dark px-3">
+<header class="bg-dark">
+  <a class="header__left d-none d-lg-block" href="#">
+    <div class="d-flex align-items-center">
+      <img src="../../../assets/images/logo.png" alt="panda_logo" width="75" height="44">
+      <span>Pánda</span>
+    </div>
+  </a>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      aria-controls="navbarSupportedContent" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="header__left" href="#">
-        <!-- <a href="#" class="logo">
-          <i class='bx bx-movie-play bx-tada main-color' style="font-size: 50px;"></i>
-        </a> -->
-        
-          <img src="../../../assets/images/logo.png" alt="panda_logo" width="75" height="70">
-          <span>Pánda</span>
-      </a>
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#DanhSachPhim">DANH SÁCH PHIM</a>
+          <a class="nav-link" href="#DanhSachPhim">PHIM</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#CumRap">CỤM RẠP</a>
@@ -23,44 +23,65 @@
         <li class="nav-item">
           <a class="nav-link" href="#">TIN TỨC</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">ỨNG DỤNG</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">LIÊN HỆ</a>
-        </li>
-  
+
         <!-- <li class="nav-item">
           <a class="nav-link" [routerLink]="['/dangky']" routerLinkActive="router-link-active" >Đăng ký(Page)</a>
         </li> -->
       </ul>
-      <div class="header__right">
-        <div class="dropdown" *ngIf="hoTenUser">
-  
-          <button class="account-user" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            {{hoTenUser}}
-          </button>
-          <ul class="dropdown-menu dropdown-menu-lg-right">
-            <li><a class="dropdown-item" name="Profile" #profile (click)="openVerticallyCentered(content, profile)">Profile</a></li>
-            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
-          </ul>
-        </div>
-        <!-- <span class="user__name"  *ngIf="hoTenUser">{{hoTenUser}}</span> -->
-        <div *ngIf="!hoTenUser">
-          <button #btnLogin class="btn" name="Login" (click)="openVerticallyCentered(content, btnLogin)">Đăng
-            nhập</button>
-          <button #btnSignUp class="btn" name="SignUp" (click)="openVerticallyCentered(content,btnSignUp)">Đăng
-            ký</button>
-        </div>
-  
-      </div>
     </div>
   </nav>
+
+  <div class="search__container">
+    <div class="row">
+      <div class="col-10">
+        <input #search list="movielist" class="search__input" type="text" name="" placeholder="Tìm phim theo tên...">
+        <datalist id="movielist">
+            <div *ngFor="let phim of danhSachPhim">
+              <option>{{phim.tenPhim}}</option>
+            </div>
+        </datalist>
+      </div>
+      <div class="col-2">
+        <button class="search__icon"  (click)="handleSearch(search)"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="header__right">
+    <div ngbDropdown *ngIf="hoTenUser">
+      <button class="account-user" type="button" id="dropdownMenuButton" ngbDropdownToggle>
+        {{hoTenUser}}
+      </button>
+      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+        <li><a ngbDropdownItem name="Profile" #profile (click)="openVerticallyCentered(content, profile)">Thông tin cá
+            nhân</a></li>
+        <li><a ngbDropdownItem (click)="logout()">Đăng xuất</a></li>
+      </ul>
+    </div>
+    <div *ngIf="!hoTenUser">
+      <button #btnLogin class="btn" name="Login" (click)="openVerticallyCentered(content, btnLogin)">Đăng
+        nhập</button>
+      <button #btnSignUp class="btn" name="SignUp" (click)="openVerticallyCentered(content,btnSignUp)">Đăng
+        ký</button>
+    </div>
+  </div>
+
+  <!-- Dropdow mẫu của Angular -->
+  <!-- <div ngbDropdown class="d-inline-block">
+    <button class="btn btn-outline-primary" id="dropdownMenuButton" ngbDropdownToggle>Dropdown button</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+      <button ngbDropdownItem>Action</button>
+      <button ngbDropdownItem>Another Action</button>
+      <button ngbDropdownItem>Something else here</button>
+    </div>
+  </div> -->
+
+
 </header>
 
 <!-- MODAL hiển thị loginForm và SignUpForm -->
 <ng-template #content let-modal class="modal__form">
-  
+
   <app-trang-dang-nhap *ngIf='clickedTagName=="Login"' (loginStatus)="getNameFromDangNhap($event)">
   </app-trang-dang-nhap>
   <app-profile *ngIf='clickedTagName=="Profile"'></app-profile>

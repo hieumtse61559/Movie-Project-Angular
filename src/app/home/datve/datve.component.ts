@@ -41,7 +41,7 @@ export class DatveComponent implements OnInit {
             (result) => {
               console.log(result)
               this.movieDetails = result.thongTinPhim;
-              this.DanhSachGheNgoi = result.danhSachGhe;
+              this.DanhSachGheNgoi = result.danhSachGhe.slice(0,120);
               console.log(this.DanhSachGheNgoi)
             }
           )

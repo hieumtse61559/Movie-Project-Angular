@@ -16,13 +16,13 @@
 
 <div class="container my-4">
   <div class="row" style="margin-top: 100px;">
-    <div class="col-5 phim-image">
+    <div class="col-4 phim-image text-center">
       <img [src]="chiTietPhim?.hinhAnh" width="100%" alt="Hình ảnh phim">
-      <button class="btn btn-outline-light play__trailer" (click)="open(content)">
+      <button class="btn btn-outline-light shadow-lg play__trailer" (click)="open(content)">
         <i class="fas fa-play"></i>
       </button>
     </div>
-    <div class="col-7 phim-content">
+    <div class="col-8 phim-content">
       <div class="phim-detail">
         <p>Tên phim : {{chiTietPhim?.tenPhim}}</p>
         <p>Đánh giá : {{chiTietPhim?.danhGia}} <i class="bx bxs-star"></i></p>
@@ -44,7 +44,7 @@
               <p style="font-size: 1.2rem; font-weight: 500;">{{rapPhim.tenCumRap}}</p>
               <div class="buttons-container row">
                 <div class="col-3" *ngFor="let rap of rapPhim.lichChieuPhim.slice(0,7)">
-                  <button class="btn btn-outline-success m-2" [routerLink]="['/datve', rap.maLichChieu]">
+                  <button class="btn btn-outline-success my-1 p-1" [routerLink]="['/datve', rap.maLichChieu]">
                     {{rap.ngayChieuGioChieu | date:"dd-MM, hh:mm"}}
                   </button>
                 </div>

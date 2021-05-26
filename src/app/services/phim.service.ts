@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhimService {
+
+  // Lưu ý chỗ store này muốn lưu 1 mảng thì phải khởi tạo như thế này
+  public store = new BehaviorSubject<any[]>([]);
+  public danhSachPhim = this.store.asObservable();
 
   constructor(private _http: HttpClient) { }
   LayDanhSachPhim():Observable<any>{

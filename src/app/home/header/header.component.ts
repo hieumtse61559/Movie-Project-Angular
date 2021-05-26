@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     const accountUser = JSON.parse(localStorage.getItem("nguoiDungDangNhap") as string);
     if(accountUser && accountUser.maLoaiNguoiDung =="KhachHang"){
-      this.hoTenUser = accountUser.hoTen;
+      this.hoTenUser = accountUser.taiKhoan;
       this.nguoiDungSV.storeUser.next(true);
     }
 

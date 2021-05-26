@@ -43,7 +43,7 @@ export class TrangDangNhapComponent implements OnInit {
           localStorage.setItem('nguoiDungDangNhap', JSON.stringify(success)); 
           success.maLoaiNguoiDung === "KhachHang" ? alert(`Xin chào ${success.hoTen}`) : this.router.navigate(['/admin/dashboard']);
           this.nameUser = success.hoTen;
-          this.loginStatus.emit(this.nameUser);
+          this.loginStatus.emit(success.taiKhoan);
           
         }
       },

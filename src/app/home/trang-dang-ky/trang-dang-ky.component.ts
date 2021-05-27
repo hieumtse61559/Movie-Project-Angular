@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NguoiDung } from 'src/app/models/nguoidung';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
@@ -10,6 +10,7 @@ import { NguoidungService } from 'src/app/services/nguoidung.service';
 })
 export class TrangDangKyComponent implements OnInit {
   @ViewChild('formDangKy') formDK!: NgForm;
+  @Output() closeStatus = new EventEmitter<string>();
   mangNguoiDung: NguoiDung[] = [];
   isConfirmPass: boolean = false;
   constructor(private nguoiDungSV: NguoidungService) { }
@@ -52,6 +53,10 @@ export class TrangDangKyComponent implements OnInit {
         this.mangNguoiDung = kq;
       }
     )
+  }
+
+  closeModal(){
+    this.closeStatus.emit("Close Modal");
   }
 
 }

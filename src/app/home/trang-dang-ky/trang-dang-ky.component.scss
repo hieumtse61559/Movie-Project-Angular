@@ -9,7 +9,7 @@ input.ng-valid.ng-touched{
   background: #222d32;
   .signup-title{
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     letter-spacing: 1px;
     font-weight: 400;
     color: #a3270b;
@@ -19,12 +19,12 @@ input.ng-valid.ng-touched{
       width: 100%;
       background-color: #1a2226;
       border: none;
-      border-bottom: 2px solid #0db8de;
+      border-bottom: 1px solid #0db8de;
       border-top: 0px;
       border-radius: 0px;
       font-weight: bold;
       outline: 0;
-      margin-bottom: 2px;
+      // margin-bottom: 2px;
       padding-left: 0px;
       color: #ecf0f5;
       &:focus{
@@ -36,27 +36,30 @@ input.ng-valid.ng-touched{
     }
     label {
       margin-bottom: 0px;
-      font-size: 18px;
+      font-size: 13px;
       color: #6c6c6c;
       font-weight: bold;
       letter-spacing: 1px;
     }
     .form-group {
-      margin-bottom: 30px;
+      margin-bottom: 5px;
       outline: 0px;
     }
-    .btn-outline-primary {
-      border-color: #0DB8DE;
-      color: #0DB8DE;
-      border-radius: 0px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      &:hover{
-        background-color: #0DB8DE;
-        right: 0px;
-        color: white;
-      }
+    
+  }
+
+  .btn-outline-primary {
+    margin: 0 5px !important;
+    border-color: #0DB8DE;
+    color: #0DB8DE;
+    border-radius: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    &:hover{
+      background-color: #0DB8DE;
+      right: 0px;
+      color: white;
     }
   }
 }

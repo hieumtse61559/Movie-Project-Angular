@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   danhSachPhim:any[] = [];
   
   
-
   ngOnInit(): void {
     const accountUser = JSON.parse(localStorage.getItem("nguoiDungDangNhap") as string);
     if(accountUser && accountUser.maLoaiNguoiDung =="KhachHang"){
@@ -41,12 +40,10 @@ export class HeaderComponent implements OnInit {
         alert(error)
       }
     )
-
   }
 
   // Phương thức này mở modal tại trung tâm screen với size lg
   openVerticallyCentered(content:any, tagObj:any) {
-    
     this.modalService.open(content, { centered: true, size: 'xl' });
     this.clickedTagName = tagObj.name;
   }
@@ -79,6 +76,12 @@ export class HeaderComponent implements OnInit {
       )
       console.log(this.movieID);
       this.router.navigate(['/chitiet', this.movieID]);
+    }
+  }
+
+  nhanLenhCloseModal(lenh:string){
+    if(lenh === "Close Modal"){
+      this.modalService.dismissAll();
     }
   }
 }

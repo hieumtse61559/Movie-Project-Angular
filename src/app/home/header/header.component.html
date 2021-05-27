@@ -75,11 +75,12 @@
   
 
   <div class="header__right">
-    <div ngbDropdown *ngIf="hoTenUser">
+    <!-- Lưu ý chỗ menu Dropdown này nhớ thêm như bên dưới để hiển thị menu sang bên trái cho đẹp -->
+    <div ngbDropdown display="dynamic" placement="bottom-right" *ngIf="hoTenUser">
       <button class="account-user" type="button" id="dropdownMenuButton" ngbDropdownToggle>
         {{hoTenUser}}
       </button>
-      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton" class="dropdown-menu">
         <li><a ngbDropdownItem name="Profile" #profile (click)="openVerticallyCentered(content, profile)">Thông tin cá
             nhân</a></li>
         <li><a ngbDropdownItem (click)="logout()">Đăng xuất</a></li>
@@ -112,7 +113,7 @@
   <app-trang-dang-nhap *ngIf='clickedTagName=="Login"' (loginStatus)="getNameFromDangNhap($event)">
   </app-trang-dang-nhap>
   <app-profile *ngIf='clickedTagName=="Profile"'></app-profile>
-  <app-trang-dang-ky *ngIf='clickedTagName=="SignUp"'></app-trang-dang-ky>
+  <app-trang-dang-ky (closeStatus)="nhanLenhCloseModal($event)"  *ngIf='clickedTagName=="SignUp"'></app-trang-dang-ky>
 
 
 

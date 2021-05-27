@@ -6,8 +6,9 @@ img {
 
 .slide{
   height: 500px;
-  min-width: 320px;
-  background-position: 50% 50%;
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../../assets/images/slider1__banner.jpg)
   
 }

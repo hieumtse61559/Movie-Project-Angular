@@ -25,7 +25,6 @@ export class HeroCarouselComponent implements OnInit {
     nav: false,
     autoplay:false,
     autoplayTimeout:3000,
-    autoWidth:true,
     responsive : {
       320 :{
         items: 1

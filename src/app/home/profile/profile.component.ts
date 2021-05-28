@@ -1,4 +1,4 @@
-import {  Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import {  Component,  EventEmitter,  OnInit, Output } from '@angular/core';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class ProfileComponent implements OnInit {
   userInfo:any ={};
   confirmPass:any;
   lichSuDatVe:any[] = [];
+  @Output() formCancel = new EventEmitter<any>()
   constructor(private nguoiDungSV: NguoidungService) { }
 
   ngOnInit(): void {
@@ -66,5 +67,9 @@ export class ProfileComponent implements OnInit {
       }
     )
     
+  }
+
+  sendToCancelForm(){
+    this.formCancel.emit("Close Modal");
   }
 }

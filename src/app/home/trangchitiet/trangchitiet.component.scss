@@ -1,13 +1,13 @@
-.container{
-  .phim-image{
+.container {
+  .phim-image {
     position: relative;
     height: 600px;
-    img{
+    img {
       height: 100%;
       width: 100%;
       filter: brightness(50%);
     }
-    .play__trailer{
+    .play__trailer {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -16,23 +16,19 @@
       border-radius: 50%;
       font-size: 20px;
       padding: 40px;
-      
-      
-      
     }
   }
-  .phim-content{
-    .phim-detail{
-
+  .phim-content {
+    .phim-detail {
     }
-    .phim-time{
-      .HeThongRap{
-        .rapPhim-logo{
+    .phim-time {
+      .HeThongRap {
+        .rapPhim-logo {
           display: flex;
           align-items: center;
         }
-        .rapTheoHeThong-container{
-          .buttons-container{
+        .rapTheoHeThong-container {
+          .buttons-container {
             margin-left: 40px;
           }
         }
@@ -41,11 +37,18 @@
   }
 }
 
-.modal{
-  
+.modal {
   position: absolute;
-
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 992px) {
+  .container {
+    .phim-image {
+    }
+  }
+}
+
+

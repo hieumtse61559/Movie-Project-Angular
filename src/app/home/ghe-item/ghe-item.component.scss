@@ -1,6 +1,47 @@
 button{
+  margin: 3px 0;
   width: 35px;
   height: 35px;
   padding: 0;
   
+}
+
+@media screen and (max-width: 768px){
+  button{
+    width: 30px;
+    height: 30px ;
+    
+  }
+}
+
+@media screen and (max-width: 600px){
+  button{
+    width: 25px;
+    height: 25px ;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 576px){
+  button{
+    width: 20px;
+    height: 20px ;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 460px){
+  button{
+    width: 15px;
+    height: 15px ;
+    font-size: 8px;
+  }
+}
+
+@media screen and (max-width: 400px){
+  button{
+    width: 13px;
+    height: 13px ;
+    font-size: 7px;
+  }
 }

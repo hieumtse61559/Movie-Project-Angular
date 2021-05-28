@@ -2,5 +2,5 @@
   <button class="btn" [class.btn-secondary]="status===false" [ngClass]="{'btn-primary': status}" (click)="datGhe()">{{itemGhe.tenGhe}}</button>
 </ng-container>
 <ng-template #GheDaDat>
-  <button class="btn btn-danger mr-2 mb-2" disabled>{{itemGhe.tenGhe}}</button>
+  <button class="btn btn-danger" disabled>{{itemGhe.tenGhe}}</button>
 </ng-template>

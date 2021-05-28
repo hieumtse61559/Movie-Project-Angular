@@ -71,16 +71,17 @@
             </div>
           </div>
 
-          <div class="form-group text-center">
+          <div class="form-group text-center ">
             <button class="btn btn-outline-primary"
               [disabled]="formProfile.invalid || (formProfile.value.matKhau != formProfile.value.xacNhanMK) || formProfile.pristine"
               type="submit">Lưu thông tin</button>
+              <button class="btn btn-outline-primary mx-2" type="button" (click)="sendToCancelForm()">Hủy</button>
           </div>
         </form>
       </div>
     </div>
     <!-- Lịch sử đặt vé -->
-    <div class="col-lg-8 d-none d-lg-block align-items-center">
+    <div class="col-md-12 col-lg-8 align-items-center">
       <p style="text-align: center; font-size: 1.6rem; font-weight: 700; color: white;">Lịch sử đặt vé</p>
       <div class="bookedHistory__container">
         <table class="table table-dark text-center" style="height: 350px;">

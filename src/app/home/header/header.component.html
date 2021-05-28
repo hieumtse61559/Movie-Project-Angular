@@ -112,7 +112,7 @@
 
   <app-trang-dang-nhap *ngIf='clickedTagName=="Login"' (loginStatus)="getNameFromDangNhap($event)">
   </app-trang-dang-nhap>
-  <app-profile *ngIf='clickedTagName=="Profile"'></app-profile>
+  <app-profile (formCancel)="nhanLenhCloseModal($event)" *ngIf='clickedTagName=="Profile"'></app-profile>
   <app-trang-dang-ky (closeStatus)="nhanLenhCloseModal($event)"  *ngIf='clickedTagName=="SignUp"'></app-trang-dang-ky>
 
 

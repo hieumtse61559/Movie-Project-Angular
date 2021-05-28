@@ -1,4 +1,4 @@
-<div class="container mx-auto bg-warning p-4">
+<div class="container-fluid mx-auto bg-warning p-4">
   <div class="text-left">
     <!-- <p class="lead text-left">Số ghế đã chọn: <span class="font-weight-bold">{{soGheDaChon}}</span></p>
     <p class="lead text-left">Số ghế còn trống: <span class="font-weight-bold">{{soGheConTrong}}</span></p> -->
@@ -8,9 +8,9 @@
 
   <div class="row">
     <h1 class="text-center">Screen</h1>
-    <div class="col-11 bg-success mx-auto">
+    <div class="container bg-success mx-auto">
       <div class="row">
-        <div class="col-1 my-2" *ngFor="let ghe of gheArray">
+        <div class="col-1" *ngFor="let ghe of gheArray">
           <app-ghe-item (emitStatus)="nhanStatusFromGheItem($event, ghe)" [itemGhe]="ghe"></app-ghe-item>
         </div>
       </div>
@@ -22,12 +22,12 @@
       </p> -->
     </div>
 
-    <div class="col-5 ghichu d-flex justify-content-around">
-      <span>Còn trống: <button class="btn btn-secondary" disabled></button></span>
-      <span>Đã đặt: <button class="btn btn-danger" disabled></button></span>
-      <span>Đang đặt: <button class="btn btn-primary" disabled></button></span>
+    <div class="row ghichu d-flex justify-content-around align-items-center">
+      <div class="col-4">Còn trống: <button class="btn btn-secondary" disabled></button></div>
+      <div class="col-4">Đã đặt: <button class="btn btn-danger" disabled></button></div>
+      <div class="col-4">Đang đặt: <button class="btn btn-primary" disabled></button></div>
     </div>
-    <div class="text-center">
+    <div class="text-center my-2">
       <button class="btn btn-success" (click)="handlePay(bill)">Thanh toán</button>
     </div>
 

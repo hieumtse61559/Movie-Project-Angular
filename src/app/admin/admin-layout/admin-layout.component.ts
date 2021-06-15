@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
-
+  toggle:boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  handleToggleMenu(){
+    console.log("aaaaaaaaaaaaaaaa")
+    this.toggle = !this.toggle;
+    console.log(this.toggle)
   }
 
 }

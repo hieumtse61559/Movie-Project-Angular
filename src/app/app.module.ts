@@ -31,6 +31,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatIconModule,
     FontAwesomeModule,
     
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

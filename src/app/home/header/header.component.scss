@@ -53,15 +53,20 @@ header {
     margin-left: 50px;
     .search__input {
       color: white;
-      border: 0;
-      outline: 0;
+      border: none;
+      outline: 1;
       background: none;
       padding: 0 10px;
       width: 220px;
       caret-color: red;
-      line-height: 40px;
+      // line-height: 40px;
       transition: width 0.4s linear;
+      &::-webkit-search-cancel-button{
+        display: none;
+      }
+      
     }
+  
     .search__icon {
       border: none;
       height: 45px;

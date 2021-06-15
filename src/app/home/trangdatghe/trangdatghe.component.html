@@ -37,8 +37,8 @@
 
 
 <ng-template #bill let-modal class="modal__form">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Hóa đơn xác nhận thanh toán</h4>
+  <div class="d-flex align-items-center justify-content-center pt-2">
+    <h4 class="modal-title text-center" id="modal-basic-title" style="font-size: 25px; text-transform: uppercase; font-weight: 600;">Hóa đơn xác nhận thanh toán</h4>
   </div>
 
   <div class="modal-body">
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <hr>
+    
 
     <div class="row " *ngFor="let gheDaChon of MangGheDaChon">
       <div class="col-6 d-flex justify-content-end">

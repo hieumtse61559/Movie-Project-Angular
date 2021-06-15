@@ -80,7 +80,7 @@
       <button class="account-user" type="button" id="dropdownMenuButton" ngbDropdownToggle>
         {{hoTenUser}}
       </button>
-      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton" class="dropdown-menu" >
         <li><a ngbDropdownItem name="Profile" #profile (click)="openVerticallyCentered(content, profile)">Thông tin cá
             nhân</a></li>
         <li><a ngbDropdownItem (click)="logout()">Đăng xuất</a></li>

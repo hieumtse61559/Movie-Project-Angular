@@ -1,3 +1,314 @@
 <!-- <app-quanly-users></app-quanly-users> -->
 <!-- <app-trang-quan-ly-phim></app-trang-quan-ly-phim> -->
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="content">
+      <header>Header</header>
+      <router-outlet></router-outlet>
+      <footer>Footer</footer>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid admin-layout" id="home" [ngClass]="{'sidebar-expand': toggle}">
+  <div class="navbar">
+    <!-- Nav-left  -->
+    <ul class="navbar-nav nav-left">
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fas fa-bars" (click)="handleToggleMenu()"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <img src="../../../assets/images/logo.png" class="logo" alt="Panda-Logo">
+        <span>Pánda</span>
+      </li>
+    </ul>
+    <!-- form input search -->
+    <form action="" class="navbar-search">
+      <input type="text" name="search" class="navbar-search-input" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </form>
+    <!-- Nav-right -->
+    <ul class="navbar-nav nav-right">
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="">
+          <i class="fas fa-bell"></i>
+          <span class="navbar-badge">10</span>
+        </a>
+        <!-- <ul class="dropdown-menu notification-menu">
+          <div class="dropdown-menu-header">
+            <span>Notifications</span>
+          </div>
+          <div class="dropdown-menu-content overlay-scrollbar">
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="" class="dropdown-menu-link">
+                <div>
+                  <i class="fas fa-gift"></i>
+                </div>
+                <span>Lorem ipsum dolor sit amet.
+                  <br>
+                  <span>
+                    15/06/2021
+                  </span>
+                </span>
+
+              </a>
+            </li>
+          </div>
+          <div class="dropdown-menu-footer">
+            <span>View all notifications</span>
+          </div>
+        </ul> -->
+      </li>
+      <li class="nav-item dropdown" ngbDropdown>
+        <button class="dropdown-toggle" id="navbarScrollingDropdown" role="button" type="button" data-bs-toggle="dropdown"
+          aria-expanded="true" ngbDropdownToggle>
+          <img src="../../../assets/images/admin-avt.jpg" alt="User image">
+        </button>
+        <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarScrollingDropdown" >
+          <li ngbDropdownItem>
+            <a href="" class="dropdown-item">
+              <i class="fas fa-user-tie"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li ngbDropdownItem>
+            <a href="" class="dropdown-item">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+    <!-- <li class="nav-item dropdown" ngbDropdown>
+      <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false" ngbDropdownToggle>
+        Link
+      </a>
+      <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarScrollingDropdown">
+        <li ngbDropdownItem><a class="dropdown-item" href="#">Action</a></li>
+        <li ngbDropdownItem><a class="dropdown-item" href="#">Another action</a></li>
+        <li ngbDropdownItem>
+          <hr class="dropdown-divider">
+        </li>
+        <li ngbDropdownItem><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </li> -->
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <!-- main content -->
+  <div class="wrapper">
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

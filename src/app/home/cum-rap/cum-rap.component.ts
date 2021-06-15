@@ -9,56 +9,68 @@ import { RapphimService } from 'src/app/services/rapphim.service';
 export class CumRapComponent implements OnInit {
 
   // lstDanhSachPhim = [[], [], []]
-  lstDanhSachPhim:any[] = [];
-  lstRapPhim:any[] = []; //đây là danh sách chưa thông tin nhiều rạp phim theo mã hệ thống
-  heThongRapName!:string;
-  lstCumRap:any[] = [];
+  lstDanhSachPhim: any[] = [];
+  lstRapPhim: any[] = []; //đây là danh sách chưa thông tin nhiều rạp phim theo mã hệ thống
+  heThongRapName!: string;
+  lstCumRap: any[] = [];
   maHeThongRapDefault = "BHDStar";
+  maRapDefault = true;
   constructor(private rapphimSV: RapphimService) { }
 
   ngOnInit(): void {
     this.rapphimSV.layThongTinHeThongRap().subscribe(
-      (success)=>{
+      (success) => {
         console.log(success)
         this.lstCumRap = success;
       },
-      (error)=>{
+      (error) => {
         alert(error);
       }
     )
-    this.heThongRapName = "BHD Star Cineplex";
 
+    // Hiển thị default khi chạy lần đầu thì mặc định heThongRapName sẽ là BHD
+    this.heThongRapName = "BHD Star Cineplex";
     this.rapphimSV.layThongTinLichChieuHeThongRap(this.maHeThongRapDefault).subscribe(
-      (success)=>{
+      (success) => {
         this.lstRapPhim = success[0].lstCumRap.map(
-          (cumRap:any)=>{
-            return { tenCumRap :cumRap.tenCumRap, diaChi : cumRap.diaChi, danhSachPhim: cumRap.danhSachPhim}
-        });
+          (cumRap: any, index: number) => {
+            if (index === 0) {
+              // this.hienThiDSPhimTheoRap(cumRap.danhSachPhim)
+              this.lstDanhSachPhim = cumRap.danhSachPhim;
+            }
+            return { tenCumRap: cumRap.tenCumRap, diaChi: cumRap.diaChi, danhSachPhim: cumRap.danhSachPhim }
+          });
       }
     );
+
+
   }
 
-  handleClickLogo(maHeThongRap:any, tenHeThongRap:any,){
-    this.lstDanhSachPhim = [];
+  handleClickLogo(maHeThongRap: any, tenHeThongRap: any,) {
+    this.maRapDefault = true;
     this.heThongRapName = tenHeThongRap;
     this.rapphimSV.layThongTinLichChieuHeThongRap(maHeThongRap).subscribe(
-      (success)=>{
+      (success) => {
         console.log(success);
         this.lstRapPhim = success[0].lstCumRap.map(
-          (cumRap:any)=>{
-            return { tenCumRap :cumRap.tenCumRap, diaChi : cumRap.diaChi, danhSachPhim: cumRap.danhSachPhim}
-        });
+          (cumRap: any, index: number) => {
+            // Lấy phần tử đầu tiên trong danh sách rạp để hiện default
+            if (index === 0) {
+              this.lstDanhSachPhim = cumRap.danhSachPhim;
+            }
+            return { tenCumRap: cumRap.tenCumRap, diaChi: cumRap.diaChi, danhSachPhim: cumRap.danhSachPhim }
+          });
       },
-      (error)=>{
+      (error) => {
         console.log(error);
       }
     )
   }
 
-  hienThiDSPhimTheoRap(dsPhim:any){
+  hienThiDSPhimTheoRap(dsPhim: any) {
     this.lstDanhSachPhim = dsPhim;
     console.log(this.lstDanhSachPhim);
-    
+    this.maRapDefault = false;
 
   }
 

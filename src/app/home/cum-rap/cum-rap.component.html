@@ -25,30 +25,45 @@
       <div class="col-6 DanhSachRap">
         <!-- lstRapPhim : [{tenCumRap: , diaChi: , danhSachPhim: [] }, {}, {}] -->
         <!-- rapPhim : {tenCumRap: , diaChi:, danhSachPhim:[] } -->
-        <button class="rapPhim" *ngFor="let rapPhim of lstRapPhim.slice(0,7)"
+        <button class="rapPhim" *ngFor="let rapPhim of lstRapPhim.slice(0,1)"
           (click)="hienThiDSPhimTheoRap(rapPhim.danhSachPhim)">
-          <p>{{rapPhim.tenCumRap}}</p>
-          <p>Địa chỉ: {{rapPhim.diaChi}}</p>
+          <div [class.isClicked]="maRapDefault" [ngClass]="{'isClicked': maRapDefault}">
+            <p>{{rapPhim.tenCumRap}}</p>
+            <p>Địa chỉ: {{rapPhim.diaChi}}</p>
+          </div>
           <hr>
         </button>
+
+        <button class="rapPhim" *ngFor="let rapPhim of lstRapPhim.slice(1,7)"
+          (click)="hienThiDSPhimTheoRap(rapPhim.danhSachPhim)">
+          <div>
+            <p>{{rapPhim.tenCumRap}}</p>
+            <p>Địa chỉ: {{rapPhim.diaChi}}</p>
+          </div>
+          <hr>
+        </button>
+
       </div>
       <div class="col-6 DanhSachPhim">
         <!-- phim : {lstLichChieuTheoPhim: [], maPhim: number, tenPhim: string, hinhAnh: string } -->
         <!-- Lưu ý làm tiếp: click vào đây thì sẽ gửi maPhim đi để vào trang chi tiết -->
-        <div class="phimCuaRap" *ngFor="let phim of lstDanhSachPhim">
-          <div class="phim-item">
-            <img [src]="phim.hinhAnh" width="100%" height="250" alt="">
-
-            <button class="btn btn-outline-light" [routerLink]="['/chitiet', phim.maPhim]">Xem chi tiết</button>
-
-            <!-- <div class="phim-detail">
-              <p>{{phim.tenPhim}}</p>
-              <p>Giá vé: {{phim.lstLichChieuTheoPhim[0].giaVe}}</p>
-            </div> -->
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-6 phimCuaRap" *ngFor="let phim of lstDanhSachPhim">
+            <div class="phim-item">
+              <img [src]="phim?.hinhAnh" width="90%" height="300" alt="">
+  
+              <button class="btn btn-outline-light" [routerLink]="['/chitiet', phim.maPhim]">Xem chi tiết</button>
+  
+              <!-- <div class="phim-detail">
+                <p>{{phim.tenPhim}}</p>
+                <p>Giá vé: {{phim.lstLichChieuTheoPhim[0].giaVe}}</p>
+              </div> -->
+            </div>
+  
+  
           </div>
-
-
         </div>
+        
       </div>
     </div>
   </div>

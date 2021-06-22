@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SafePipe } from './safe.pipe';
 import { ShortCutPipe } from './short-cut.pipe';
+import { FilterTablePipe } from './filter-table.pipe';
 
 
 
 @NgModule({
   declarations: [
     SafePipe,
-    ShortCutPipe
+    ShortCutPipe,
+    FilterTablePipe
   ],
   imports: [
     CommonModule
   ],
   exports:[
-    SafePipe, ShortCutPipe
+    FilterTablePipe,
+    SafePipe, ShortCutPipe, 
   ]
 })
 export class PipeModule { }

@@ -1,18 +1,265 @@
-
-
-<div class="row">
-  <div class="col-3">
-    <div class="col-item">
+<div>
+  <!-- dashboard top -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-8">
+      <!-- Chứa 4 item hiển thị thông tin cơ bản -->
       <div class="row">
-        <div class="icon-item">
-          <i class="fas fa-eye" style="color: red;"></i>
+        <div class="col-md-6 col-lg-3">
+          <div class="col-item">
+            <div class="row">
+              <div class="icon-item my-1">
+                <i class="fas fa-eye" style="color: #e20e02;"></i>
+              </div>
+              <div class="detail-item">
+                <span>+24K</span>
+                <span style="color: #e20e02;"><i class="fas fa-caret-down mx-1"></i>35%</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="detail-item">
-          <span>+24K</span>
-          <span>35%</span>
+        <div class="col-md-6 col-lg-3">
+          <div class="col-item">
+            <div class="row">
+              <div class="icon-item my-1">
+                <i class="fas fa-star" style="color: #f68a04;"></i>
+              </div>
+              <div class="detail-item">
+                <span>+55K</span>
+                <span style="color: #f68a04;"><i class="fas fa-caret-up mx-1"></i>55%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="col-item">
+            <div class="row">
+              <div class="icon-item my-1">
+
+                <i class="fas fa-ticket-alt" style="color: #007aff;"></i>
+              </div>
+              <div class="detail-item">
+                <span>+1M</span>
+                <span style="color: #007aff;"><i class="fas fa-caret-down mx-1"></i>75%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="col-item">
+            <div class="row">
+              <div class="icon-item my-1">
+
+                <i class="fas fa-users" style="color: #14e788;"></i>
+              </div>
+              <div class="detail-item">
+                <span>+2M</span>
+                <span style="color: #14e788;"><i class="fas fa-caret-up mx-1"></i>37%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hiển thị top Rated Movies -->
+      <div class="row my-1 py-2" style="background-color: #191919;">
+        <div class="rated-movies-container">
+          <p style="color: white; font-size: 20px; font-weight: 600;
+        margin: 10px 0px 25px 0px;">Top highest rated movies</p>
+          <div class="row justify-content-center rated-movies-list">
+            <div class="col-md-6 col-lg-3 rated-movies-item" *ngFor="let movie of topRatedMovies">
+              <div class="card bg-dark my-2">
+                <img class="card-img-top" style="height: 200px;" [src]="movie.hinhAnh" alt="">
+                <div class="card-body" style="color: white;">
+                  <h4 class="card-title" style="font-size: 18px;">{{movie.tenPhim}}</h4>
+                  <p class="card-text">Rating: {{movie.danhGia}} <span><i class="fas fa-star"
+                        style="color: #e20e02;"></i></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-4 mt-3">
+      <div class="p-1" style="background-color: #191919;">
+
+        <p style="color: white; padding: 40px 0px; font-size: 25px; font-weight: 700; text-align: center;">Views of the
+          highest rated movies</p>
+
+
+        <div class="chart-wrapper d-flex justify-content-center">
+          <canvas baseChart width="320" height="320" [data]="doughnutChartData" [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType" [colors]="doughnutChartColors" [options]="doughnutChartOptions">
+          </canvas>
+        </div>
+
+        <!-- <div class="row label-movie">
+        <div class="col-5 d-flex align-items-center justify-content-center">
+          <div style="height: 10px; width: 35px; background-color: #e20e02;"></div>
+          <span>{{doughnutChartLabels[0]}}</span>
+        </div>
+      </div> -->
+
+        <!-- Test với Google Chart -->
+        <!-- <google-chart [data]="myData"></google-chart> -->
+
+        <!-- <google-charts-dashboard [data]="dashboard"></google-charts-dashboard>
+      <google-charts-control [data]="slider"></google-charts-control>
+      <google-chart [data]="dashboardPieChart"></google-chart>
+      <google-charts-control [data]="categoryPicker"></google-charts-control>
+      <google-chart [data]="dashboardTable"></google-chart> -->
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- dashboard body -->
+  <div class="row my-2">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 " style="background-color: #191919;">
+      <p style="padding: 10px 0px 0px 10px; font-weight: 600; font-size: 25px; color: white;">Categories</p>
+      <div class="category-container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-4 col-lg-3 col-xl-5 d-flex align-items-center m-1">
+            <div class="p-4" style="background-color: #411714; border-radius: 10px;">
+              <i style="color: #e20e02; font-size: 30px;" class="fas fa-fighter-jet"></i>
+            </div>
+            <div class="ms-2">
+              <p style="color: white;">Action</p>
+              <span style="color: seagreen;">30%</span>
+            </div>
+          </div>
+          <div class="col-4 col-lg-3 col-xl-5 d-flex align-items-center m-1">
+            <div class="p-4" style="background-color:#2e2f30; border-radius: 10px;">
+              <i style="color: #75868a; font-size: 30px;" class="far fa-smile-beam"></i>
+
+            </div>
+            <div class="ms-2">
+              <p style="color: white;">Comedy</p>
+              <span style="color: seagreen;">16%</span>
+            </div>
+          </div>
+          <div class="col-4 col-lg-3 col-xl-5 d-flex align-items-center m-1">
+            <div class="p-4" style="background-color: #142c47; border-radius: 10px;">
+
+              <i style="color: #1060ff; font-size: 36px;" class="fab fa-snapchat-ghost"></i>
+            </div>
+            <div class="ms-2">
+              <p style="color: white;">Horror</p>
+              <span style="color: seagreen;">14%</span>
+            </div>
+          </div>
+          <div class="col-4 col-lg-3 col-xl-5 d-flex align-items-center m-1">
+            <div class="p-4" style="background-color: #453015; border-radius: 10px;">
+              <i style="color: #f68a04; font-size: 30px;" class="fas fa-sad-tear"></i>
+
+            </div>
+            <div class="ms-2">
+              <p style="color: white;">Drama</p>
+              <span style="color: seagreen;">25%</span>
+            </div>
+          </div>
+          <div class="col-4 col-lg-3 col-xl-5 d-flex align-items-center m-1">
+            <div style="background-color: #18422f; border-radius: 10px; padding: 20px 26px;">
+              <i style="color: #14e788; font-size: 38px;" class="fas fa-child"></i>
+            </div>
+            <div class="ms-2">
+              <p style="color: white;">Kids</p>
+              <span style="color: seagreen;">10%</span>
+            </div>
+          </div>
+          <div class="col-4 col-lg-3 col-xl-5 d-flex align-items-center m-1">
+            <div class="p-4" style="background-color: #25272b; border-radius: 10px;">
+              <i style="color: #545e75; font-size: 30px;" class="fas fa-user-astronaut"></i>
+
+            </div>
+            <div class="ms-2">
+              <p style="color: white;">Science</p>
+              <span style="color: seagreen;">25%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <canvas class="pie-chart" baseChart height="350" width="350" [data]="pieChartData" [labels]="pieChartLabels"
+          [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
+          [colors]="pieChartColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 mt-1 pb-4">
+      <div class="bar-chart-container p-1" style="background-color: #191919;">
+        <p class="top-grossing" style="padding: 20px 0px 60px 20px; font-weight: 600; font-size: 24px; color: white;">
+          Top grossing movies of the highest
+          rating</p>
+        <!-- Bar chart -->
+        <div class="chart-wrapper d-flex justify-content-center">
+          <canvas baseChart class="bar-chart" style="min-height: 500px;" [datasets]="barChartData"
+            [labels]="barChartLabels" [options]="barChartOptions" [options]="barChartOptions" [colors]="barChartColors"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Top comment -->
+  <div id="comment-section" class="comment-content">
+    <p>Top comments most liked</p>
+    <div style="overflow-x:auto;">
+      <table mdbTable >
+        <thead>
+          <tr>
+            <th scope="col">Movie</th>
+            <th scope="col">Viewer</th>
+            <th scope="col" style="width: 40%;">Comment</th>
+            <th scope="col">Like / DisLike</th>
+            <th scope="col">Created Date</th>
+
+          </tr>
+        </thead>
+        <tbody >
+          <tr mdbTableCol>
+            <td>Annabelle</td>
+            <td>Cuong Hung</td>
+            <td>Phim này hồi hội và ghê rợn quá mọi người ơi, coi đoạn nó hù trong nhà vệ sinh sợ đái ra quần luôn :((</td>
+            <td>16054 / 2457</td>
+            <td>16/05/2021</td>
+          </tr>
+          <tr mdbTableCol >
+            <td>Quả tim máu</td>
+            <td>Hieu Mai</td>
+            <td>Phim của Victor Vũ thì không chê vào đâu được rồi, mà điện ảnh Việt Nam hay đưa các anh cảnh sát cuối phim đến cho tròn vai nhỉ</td>
+            <td>6412 / 785</td>
+            <td>24/05/2021</td>
+          </tr>
+          <tr mdbTableCol>
+            <td>Deadpool</td>
+            <td>John Pham</td>
+            <td>Thanh niên lầy lội nhất trong các siêu anh hùng, xem cứ như xem phem hài Châu Tình Trì vậy</td>
+            <td>825 / 23</td>
+            <td>24/06/2021</td>
+          </tr>
+          <tr mdbTableCol>
+            <td>Itawon class</td>
+            <td>Huong Phan</td>
+            <td>Nam diễn viên chính đẹp trai quá, nhưng diễn xuất vẫn chưa được hoàn hảo lắm. Diễn viên nữ chính thì không chê vào đâu được !</td>
+            <td>800 / 52</td>
+            <td>14/06/2021</td>
+          </tr>
+          <tr mdbTableCol>
+            <td>Bloodshot1</td>
+            <td>Tien Dung</td>
+            <td>Phim này nhờ anh diễn viên phụ cứu vớt nên mới hot như vậy, nếu không có anh ấy chắc phim không được đánh giá cao như thế này</td>
+            <td>759 / 124</td>
+            <td>14/04/2021</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
-

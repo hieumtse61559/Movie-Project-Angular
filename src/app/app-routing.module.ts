@@ -55,7 +55,7 @@ const routes: Routes = [
         component: TrangQuanLyPhimComponent
       },
       {
-        path: 'quanlynguoidung',
+        path: 'users',
         component: QuanlyUsersComponent
       }
     ]

@@ -12,6 +12,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
@@ -25,11 +29,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     HomeModule,
     AdminModule,
+    FormsModule,
     NgbModule,
     CarouselModule,
     MatMenuModule,
     MatIconModule,
     FontAwesomeModule,
+    Ng2GoogleChartsModule,
     
     
   ],

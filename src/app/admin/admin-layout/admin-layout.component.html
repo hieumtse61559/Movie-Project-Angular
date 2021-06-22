@@ -269,17 +269,25 @@
         </button>
         <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarScrollingDropdown" >
           <li ngbDropdownItem>
-            <a href="" class="dropdown-item">
+            <span class="dropdown-item">
               <i class="fas fa-user-tie"></i>
               <span>Profile</span>
-            </a>
+            </span>
           </li>
           <li ngbDropdownItem>
-            <a href="" class="dropdown-item">
+            <span  class="dropdown-item">
               <i class="fas fa-cog"></i>
               <span>Settings</span>
-            </a>
+            </span>
           </li>
+          <li ngbDropdownItem>
+            <span class="dropdown-item" (click)="adminLogout()">
+              <i class="fa fa-sign-out"></i>
+              <span>Log out</span>
+            </span>
+          </li>
+
+          
         </ul>
       </li>
     </ul>

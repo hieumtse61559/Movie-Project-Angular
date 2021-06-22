@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
   toggle:boolean = false;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,4 +19,11 @@ export class AdminLayoutComponent implements OnInit {
     console.log(this.toggle)
   }
 
+  adminLogout(){
+    // Clear localStorage
+    localStorage.clear();
+
+    // Về lại trang home
+    this.router.navigate(['/']);
+  }
 }

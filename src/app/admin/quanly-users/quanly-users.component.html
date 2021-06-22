@@ -1,1 +1,37 @@
-<p>quanly-users works!</p>
+<div class="container-fluid">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <!-- <th scope="col">#</th> -->
+        <th scope="col">Account</th>
+        <th scope="col">Password</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Role</th>
+        <th scope="col">Full Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.taiKhoan }}</td>
+        <td>{{ user.matKhau }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.soDt }}</td>
+        <td>{{ user.maLoaiNguoiDung }}</td>
+        <td>{{ user.hoTen }}</td> 
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshUsers()">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshUsers()">
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="15">15 items per page</option>
+      <option [ngValue]="20">20 items per page</option>
+    </select>
+  </div>
+</div>

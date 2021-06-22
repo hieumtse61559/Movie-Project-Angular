@@ -5,6 +5,7 @@
   }
   .col-item {
     padding: 10px;
+    margin: 10px;
     background-color: #191919;
     .row {
       .icon-item {
@@ -12,7 +13,8 @@
         justify-content: flex-end;
         align-items: center;
         i{
-          font-size: 30px;
+          font-size: 35px;
+          
         }
       }
       .detail-item{
@@ -21,14 +23,94 @@
         align-items: center;
         span:first-child {
           color: white;
-          font-size: 25px;
+          font-size: 20px;
+          font-weight: 600;
         }
         span:last-child {
           color: red;
-          font-size: 18px;
+          font-size: 10px;
         }
         
       }
     }
   }
+}
+
+
+.rated-movies-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-content{
+  background-color: #191919;
+  p{
+   padding: 20px; 
+   font-weight: 600; 
+   font-size: 25px; 
+   color: white;
+  }
+  div{
+    table{
+      width: 98%; 
+      text-align: center; 
+      margin: auto; 
+      border-collapse: collapse; 
+      white-space: normal;
+      border-spacing: 0;
+      thead{
+        color: #e20e02;
+      }
+      tbody{
+        color: white;
+        tr{
+          background-color:#141414; 
+          border-bottom: 10px solid #191919;
+          td{
+            padding: 10px 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1199px) {
+  .bar-chart-container{
+    padding: 0;
+    .chart-wrapper{
+      canvas{
+        min-height: auto !important;
+      }
+    }
+  }
+  
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    width: 100%;
+  }
+  .top-grossing{
+    padding: 5px 0px 0px 5px !important;
+    font-size: 20px !important;
+  }
+  
+}
+
+
+
+@media screen and (max-width: 550px) {
+  .pie-chart{
+    width: 280px;
+    height: 280px;
+  }
+
+  .bar-chart{
+    width: 1000px;
+    height: 350px;
+  }
+  
 }

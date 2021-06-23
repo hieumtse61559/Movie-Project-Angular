@@ -61,5 +61,13 @@ export class NguoidungService {
     return this._http.put(url, newTaiKhoan, {headers});
   }
 
+  xoaNguoiDung(taiKhoan:any, auth_token:any): Observable<any>{
+    const url = "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=" + taiKhoan;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this._http.delete(url, {headers});
+  }
   
 }

@@ -74,44 +74,114 @@
       </div>
       <div class="modal-body">
         <div class="container">
-          <form class="user-form">
+          <form class="user-form" [formGroup]="userForm" (ngSubmit)="addUser()">
             <div class="form-group">
-              <label>Account:</label>
-              <input type="text" class="form-control" placeholder="Account" />
+              <label>Account</label>
+              <input type="text" class="form-control" placeholder="Account" formControlName="TaiKhoan" />
+              <div *ngIf="userForm.controls['TaiKhoan'].invalid && userForm.controls['TaiKhoan'].dirty">
+                <div *ngIf="userForm.controls['TaiKhoan'].errors?.required" class="alert alert-danger">Vui lòng nhập tên
+                  tài khoản
+                </div>
+                <div *ngIf="userForm.controls['TaiKhoan'].errors?.minlength" class="alert alert-danger">
+                  Tài khoản ít nhất phải 6 kí tự
+                </div>
+                <div *ngIf="userForm.controls['TaiKhoan'].errors?.maxlength" class="alert alert-danger">
+                  Tài khoản tối đa 15 kí tự
+                </div>
+              </div>
+
             </div>
             <div class="form-group">
-              <label>Password:</label>
-              <input type="password" class="form-control" placeholder="Password" />
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" formControlName="MatKhau" />
+
+              <div *ngIf="userForm.controls['MatKhau'].invalid && userForm.controls['MatKhau'].dirty">
+                <div *ngIf="userForm.controls['MatKhau'].errors?.required" class="alert alert-danger">Vui lòng nhập mật
+                  khẩu
+                </div>
+                <div *ngIf="userForm.controls['MatKhau'].errors?.minlength" class="alert alert-danger">
+                  Mật khẩu ít nhất phải 6 kí tự
+                </div>
+              </div>
+
+
             </div>
             <div class="form-group">
-              <label>Name:</label>
-              <input type="text" class="form-control" placeholder="Name" />
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Name" formControlName="HoTen" />
+              <div *ngIf="userForm.controls['HoTen'].invalid && userForm.controls['HoTen'].dirty">
+                <div *ngIf="userForm.controls['HoTen'].errors?.required" class="alert alert-danger">Vui lòng nhập họ tên
+                </div>
+              </div>
+
             </div>
             <div class="form-group">
-              <label>Email:</label>
-              <input type="text" class="form-control" placeholder="Email" />
+              <label>Email</label>
+              <input type="text" class="form-control" placeholder="Email" formControlName="Email" />
+              <div *ngIf="userForm.controls['Email'].invalid && userForm.controls['Email'].dirty">
+                <div *ngIf="userForm.controls['Email'].errors?.required" class="alert alert-danger">Vui lòng nhập email
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <label>Phone:</label>
-              <input type="text" class="form-control" placeholder="Phone" />
+              <label>Phone</label>
+              <input type="text" class="form-control" placeholder="Phone" formControlName="SoDt" />
+              <div *ngIf="userForm.controls['SoDt'].invalid && userForm.controls['SoDt'].dirty">
+                <div *ngIf="userForm.controls['SoDt'].errors?.required" class="alert alert-danger">Vui lòng nhập số điện
+                  thoại
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Group ID</label>
+              <input type="text" list="maNhoms" class="form-control" formControlName="MaNhom">
+              <datalist id="maNhoms">
+                <option value="GP01">
+                <option value="GP02">
+                <option value="GP03">
+                <option value="GP04">
+                <option value="GP05">
+                <option value="GP06">
+                <option value="GP07">
+                <option value="GP08">
+                <option value="GP09">
+                <option value="GP10">
+              </datalist>
+              <div *ngIf="userForm.controls['MaNhom'].invalid && userForm.controls['MaNhom'].dirty">
+                <div *ngIf="userForm.controls['MaNhom'].errors?.required" class="alert alert-danger">Vui lòng chọn mã
+                  nhóm
+                </div>
+              </div>
             </div>
 
             <div class="form-group">
               <label class="me-4" for="">Role: </label>
-              <input  type="radio" ngModel value="KhachHang" name="maLoaiNguoiDung">Khách hàng
-              <input class="ms-3" type="radio" ngModel value="QuanTri" name="maLoaiNguoiDung">Admin
+              <input type="radio" ngModel value="KhachHang" name="MaLoaiNguoiDung"
+                formControlName="MaLoaiNguoiDung"><span class="ms-1">User</span> 
+              <input class="ms-3" type="radio" ngModel value="QuanTri" name="MaLoaiNguoiDung"
+                formControlName="MaLoaiNguoiDung"><span class="ms-1">Admin</span> 
+              <div *ngIf="userForm.controls['MaLoaiNguoiDung'].touched">
+                <div *ngIf="userForm.controls['MaLoaiNguoiDung'].errors?.required" class="alert alert-danger">Vui lòng chọn loại người dùng
+                </div>
+              </div>
+
+
             </div>
 
 
-           
-            
+            <div class="button-form-container ">
+              <button [disabled]="userForm.invalid" class="btn btn-success me-2" type="submit">Add</button>
+              <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
+            </div>
+
           </form>
         </div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button class="btn btn-success me-2" type="submit">Add</button>
         <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
-      </div>
+      </div> -->
     </div>
 
   </ng-template>

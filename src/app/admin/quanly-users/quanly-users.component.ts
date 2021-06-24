@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { NguoidungService } from 'src/app/services/nguoidung.service';
@@ -22,9 +23,12 @@ export class QuanlyUsersComponent implements OnInit {
   users: User[] = [];
   accessToken:string = '';
   
+  // Build form cho user
+  userForm!: FormGroup;
+
   
-  constructor(private userService: NguoidungService, private modalService: NgbModal) {
-    
+  constructor(private userService: NguoidungService, private modalService: NgbModal, private fb: FormBuilder) {
+    this.createForm();
   }
 
   ngOnInit(): void {
@@ -33,14 +37,25 @@ export class QuanlyUsersComponent implements OnInit {
 
     this.userService.LayDanhSachNguoiDung().subscribe(
       (data: User[]) => {
-        console.log(data)
         this.USERS = data;
         this.collectionSize = this.USERS.length;
         this.refreshUsers();
       }
     )
 
-    
+    this.userForm
+  }
+
+  createForm() {
+    this.userForm= this.fb.group({
+      'TaiKhoan': ['', [Validators.required, Validators.maxLength(15), Validators.minLength(6)]],
+      'MatKhau' : ['', [Validators.required, Validators.minLength(6)]],
+      'HoTen' : ['', [Validators.required]],
+      'Email' : ['', [Validators.required]],
+      'SoDt' : ['', [Validators.required]],
+      'MaNhom' : ['', [Validators.required]],
+      'MaLoaiNguoiDung' : ['', [Validators.required]],
+    })
   }
 
   applyFilter(event:any) {
@@ -59,6 +74,32 @@ export class QuanlyUsersComponent implements OnInit {
     this.users = this.USERS
       .map((user, i) => ({id: i + 1, ...user}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
+  addUser(){
+    console.log(this.userForm.value);
+    this.userService.ThemNguoiDung(this.userForm.value).subscribe(
+      (addSuccess) => {
+        console.log(addSuccess);
+        window.alert("Add a new user successfully !")
+
+        // Reset form sau khi add thành công
+        this.userForm.reset();
+
+        // Lấy lại danh sách để cập nhật vào bảng
+        this.userService.LayDanhSachNguoiDung().subscribe(
+          (data: User[]) => {
+            this.USERS = data;
+            this.collectionSize = this.USERS.length;
+            this.refreshUsers();
+          }
+        )
+      },
+      (addError) => {
+        
+        window.alert(addError.error)
+      }
+    )
   }
 
   deleteUser(user:any): void {
@@ -87,12 +128,15 @@ export class QuanlyUsersComponent implements OnInit {
    
   }
 
+  // Open modal
   open(content:any) {
     this.modalService.open(content, 
       {
         centered: true,
       });
   }
+
+  
 
 }
 

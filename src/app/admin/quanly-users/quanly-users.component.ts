@@ -51,13 +51,13 @@ export class QuanlyUsersComponent implements OnInit {
 
   createForm() {
     this.userForm = this.fb.group({
-      'TaiKhoan': ['', [Validators.required, Validators.maxLength(15), Validators.minLength(6)]],
-      'MatKhau': ['', [Validators.required, Validators.minLength(6)]],
-      'HoTen': ['', [Validators.required]],
-      'Email': ['', [Validators.required]],
-      'SoDt': ['', [Validators.required]],
+      'taiKhoan': ['', [Validators.required, Validators.maxLength(15), Validators.minLength(6)]],
+      'matKhau': ['', [Validators.required, Validators.minLength(6)]],
+      'hoTen': ['', [Validators.required]],
+      'email': ['', [Validators.required]],
+      'soDt': ['', [Validators.required]],
       // 'MaNhom': ['GP10', [Validators.required]],
-      'MaLoaiNguoiDung': ['', [Validators.required]],
+      'maLoaiNguoiDung': ['', [Validators.required]],
 
     })
   }
@@ -67,10 +67,10 @@ export class QuanlyUsersComponent implements OnInit {
     let filterValueLower = filterValue.toLowerCase();
     filterValueLower = filterValue.toLowerCase();
     if (filterValue === '') {
-      this.users = this.USERS;
+      this.refreshUsers();
     }
     else {
-      this.users = this.USERS.filter((user) => user.hoTen.includes(filterValueLower))
+      this.users = this.USERS.filter((user) => user.hoTen.toLowerCase().includes(filterValueLower))
     }
   }
 
@@ -110,13 +110,15 @@ export class QuanlyUsersComponent implements OnInit {
   deleteUser(user: any): void {
     console.log(user.taiKhoan)
     // Lấy tài khoản ra để gửi lên API
+    // user.taiKHoan = JSON.parse(user.taiKhoan)
     this.userService.xoaNguoiDung(user.taiKhoan, this.accessToken).subscribe(
       (success) => {
-        console.log(success);
+        window.alert(success);
 
       },
       (error) => {
         console.log(error);
+        window.alert("ABC");
         // ???? Méo hiểu sao xóa thành công mà nó nhảy vô đây, y như cái vụ đặt vé thành công
         // Lấy lại danh sách người dùng và cập nhật bảng
         this.userService.LayDanhSachNguoiDung().subscribe(

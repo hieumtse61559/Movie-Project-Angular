@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { QuanlyUsersComponent } from './quanly-users/quanly-users.component';
 import { TrangQuanLyPhimComponent } from './trang-quan-ly-phim/trang-quan-ly-phim.component';
@@ -42,5 +42,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SidebarComponent,
     DanhSachPhimComponent
   ],
+  providers: [DatePipe]
 })
 export class AdminModule { }

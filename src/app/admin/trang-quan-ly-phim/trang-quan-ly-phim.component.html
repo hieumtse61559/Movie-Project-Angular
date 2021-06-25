@@ -1,15 +1,138 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-4">
-      <app-sidebar></app-sidebar>
+<div class="container-fluid">
 
+  <h1>List of movies</h1>
+  <div class="d-flex justify-content-end">
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshMovies()">
+      <option [ngValue]="20">20 movies per page</option>
+      <option [ngValue]="25">25 movies per page</option>
+      <option [ngValue]="30">30 movies per page</option>
+    </select>
+  </div>
+
+  <!-- Nút mở modal để thêm phim mới -->
+  <div class="actions-management">
+    <div class="add-new-movie">
+      <span class="text-success">Add new movie</span>
+      <button class="btn btn-success ms-1" (click)="openToAdd(content)"><i class="fas fa-film "></i></button>
     </div>
-    <div class="col-8">
-      <app-danh-sach-phim></app-danh-sach-phim>
-
+    <div class="filter-table">
+      <form>
+        <div class="form-group form-inline">
+          <input class="px-4 py-2" type="text" (keyup)="applyFilter($event)" placeholder="Filter by user name..." />
+        </div>
+      </form>
     </div>
   </div>
-</div> -->
 
+  <!-- Table -->
+  <div style="overflow-x:auto;">
+    <table class="table text-white">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Trailer</th>
+          <th scope="col">Description</th>
+          <th scope="col">Premiere date</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies">
+          <td>{{ movie.maPhim }}</td>         
+          <td>
+            <img [src]="movie?.hinhAnh" alt="image-movie" height="50px" width="50px">
+          </td>
+          <td>{{ movie.tenPhim }}</td>
+          <td>{{ movie.trailer }}</td>
+          <td>{{ movie.moTa }}</td>
+          <td>{{ movie.ngayKhoiChieu | date:'medium' }}</td>
+          <td>{{ movie.danhGia }}</td>
+          <td>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-primary me-1"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-danger" (click)="deleteMovie(movie.maPhim)"><i class="fas fa-trash-alt"></i></button>
+            </div>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<p>TRang quản lí phim</p>
+   <!-- Phân trang -->
+   <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshMovies()">
+    </ngb-pagination>
+  </div>
+
+  <!-- Modal để add/ edit user -->
+  <ng-template #content let-modal>
+    <div class="modal-container bg-dark text-white">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-basic-title">Add a new movie</h2>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form class="movie-form" [formGroup]="movieForm" (ngSubmit)="addMovie()">
+            <div class="form-group">
+              <label>Id</label>
+              <input type="number" class="form-control" [readonly]="isEditState"  formControlName="maPhim" />
+            </div>
+
+            <div class="form-group">
+              <label>Movie name</label>
+              <input type="text" class="form-control"  formControlName="tenPhim" />
+            </div>
+
+            <div class="form-group">
+              <label>Aliases</label>
+              <input type="text" class="form-control" formControlName="biDanh" />
+            </div>
+
+            <div class="form-group">
+              <label>Trailer</label>
+              <input type="text" class="form-control" formControlName="trailer" />
+            </div>
+
+            <div class="form-group">
+              <label>Image</label>
+              <input type="file" class="form-control" (change)="uploadFile($event)"/>
+            </div>
+
+            <div class="form-group">
+              <label>Description</label>
+              <textarea  class="form-control" formControlName="moTa"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Premiere date</label>
+              <input type="date" class="form-control" formControlName="ngayKhoiChieu" />
+            </div>
+
+            <div class="form-group">
+              <label>Rating</label>
+              <input type="number" class="form-control" formControlName="danhGia" />
+            </div>
+            
+            <div class="button-form-container ">
+              <button *ngIf="!isEditState" [disabled]="movieForm.invalid" class="btn btn-success me-2" type="submit">Add</button>
+              <button *ngIf="isEditState" [disabled]="movieForm.invalid" class="btn btn-success me-2" type="button">Confirm</button>
+              <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button class="btn btn-success me-2" type="submit">Add</button>
+        <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
+      </div> -->
+    </div>
+
+  </ng-template>
+
+</div>

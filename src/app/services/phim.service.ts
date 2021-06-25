@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -21,4 +21,20 @@ export class PhimService {
     let url = `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`;
     return this._http.get(url)
   }
+
+  xoaPhim(maPhim:number, auth_token:string):Observable<any>{
+    let url = `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`,
+    })
+    return this._http.delete(url, {headers});
+  }
+
+  themPhimUploadHinh(formData:any):Observable<any>{
+    let url = "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh";
+    return this._http.post(url, formData);
+  }
+
+  
 }

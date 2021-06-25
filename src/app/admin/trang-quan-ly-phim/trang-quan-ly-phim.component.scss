@@ -1,0 +1,79 @@
+.container-fluid{
+  padding: 5px;
+  h1{
+    color: white;
+    font-size: 30px;
+  }
+  .custom-select {
+    background-color: #141414;
+    color: white;
+    padding: 10px 0px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .actions-management {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0px;
+    padding: 0px 5px;
+    .add-movie-user {
+      margin-right: 20px;
+      span {
+        color: white;
+        margin-right: 5px;
+        font-size: 15px;
+      }
+    }
+  }
+
+  table {
+    text-align: center;
+    background-color: #191919;
+    width: 100%;
+    thead {
+      color: orange;
+      font-size: 20px;
+    }
+    tbody {
+      tr {
+        td {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+.modal-container{
+  .modal-header{ 
+    h2{ 
+      text-transform: uppercase;
+    }
+  }
+  .modal-body{
+    .container{
+      .movie-form{
+        .form-group{
+          margin-bottom: 10px;
+        }
+        .button-form-container{
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+  .modal-footer{}
+}
+
+@media screen and (max-width: 500px) {
+  .actions-management {
+    .add-movie-user {
+      span {
+        display: none;
+      }
+    }
+  }
+}

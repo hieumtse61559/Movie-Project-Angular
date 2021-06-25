@@ -65,7 +65,7 @@ export class NguoidungService {
     const url = "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=" + taiKhoan;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${auth_token}`,
     })
     return this._http.delete(url, {headers});
   }

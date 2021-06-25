@@ -14,19 +14,19 @@
   <div class="actions-management">
     <div class="add-new-user">
       <span class="text-success">Add new user</span>
-      <button class="btn btn-success" (click)="openToAdd(content)"><i class="fa fa-user-plus"
+      <button class="btn btn-success ms-1" (click)="openToAdd(content)"><i class="fa fa-user-plus"
           aria-hidden="true"></i></button>
     </div>
     <div class="filter-table">
       <form>
         <div class="form-group form-inline">
-          <input class="px-4 py-2" type="text" (keyup)="applyFilter($event)" placeholder="Search by name..." />
+          <input class="px-4 py-2" type="text" (keyup)="applyFilter($event)" placeholder="Filter by user name..." />
         </div>
       </form>
     </div>
   </div>
 
-
+<!-- Table -->
   <div style="overflow-x:auto;">
     <table class="table text-white">
       <thead>
@@ -49,9 +49,11 @@
           <td>{{ user.email }}</td>
           <td>{{ user.soDt }}</td>
           <td>{{ user.maLoaiNguoiDung }}</td>
-          <td class="d-flex justify-content-center">
-            <button class="btn btn-primary me-1" (click)="openToEdit(content, user)"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash-alt"></i></button>
+          <td>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary me-1" (click)="openToEdit(content, user)"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-danger" (click)="deleteUser(user)"><i class="fas fa-trash-alt"></i></button>
+            </div>           
           </td>
         </tr>
       </tbody>
@@ -77,15 +79,15 @@
           <form class="user-form" [formGroup]="userForm" (ngSubmit)="addUser()">
             <div class="form-group">
               <label>Account</label>
-              <input type="text" class="form-control" [readonly]="isEditState" placeholder="Account" formControlName="TaiKhoan" />
-              <div *ngIf="userForm.controls['TaiKhoan'].invalid && userForm.controls['TaiKhoan'].dirty">
-                <div *ngIf="userForm.controls['TaiKhoan'].errors?.required" class="alert alert-danger">Vui lòng nhập tên
+              <input type="text" class="form-control" [readonly]="isEditState" placeholder="Account" formControlName="taiKhoan" />
+              <div *ngIf="userForm.controls['taiKhoan'].invalid && userForm.controls['taiKhoan'].dirty">
+                <div *ngIf="userForm.controls['taiKhoan'].errors?.required" class="alert alert-danger">Vui lòng nhập tên
                   tài khoản
                 </div>
-                <div *ngIf="userForm.controls['TaiKhoan'].errors?.minlength" class="alert alert-danger">
+                <div *ngIf="userForm.controls['taiKhoan'].errors?.minlength" class="alert alert-danger">
                   Tài khoản ít nhất phải 6 kí tự
                 </div>
-                <div *ngIf="userForm.controls['TaiKhoan'].errors?.maxlength" class="alert alert-danger">
+                <div *ngIf="userForm.controls['taiKhoan'].errors?.maxlength" class="alert alert-danger">
                   Tài khoản tối đa 15 kí tự
                 </div>
               </div>
@@ -93,13 +95,13 @@
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input type="password" class="form-control" placeholder="Password" formControlName="MatKhau" />
+              <input type="password" class="form-control" placeholder="Password" formControlName="matKhau" />
 
-              <div *ngIf="userForm.controls['MatKhau'].invalid && userForm.controls['MatKhau'].dirty">
-                <div *ngIf="userForm.controls['MatKhau'].errors?.required" class="alert alert-danger">Vui lòng nhập mật
+              <div *ngIf="userForm.controls['matKhau'].invalid && userForm.controls['matKhau'].dirty">
+                <div *ngIf="userForm.controls['matKhau'].errors?.required" class="alert alert-danger">Vui lòng nhập mật
                   khẩu
                 </div>
-                <div *ngIf="userForm.controls['MatKhau'].errors?.minlength" class="alert alert-danger">
+                <div *ngIf="userForm.controls['matKhau'].errors?.minlength" class="alert alert-danger">
                   Mật khẩu ít nhất phải 6 kí tự
                 </div>
               </div>
@@ -108,26 +110,26 @@
             </div>
             <div class="form-group">
               <label>Name</label>
-              <input type="text" class="form-control" placeholder="Name" formControlName="HoTen" />
-              <div *ngIf="userForm.controls['HoTen'].invalid && userForm.controls['HoTen'].dirty">
-                <div *ngIf="userForm.controls['HoTen'].errors?.required" class="alert alert-danger">Vui lòng nhập họ tên
+              <input type="text" class="form-control" placeholder="Name" formControlName="hoTen" />
+              <div *ngIf="userForm.controls['hoTen'].invalid && userForm.controls['hoTen'].dirty">
+                <div *ngIf="userForm.controls['hoTen'].errors?.required" class="alert alert-danger">Vui lòng nhập họ tên
                 </div>
               </div>
 
             </div>
             <div class="form-group">
               <label>Email</label>
-              <input type="text" class="form-control" placeholder="Email" formControlName="Email" />
-              <div *ngIf="userForm.controls['Email'].invalid && userForm.controls['Email'].dirty">
-                <div *ngIf="userForm.controls['Email'].errors?.required" class="alert alert-danger">Vui lòng nhập email
+              <input type="text" class="form-control" placeholder="Email" formControlName="email" />
+              <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].dirty">
+                <div *ngIf="userForm.controls['email'].errors?.required" class="alert alert-danger">Vui lòng nhập email
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label>Phone</label>
-              <input type="text" class="form-control" placeholder="Phone" formControlName="SoDt" />
-              <div *ngIf="userForm.controls['SoDt'].invalid && userForm.controls['SoDt'].dirty">
-                <div *ngIf="userForm.controls['SoDt'].errors?.required" class="alert alert-danger">Vui lòng nhập số điện
+              <input type="text" class="form-control" placeholder="Phone" formControlName="soDt" />
+              <div *ngIf="userForm.controls['soDt'].invalid && userForm.controls['soDt'].dirty">
+                <div *ngIf="userForm.controls['soDt'].errors?.required" class="alert alert-danger">Vui lòng nhập số điện
                   thoại
                 </div>
               </div>
@@ -157,12 +159,12 @@
 
             <div class="form-group">
               <label class="me-4" for="">Role: </label>
-              <input type="radio" value="KhachHang" name="MaLoaiNguoiDung"
-                formControlName="MaLoaiNguoiDung" ><span class="ms-1">User</span> 
-              <input class="ms-3" type="radio" value="QuanTri" name="MaLoaiNguoiDung"
-                formControlName="MaLoaiNguoiDung"><span class="ms-1">Admin</span> 
-              <!-- <div *ngIf="userForm.controls['MaLoaiNguoiDung'].touched">
-                <div *ngIf="userForm.controls['MaLoaiNguoiDung'].errors?.required" class="alert alert-danger">Vui lòng chọn loại người dùng
+              <input type="radio" value="KhachHang" name="maLoaiNguoiDung"
+                formControlName="maLoaiNguoiDung" ><span class="ms-1">User</span> 
+              <input class="ms-3" type="radio" value="QuanTri" name="maLoaiNguoiDung"
+                formControlName="maLoaiNguoiDung"><span class="ms-1">Admin</span> 
+              <!-- <div *ngIf="userForm.controls['maLoaiNguoiDung'].touched">
+                <div *ngIf="userForm.controls['maLoaiNguoiDung'].errors?.required" class="alert alert-danger">Vui lòng chọn loại người dùng
                 </div>
               </div> -->
             </div>

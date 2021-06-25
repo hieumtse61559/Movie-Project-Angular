@@ -51,7 +51,7 @@ const routes: Routes = [
         canActivate : [AuthGuard],
       },
       {
-        path: 'quanlyphim',
+        path: 'movies',
         component: TrangQuanLyPhimComponent
       },
       {

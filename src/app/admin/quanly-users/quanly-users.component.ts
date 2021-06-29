@@ -112,15 +112,9 @@ export class QuanlyUsersComponent implements OnInit {
     // Lấy tài khoản ra để gửi lên API
     // user.taiKHoan = JSON.parse(user.taiKhoan)
     this.userService.xoaNguoiDung(user.taiKhoan, this.accessToken).subscribe(
-      (success) => {
-        window.alert(success);
-
-      },
-      (error) => {
-        console.log(error);
-        window.alert("ABC");
-        // ???? Méo hiểu sao xóa thành công mà nó nhảy vô đây, y như cái vụ đặt vé thành công
-        // Lấy lại danh sách người dùng và cập nhật bảng
+      (deleteSuccess) => {
+        window.alert("Delete user successfully!");
+        // Lấy lại danh sách cập nhật lại bảng
         this.userService.LayDanhSachNguoiDung().subscribe(
           (data: User[]) => {
             console.log(data)
@@ -129,7 +123,10 @@ export class QuanlyUsersComponent implements OnInit {
             this.refreshUsers();
           }
         )
-
+      },
+      (deleteFail) => {
+        console.log(deleteFail);
+        window.alert(deleteFail.error);
       }
     );
 
@@ -157,11 +154,11 @@ export class QuanlyUsersComponent implements OnInit {
 
     console.log(user);
 
-    this.userForm.controls['TaiKhoan'].setValue(user.taiKhoan);
-    this.userForm.controls['MatKhau'].setValue(user.matKhau);
-    this.userForm.controls['HoTen'].setValue(user.hoTen);
-    this.userForm.controls['Email'].setValue(user.email);
-    this.userForm.controls['SoDt'].setValue(user.soDt);
+    this.userForm.controls['taiKhoan'].setValue(user.taiKhoan);
+    this.userForm.controls['matKhau'].setValue(user.matKhau);
+    this.userForm.controls['hoTen'].setValue(user.hoTen);
+    this.userForm.controls['email'].setValue(user.email);
+    this.userForm.controls['soDt'].setValue(user.soDt);
 
     // Lưu ý là còn thiếu maNhom GP10 và chưa xử lí được cho nó checked trên malLoaiNguoiDung nên bắt nó chọn lại để nút Confirm undisable
     // this.userForm.controls['MaNhom'].setValue("GP10");

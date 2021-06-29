@@ -97,23 +97,23 @@ export class TrangdatgheComponent implements OnInit, OnChanges {
       taiKhoanNguoiDung: username,
     }
     this.datVeSV.DatVe(ticket).subscribe(
-      (success)=>{
+      (bookSuccess)=>{
         
         console.log("success")
+         // Gửi trạng thái true lên store để bên datveComponent subscribe nhận biết mà generate lại giao diện với danh sách mới
+         this.datVeSV.store.next(true);
+
+         // reset lại mảng ghế đã đặt thành rỗng để có gì đặt lại lần sau
+         this.MangGheDaChon = [];
+         // reset lại tổng tiền luôn
+         this.totalCost = 0;
+         // đóng modal
+         this.modalService.dismissAll();
+         alert("Đặt vé thành công")
       },
-      (error)=>{
-
-        // Gửi trạng thái true lên store để bên datveComponent subscribe nhận biết mà generate lại giao diện với danh sách mới
-        this.datVeSV.store.next(true);
-
-        // reset lại mảng ghế đã đặt thành rỗng để có gì đặt lại lần sau
-        this.MangGheDaChon = [];
-        // reset lại tổng tiền luôn
-        this.totalCost = 0;
-        // đóng modal
-        this.modalService.dismissAll();
-        console.log(error)
-        alert("Đặt vé thành công")
+      (bookFail)=>{
+        console.log(bookFail)
+        window.alert(bookFail.error)
       }
     )
   }

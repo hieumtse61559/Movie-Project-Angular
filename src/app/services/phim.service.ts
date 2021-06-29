@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { text } from '@fortawesome/fontawesome-svg-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -27,14 +28,31 @@ export class PhimService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`,
+      
     })
-    return this._http.delete(url, {headers});
+    return this._http.delete(url, {headers, responseType: 'text' as const});
   }
 
   themPhimUploadHinh(formData:any):Observable<any>{
     let url = "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh";
     return this._http.post(url, formData);
   }
+
+  capNhatPhimUpload(formData:any, auth_token:string):Observable<any>{
+    let url = "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhimUpload";
+
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   'Authorization': `Bearer ${auth_token}`,
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Headers': 'Content-Type',
+    //   'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+      
+    // })
+    return this._http.post(url, formData);
+  }
+
+ 
 
   
 }

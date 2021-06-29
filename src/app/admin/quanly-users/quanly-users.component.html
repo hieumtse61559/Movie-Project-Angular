@@ -72,7 +72,9 @@
   <ng-template #content let-modal>
     <div class="modal-container bg-dark text-white">
       <div class="modal-header">
-        <h2 class="modal-title" id="modal-basic-title">Add a new user</h2>
+        <h2 class="modal-title" id="modal-basic-title" *ngIf="!isEditState">Add a new user</h2>
+        <h2 class="modal-title" id="modal-basic-title" *ngIf="isEditState" >Edit user's profile</h2>
+        
       </div>
       <div class="modal-body">
         <div class="container">
@@ -171,7 +173,7 @@
 
             <div class="button-form-container ">
               <button *ngIf="!isEditState" [disabled]="userForm.invalid" class="btn btn-success me-2" type="submit">Add</button>
-              <button *ngIf="isEditState" [disabled]="userForm.invalid" class="btn btn-success me-2" type="button" (click)="confirmEdit()">Confirm</button>
+              <button *ngIf="isEditState" [disabled]="userForm.pristine" class="btn btn-success me-2" type="button" (click)="confirmEdit()">Confirm</button>
               <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
             </div>
 

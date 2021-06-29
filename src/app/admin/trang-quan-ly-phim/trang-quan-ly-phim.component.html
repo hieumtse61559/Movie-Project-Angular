@@ -41,7 +41,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let movie of movies">
-          <td>{{ movie.maPhim }}</td>         
+          <td>{{ movie.maPhim }}</td>
           <td>
             <img [src]="movie?.hinhAnh" alt="image-movie" height="50px" width="50px">
           </td>
@@ -52,18 +52,20 @@
           <td>{{ movie.danhGia }}</td>
           <td>
             <div class="d-flex align-items-center">
-              <button class="btn btn-primary me-1"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-danger" (click)="deleteMovie(movie.maPhim)"><i class="fas fa-trash-alt"></i></button>
+              <button class="btn btn-primary me-1" (click)="openToEdit(content, movie)"><i
+                  class="fas fa-edit"></i></button>
+              <button class="btn btn-danger" (click)="deleteMovie(movie.maPhim)"><i
+                  class="fas fa-trash-alt"></i></button>
             </div>
-            
+
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-   <!-- Phân trang -->
-   <div class="d-flex justify-content-between p-2">
+  <!-- Phân trang -->
+  <div class="d-flex justify-content-between p-2">
     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
       (pageChange)="refreshMovies()">
     </ngb-pagination>
@@ -73,25 +75,27 @@
   <ng-template #content let-modal>
     <div class="modal-container bg-dark text-white">
       <div class="modal-header">
-        <h2 class="modal-title" id="modal-basic-title">Add a new movie</h2>
+        <h2 class="modal-title" id="modal-basic-title" ><span *ngIf="!isEditState;else editMovie">Add a new movie</span></h2>
+        <ng-template #editMovie>Edit movie's information</ng-template>
       </div>
+
       <div class="modal-body">
         <div class="container">
           <form class="movie-form" [formGroup]="movieForm" (ngSubmit)="addMovie()">
-            <div class="form-group">
+            <div class="form-group" *ngIf="isEditState">
               <label>Id</label>
-              <input type="number" class="form-control" [readonly]="isEditState"  formControlName="maPhim" />
+              <input type="number" class="form-control"  [readonly]="isEditState" formControlName="maPhim" />
             </div>
 
             <div class="form-group">
               <label>Movie name</label>
-              <input type="text" class="form-control"  formControlName="tenPhim" />
+              <input type="text" class="form-control" formControlName="tenPhim" />
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Aliases</label>
               <input type="text" class="form-control" formControlName="biDanh" />
-            </div>
+            </div> -->
 
             <div class="form-group">
               <label>Trailer</label>
@@ -100,12 +104,12 @@
 
             <div class="form-group">
               <label>Image</label>
-              <input type="file" class="form-control" (change)="uploadFile($event)"/>
+              <input type="file" class="form-control" (change)="uploadFile($event)" />
             </div>
 
             <div class="form-group">
               <label>Description</label>
-              <textarea  class="form-control" formControlName="moTa"></textarea>
+              <textarea class="form-control" formControlName="moTa" rows="4"></textarea>
             </div>
 
             <div class="form-group">
@@ -117,10 +121,12 @@
               <label>Rating</label>
               <input type="number" class="form-control" formControlName="danhGia" />
             </div>
-            
+
             <div class="button-form-container ">
-              <button *ngIf="!isEditState" [disabled]="movieForm.invalid" class="btn btn-success me-2" type="submit">Add</button>
-              <button *ngIf="isEditState" [disabled]="movieForm.invalid" class="btn btn-success me-2" type="button">Confirm</button>
+              <button *ngIf="!isEditState" [disabled]="movieForm.invalid" class="btn btn-success me-2"
+                type="submit">Add</button>
+              <button *ngIf="isEditState" [disabled]="movieForm.pristine" class="btn btn-success me-2" type="button"
+                (click)="editMovieInfo()">Confirm</button>
               <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
             </div>
 

@@ -67,7 +67,7 @@ export class NguoidungService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`,
     })
-    return this._http.delete(url, {headers});
+    return this._http.delete(url, {headers, responseType: "text" as const});
   }
   
 }

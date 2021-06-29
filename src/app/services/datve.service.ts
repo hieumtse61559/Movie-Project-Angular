@@ -33,7 +33,8 @@ export class DatveService {
       'Authorization': 'bearer ' + accessToken
     }
     const requestOptions = {                                                                       
-      headers: new HttpHeaders(headerDict), 
+      headers: new HttpHeaders(headerDict),
+      responseType: 'text' as const
     };
     
     return this._http.post(api, ticket, requestOptions);

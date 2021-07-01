@@ -18,7 +18,7 @@
     <div class="filter-table">
       <form>
         <div class="form-group form-inline">
-          <input class="px-4 py-2" type="text" (keyup)="applyFilter($event)" placeholder="Filter by user name..." />
+          <input class="px-4 py-2" type="text" (keyup)="applyFilter($event)" placeholder="Filter by movie name..." />
         </div>
       </form>
     </div>
@@ -52,7 +52,9 @@
           <td>{{ movie.danhGia }}</td>
           <td>
             <div class="d-flex align-items-center">
-              <button class="btn btn-primary me-1" (click)="openToEdit(content, movie)"><i
+              <button class="btn btn-warning" (click)="openToCreateSchedule(contentSchedule, movie)"><i
+                  class="fa fa-calendar-plus-o"></i></button>
+              <button class="btn btn-primary mx-1" (click)="openToEdit(content, movie)"><i
                   class="fas fa-edit"></i></button>
               <button class="btn btn-danger" (click)="deleteMovie(movie.maPhim)"><i
                   class="fas fa-trash-alt"></i></button>
@@ -75,7 +77,8 @@
   <ng-template #content let-modal>
     <div class="modal-container bg-dark text-white">
       <div class="modal-header">
-        <h2 class="modal-title" id="modal-basic-title" ><span *ngIf="!isEditState;else editMovie">Add a new movie</span></h2>
+        <h2 class="modal-title" id="modal-basic-title"><span *ngIf="!isEditState;else editMovie">Add a new movie</span>
+        </h2>
         <ng-template #editMovie>Edit movie's information</ng-template>
       </div>
 
@@ -84,7 +87,7 @@
           <form class="movie-form" [formGroup]="movieForm" (ngSubmit)="addMovie()">
             <div class="form-group" *ngIf="isEditState">
               <label>Id</label>
-              <input type="number" class="form-control"  [readonly]="isEditState" formControlName="maPhim" />
+              <input type="number" class="form-control" [readonly]="isEditState" formControlName="maPhim" />
             </div>
 
             <div class="form-group">
@@ -125,8 +128,8 @@
             <div class="button-form-container ">
               <button *ngIf="!isEditState" [disabled]="movieForm.invalid" class="btn btn-success me-2"
                 type="submit">Add</button>
-              <button *ngIf="isEditState" [disabled]="movieForm.pristine" class="btn btn-success me-2" type="button"
-                (click)="editMovieInfo()">Confirm</button>
+              <button *ngIf="isEditState" class="btn btn-success me-2" type="button"
+                (click)="editMovieInfo()">Update</button>
               <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
             </div>
 
@@ -137,6 +140,82 @@
         <button class="btn btn-success me-2" type="submit">Add</button>
         <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
       </div> -->
+    </div>
+
+  </ng-template>
+
+  <!-- Modal để tạo lịch chiếu cho phim -->
+  <ng-template #contentSchedule let-modal>
+    <div class="modal-container bg-dark text-white">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-basic-title"><span>Create movie schedule</span></h2>
+      </div>
+
+      <div class="modal-body">
+        <div class="container">
+          <form class="movie-form" [formGroup]="scheduleForm" (ngSubmit)="createSchedule()">
+            <div class="form-group">
+              <label>Movie Id</label>
+              <input type="number" class="form-control" [readonly]="true" formControlName="maPhim" />
+            </div>
+
+            <div class="form-group">
+              <label>Movie name</label>
+              <input type="text" class="form-control" [readonly]="true" formControlName="tenPhim" />
+            </div>
+
+            <div class="form-group">
+              <label>Show time</label>
+              <input type="datetime-local" class="form-control" formControlName="ngayChieuGioChieu" />
+            </div>
+
+            <!-- <div class="form-group">
+              <label>Theater Id</label>
+              <select formControlName="maRap">
+                <option *ngFor="let theater of theaterList" [ngValue]="theater.maRap">{{theater.tenRap}}</option>
+             </select>
+            </div> -->
+
+            <div class="form-group">
+              <label>Cinema Brand</label>
+              <select #maHeThongRap formControlName="maHeThongRap" (change)="handleChangeMHTR(maHeThongRap.value)">
+                <option class="bg-danger font-weight-bold" value="">Choose cinema brand</option>
+                <option *ngFor="let maHeThong of maHeThongRaps" [ngValue]="maHeThong">{{maHeThong}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Cinema Theaters</label>
+              <select #cumRapTheoHeThong style="width: 230px" formControlName="maRapPhim"
+                (change)="handleChangeCRTHT(cumRapTheoHeThong.value)">
+                <option value="" class="bg-danger font-weight-bold">Choose movie theater</option>
+                <option *ngFor="let rapPhim of danhSachCumRapTheoHeThong" [ngValue]="rapPhim.tenCumRap">
+                  {{rapPhim.tenCumRap}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Cinema Rooms</label>
+              <select #rap formControlName="maRap" (change)="handleChangeRap(rap.value)">
+                <option value="" class="bg-danger font-weight-bold">Choose cinema room</option>
+                <option *ngFor="let rap of rapPhim[0]?.danhSachRap" [ngValue]="rap.maRap">{{rap.tenRap}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Price</label>
+              <input type="number" class="form-control" formControlName="giaVe" placeholder="Price from 70000-200000"/>
+            </div>
+
+            <div class="button-form-container ">
+              <button [disabled]="scheduleForm.invalid" class="btn btn-success me-2" [disabled]="scheduleForm.invalid"
+                type="submit">Create</button>
+              <button class="btn btn-danger" (click)="modal.close('Cancel click')" type="button">Cancel</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
     </div>
 
   </ng-template>

@@ -52,7 +52,10 @@ export class PhimService {
     return this._http.post(url, formData);
   }
 
- 
+ taoLichChieu(dataObj:any):Observable<any>{
+  let url = "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/TaoLichChieu"
+  return this._http.post(url, dataObj, {responseType: 'text'} );
+ }
 
   
 }

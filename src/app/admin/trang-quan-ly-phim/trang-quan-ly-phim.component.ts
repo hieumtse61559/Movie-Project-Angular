@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PhimService } from 'src/app/services/phim.service';
+import { RapphimService } from 'src/app/services/rapphim.service';
 
 @Component({
   selector: 'app-trang-quan-ly-phim',
@@ -10,6 +11,10 @@ import { PhimService } from 'src/app/services/phim.service';
   styleUrls: ['./trang-quan-ly-phim.component.scss']
 })
 export class TrangQuanLyPhimComponent implements OnInit {
+
+  maHeThongRaps: any[] = [];
+  danhSachCumRapTheoHeThong: any[] = [];
+  rapPhim: any[] = [];
 
   myImage: string[] = [];
   // SUbscribe từ server về và xử lí
@@ -23,21 +28,26 @@ export class TrangQuanLyPhimComponent implements OnInit {
 
   // Build form cho user
   movieForm!: FormGroup;
+  scheduleForm!: FormGroup;
 
   // Check state of Modal : Add or Edit
   isEditState: boolean = false;
+
+  isUploadFile: boolean = false;
 
   constructor(
     private movieService: PhimService,
     private modalService: NgbModal,
     private fb: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private rapPhimSV: RapphimService,
   ) { }
 
   ngOnInit(): void {
     // Lấy accessToken để xử lí 1 số action
     this.accessToken = JSON.parse((localStorage.getItem("nguoiDungDangNhap") as string)).accessToken
 
+    // Lấy danh sách phim để làm các việc liên quan đến table
     this.movieService.LayDanhSachPhim().subscribe(
       (getSuccess: Movie[]) => {
         this.MOVIES = getSuccess;
@@ -45,7 +55,23 @@ export class TrangQuanLyPhimComponent implements OnInit {
         this.refreshMovies();
       }
     )
+    //Tạo form cho add/edit
     this.createForm();
+
+    // Chủ yếu là maHeThongRap để xử lí
+    this.rapPhimSV.layThongTinHeThongRap().subscribe(
+      (respone) => {
+        this.maHeThongRaps = respone.map(
+          (item: any) => {
+            return item.maHeThongRap
+          }
+        )
+      },
+      (reject) => {
+        console.log(reject)
+        window.alert(reject.error)
+      }
+    )
 
   }
 
@@ -112,7 +138,7 @@ export class TrangQuanLyPhimComponent implements OnInit {
     this.movieForm.patchValue({
       hinhAnh: fileImg ? fileImg : ''
     });
-    this.movieForm.get('hinhAnh')?.updateValueAndValidity();
+    // this.movieForm.get('hinhAnh')?.updateValueAndValidity();
 
 
     // const apiDate = this.datePipe.transform(this.movieForm.get('ngayKhoiChieu').value, 'dd-MM-yyyy')
@@ -120,6 +146,7 @@ export class TrangQuanLyPhimComponent implements OnInit {
     // console.log(apiDate)
   }
 
+  // Open modal to add user
   openToAdd(content: any) {
     this.isEditState = false;
 
@@ -155,12 +182,12 @@ export class TrangQuanLyPhimComponent implements OnInit {
     this.movieService.themPhimUploadHinh(formData).subscribe(
       (addSuccess) => {
         console.log(addSuccess)
-        
+
         if (window.confirm(`${this.movieForm.get('tenPhim')?.value} is added successfully! \nDo you want to add another?`)) {
           // Lấy lại danh sách phim và cập nhật lại bảng
           this.movieService.LayDanhSachPhim().subscribe(
             (getSuccess: Movie[]) => {
-              
+
               // Reset form
               this.movieForm.reset();
 
@@ -169,10 +196,10 @@ export class TrangQuanLyPhimComponent implements OnInit {
               this.collectionSize = this.MOVIES.length;
               this.refreshMovies();
 
-              
+
             }
           )
-        }else{
+        } else {
           this.modalService.dismissAll("");
           // Lấy lại danh sách phim và cập nhật lại bảng
           this.movieService.LayDanhSachPhim().subscribe(
@@ -272,6 +299,109 @@ export class TrangQuanLyPhimComponent implements OnInit {
       (updateFail) => {
         console.log(updateFail)
         window.alert(updateFail.error);
+      }
+    )
+  }
+
+  // Open modal to create schedule
+  openToCreateSchedule(content: any, movie: any) {
+
+    this.modalService.open(content,
+      {
+        centered: true,
+      });
+
+    // Create Schedule Form
+    this.scheduleForm = this.fb.group({
+      'maPhim': [movie.maPhim],
+      'tenPhim': [movie.tenPhim],
+      "ngayChieuGioChieu": ['',[Validators.required]],
+      "giaVe": ['', [Validators.required]],
+      "maHeThongRap": ['', [Validators.required]],
+      "maRapPhim": ['', [Validators.required]],
+      "maRap": ['', [Validators.required]],
+
+    })
+
+
+
+  }
+
+  // MHTR = maHeThongRap
+  handleChangeMHTR(maHTR: any) {
+    // Mỗi lần thay đổi là phải reset để lấy lại giá trị mới 
+    this.rapPhim = []
+    console.log(maHTR) // Nó có dạng như vầy : "0: BHDStar"
+    console.log(maHTR.split(": ")[1]);
+    maHTR = maHTR.split(": ")[1];
+    if (maHTR !== undefined) {
+      // Lấy được maHTR để lấy danh sách cụm rạp theo hệ thống 
+      this.rapPhimSV.layThongTinCumRapTheoHeThong(maHTR).subscribe(
+        (respone) => {
+          console.log(respone);
+          this.danhSachCumRapTheoHeThong = respone;
+        },
+        (reject) => {
+          window.alert(reject.error)
+        }
+      )
+    }
+    if(maHTR === undefined){
+      this.danhSachCumRapTheoHeThong = [];
+    }
+  }
+
+  //  CRTHT = Cụm rạp theo hệ thống
+  handleChangeCRTHT(tenRapPhim: any) {
+    console.log(tenRapPhim.split(": ")[1])
+
+    tenRapPhim = tenRapPhim.split(": ")[1]
+    if(tenRapPhim !== undefined){
+      this.rapPhim = this.danhSachCumRapTheoHeThong.filter(
+        (item) => {
+          return item.tenCumRap == tenRapPhim
+        }
+      )
+  
+      console.log(this.rapPhim)
+    }
+    
+  }
+
+  handleChangeRap(maRap: any) {
+    console.log(maRap.split(": ")[1])
+    // this.scheduleForm.patchValue(
+    //   {
+    //     "maRap": maRap.split(": ")[1]
+    //   }
+    // )
+  }
+
+  createSchedule() {
+    console.log(this.scheduleForm.value);
+
+    // Xử lí format của kiểu ngày cần có dạng dd/MM/yyyy hh:mm:ss
+    console.log(this.scheduleForm.controls.ngayChieuGioChieu) //2021-07-17T09:09
+    const splitedFormat = this.scheduleForm.controls.ngayChieuGioChieu.value.split("T"); // ['2021-07-17', '09:09]
+    let apiDate = this.datePipe.transform(splitedFormat[0], 'dd-MM-yyyy')
+    apiDate = `${apiDate} ${splitedFormat[1]}:00`;
+    
+    const dataObj = {
+      "maPhim": this.scheduleForm.controls.maPhim.value,
+      "ngayChieuGioChieu": apiDate,
+      "maRap": this.scheduleForm.controls.maRap.value,
+      "giaVe": this.scheduleForm.controls.giaVe.value,
+    }
+
+    this.movieService.taoLichChieu(dataObj).subscribe(
+      (response) => {
+        console.log(response)
+        window.alert("Movie schedule was created successfully!")
+        this.modalService.dismissAll("Done")
+      },
+      (reject) => {
+        console.log(reject)
+        window.alert(reject.error)
       }
     )
   }

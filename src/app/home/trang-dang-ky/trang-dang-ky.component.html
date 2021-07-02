@@ -3,33 +3,37 @@
     <div class="col-8 mx-auto">
       <div class="col-12 signup-title pt-1">
         <img src="../../../assets/images/logo.png" width="70" height="70" alt="">
-        <span>Pánda</span> 
+        <span>Pánda</span>
       </div>
       <!-- Angular sẽ có FormModules giúp xử lí form như bên dưới
             tại tag form thêm cái properties #formDangKy="ngForm"
             một sự kiện (ngSubmit)="method(formDangKy.value)"
             formDangKy.value được truyền trong method là một obj được tạo bởi tất cả các VALUES có trong form
       -->
-      <form #formDangKy="ngForm" class="signup-form mb-4" (ngSubmit)="DangKy(formDangKy.value)">
-        
+      <form #formDangKy="ngForm" class="signup-form mb-4" (ngSubmit)="DangKy(formDangKy.value)" autocomplete="off">
+
         <div class="form-group">
           <label for="">Tài khoản</label>
           <!-- Mặc định angular form sẽ không lấy hết các value của input, nên muốn lấy input nào thì phải
           thêm property name="key" (key nãy sẽ được lấy để điền vào obj nói ở dòng 7)
         và phải thêm ngModel  -->
-          <input #taiKhoan="ngModel" required type="text" class="form-control" name="taiKhoan" ngModel>
-          <div *ngIf="taiKhoan.dirty">
-            <div *ngIf="taiKhoan.errors">
-              <div class="alert alert-danger" *ngIf="taiKhoan.errors.required">Tài khoản không để trống</div>
+          <input #taiKhoan="ngModel" required type="text" class="form-control" name="taiKhoan" minlength="6"
+            maxlength="15" ngModel >
+          <div *ngIf="taiKhoan.dirty && taiKhoan.errors">
+
+            <div class="alert alert-danger" *ngIf="taiKhoan.errors.required">Tài khoản không để trống</div>
+
+            <div class="alert alert-danger" *ngIf="taiKhoan.errors.minlength">Tài khoản phải ít nhất là 6 kí tự
+            </div>
+            <div class="alert alert-danger" *ngIf="taiKhoan.errors.maxlength">Tài khoản tối đa là 15 kí tự
             </div>
           </div>
-          
+
         </div>
 
         <div class="form-group">
           <label for="">Mật khẩu</label>
-          <input #matKhau="ngModel" type="password" class="form-control" required minlength="6"
-            name="matKhau" ngModel>
+          <input #matKhau="ngModel" type="password" class="form-control" required minlength="6" name="matKhau" ngModel>
           <div *ngIf="matKhau.errors &&  matKhau.dirty">
             <!-- Kiểm tra rỗng -->
             <div class="alert alert-danger" *ngIf="matKhau.errors.required">Mật khẩu không để trống</div>
@@ -42,27 +46,25 @@
 
         <div class="form-group">
           <label for="">Xác nhận mật khẩu</label>
-          <input #xacNhanMK="ngModel" type="password" class="form-control" required 
-            name="xacNhanMK" ngModel>
+          <input #xacNhanMK="ngModel" type="password" class="form-control" required name="xacNhanMK" ngModel>
           <div *ngIf="xacNhanMK.dirty">
             <div class="alert alert-danger" *ngIf="formDangKy.value.matKhau != formDangKy.value.xacNhanMK">
               Xác nhận mật khẩu không trùng nhau
             </div>
-          </div> 
+          </div>
         </div>
 
         <div class="form-group">
           <label for="">Họ Tên:</label>
-          <input #hoTen="ngModel" [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
-          "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
-          "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"' required type="text" class="form-control" name="hoTen" ngModel>
+          <input #hoTen="ngModel" [pattern]='"^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]+$"' required type="text" class="form-control"
+            name="hoTen" ngModel>
           <div *ngIf="hoTen.errors && (hoTen.touched || hoTen.dirty)">
             <div *ngIf="hoTen.errors.pattern" class="alert alert-danger">
-              Vui lòng nhập họ tên là chữ
+              Tên không chứa các kí tự số và kí tự đặc biệt
             </div>
           </div>
         </div>
-
+        
         <!-- <div class="form-group">
           <label for="">Mã nhóm</label>
           <input #maNhom="ngModel" list="maNhoms" name="maNhom" class="form-control" required ngModel>
@@ -81,10 +83,10 @@
         </div> -->
 
         <div class="form-group">
-          <label for="">Email</label>
+          <label>Email</label>
           <input #email="ngModel" required [pattern]='"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
           + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"' type="email" class="form-control" name="email"
-            ngModel>
+            ngModel placeholder="abc@def.xyz">
           <div *ngIf="email.errors && (email.touched || email.dirty)">
             <div *ngIf="email.errors.pattern" class="alert alert-danger">
               Vui lòng nhập đúng format email
@@ -94,7 +96,12 @@
 
         <div class="form-group">
           <label for="">Số ĐT</label>
-          <input type="text" class="form-control" name="soDT" ngModel>
+          <input #soDT="ngModel" type="text" [pattern]='"^[0-9]*$"' class="form-control" name="soDT" ngModel>
+          <div *ngIf="soDT.errors && (soDT.touched || soDT.dirty)">
+            <div *ngIf="soDT.errors.pattern" class="alert alert-danger">
+              Số điện thoại chỉ chứa kí tự số
+            </div>
+          </div>
         </div>
 
         <!-- <div class="form-group">
@@ -102,12 +109,12 @@
           <input type="radio" ngModel value="KhachHang" name="maLoaiNguoiDung">Khách hàng
           <input type="radio" ngModel value="QuanTri" name="maLoaiNguoiDung">Admin
         </div> -->
-        
+        <div class="text-center mb-3">
+          <button class="btn btn-outline-primary" [disabled]="formDangKy.invalid" type="submit">Đăng ký</button>
+          <button class="btn btn-outline-primary" type="submit" (click)="closeModal()">Hủy</button>
+        </div>
       </form>
-      <div class="text-center mb-3">
-        <button class="btn btn-outline-primary" [disabled]="formDangKy.invalid" type="submit">Đăng ký</button>
-        <button class="btn btn-outline-primary"  type="submit" (click)="closeModal()">Hủy</button>
-      </div>
+      
     </div>
   </div>
 </div>

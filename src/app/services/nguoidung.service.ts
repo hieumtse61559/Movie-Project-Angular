@@ -47,6 +47,12 @@ export class NguoidungService {
     return obServe;
   }
 
+  DangKy(account: account):Observable<any>{
+    const url = "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy";
+    let obServe = this._http.post(url, account);
+    return obServe;
+  }
+
   layThongTinNguoiDung(taiKhoan:object):Observable<any>{
     const url = "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan";
     return this._http.post(url, taiKhoan);

@@ -176,31 +176,35 @@
              </select>
             </div> -->
 
-            <div class="form-group">
-              <label>Cinema Brand</label>
-              <select #maHeThongRap formControlName="maHeThongRap" (change)="handleChangeMHTR(maHeThongRap.value)">
-                <option class="bg-danger font-weight-bold" value="">Choose cinema brand</option>
-                <option *ngFor="let maHeThong of maHeThongRaps" [ngValue]="maHeThong">{{maHeThong}}</option>
-              </select>
+            <div class="theater-container">
+              <div class="form-group">
+                <label>Cinema Brand</label>
+                <select #maHeThongRap formControlName="maHeThongRap" (change)="handleChangeMHTR(maHeThongRap.value)">
+                  <option class="bg-danger font-weight-bold" value="">Choose cinema brand</option>
+                  <option *ngFor="let maHeThong of maHeThongRaps" [ngValue]="maHeThong">{{maHeThong}}</option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label>Cinema Theaters</label>
+                <select #cumRapTheoHeThong style="width: 230px" formControlName="maRapPhim"
+                  (change)="handleChangeCRTHT(cumRapTheoHeThong.value)">
+                  <option value="" class="bg-danger font-weight-bold">Choose movie theater</option>
+                  <option *ngFor="let rapPhim of danhSachCumRapTheoHeThong" [ngValue]="rapPhim.tenCumRap">
+                    {{rapPhim.tenCumRap}}</option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label>Cinema Rooms</label>
+                <select #rap formControlName="maRap" (change)="handleChangeRap(rap.value)">
+                  <option value="" class="bg-danger font-weight-bold">Choose cinema room</option>
+                  <option *ngFor="let rap of rapPhim[0]?.danhSachRap" [ngValue]="rap.maRap">{{rap.tenRap}}</option>
+                </select>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label>Cinema Theaters</label>
-              <select #cumRapTheoHeThong style="width: 230px" formControlName="maRapPhim"
-                (change)="handleChangeCRTHT(cumRapTheoHeThong.value)">
-                <option value="" class="bg-danger font-weight-bold">Choose movie theater</option>
-                <option *ngFor="let rapPhim of danhSachCumRapTheoHeThong" [ngValue]="rapPhim.tenCumRap">
-                  {{rapPhim.tenCumRap}}</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Cinema Rooms</label>
-              <select #rap formControlName="maRap" (change)="handleChangeRap(rap.value)">
-                <option value="" class="bg-danger font-weight-bold">Choose cinema room</option>
-                <option *ngFor="let rap of rapPhim[0]?.danhSachRap" [ngValue]="rap.maRap">{{rap.tenRap}}</option>
-              </select>
-            </div>
+            
 
             <div class="form-group">
               <label>Price</label>

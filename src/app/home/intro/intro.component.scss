@@ -1,0 +1,18 @@
+.container{
+  margin-top: 30px;
+  h2{
+    position: relative;
+    letter-spacing: 1px;
+    &::after{
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 5%;
+      height: 3px;
+      background-color: #e74c3c;
+      transition: .25s;
+      
+    }
+  }
+}

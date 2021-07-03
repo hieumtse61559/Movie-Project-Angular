@@ -1,27 +1,40 @@
 .container {
-  .phim-image {
-    position: relative;
-    height: 600px;
-    img {
-      height: 100%;
-      width: 100%;
-      filter: brightness(50%);
+  .movie-detail{
+    .phim-image {
+      position: relative;
+      height: 380px;
+      img {
+        height: 100%;
+        width: 90%;
+        filter: brightness(50%);
+      }
+      .play__trailer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+  
+        border-radius: 50%;
+        font-size: 20px;
+        padding: 40px;
+      }
     }
-    .play__trailer {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      border-radius: 50%;
-      font-size: 20px;
-      padding: 40px;
+    .phim-content {
+      .phim-detail {
+      }
+      
     }
   }
-  .phim-content {
-    .phim-detail {
+
+  .movie-content{
+    p{
+      margin-top: 25px;
     }
+  }
+
+  .movie-showtime{
     .phim-time {
+      margin-top: 25px;
       .HeThongRap {
         .rapPhim-logo {
           display: flex;
@@ -29,12 +42,58 @@
         }
         .rapTheoHeThong-container {
           .buttons-container {
-            margin-left: 40px;
+            padding: 20px 5px;
+            border: 1px solid black;
+            
           }
         }
       }
     }
   }
+
+  .movie-content, .movie-showtime{
+    margin-top: 25px;
+    .label-title{
+      font-size: 18px;
+      font-weight: 500;
+      color: #f26b38;
+      position: relative;
+      &::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 5%;
+        height: 2px;
+        background-color: #f26b38;
+      }
+    }
+  }
+
+  .promotion-container{
+    .label-title{
+      font-size: 18px;
+      font-weight: 500;
+      color: #f26b38;
+      position: relative;
+      &::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 5%;
+        height: 2px;
+        background-color: #f26b38;
+      }
+    }
+    .promotion-item{
+      margin-top: 25px;
+      img{
+        width: 100%;
+      }
+    }
+  }
+  
 }
 
 .modal {

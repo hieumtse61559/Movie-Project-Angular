@@ -1,0 +1,44 @@
+.container{
+  padding-top: 30px;
+  .title-container{
+    button{
+      background-color: transparent;
+      border: none;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: 600;
+      &:hover {
+        color: #c0392b;
+        transform: scale(1.2);
+      }
+    }
+  }
+  .detail-container{
+    .detail-item{
+      img{
+        width: 100%;
+      }
+      .new-title{
+        margin: 10px 0px;
+        color: black;
+        font-size: 17px;
+        font-weight: 700;
+        transition: color 0.5s;
+        cursor: pointer;
+        &:hover{
+          color: #fb4226
+        }
+      }
+      .new-content{
+        color: #5c5c5c;
+        font-size: 11px;
+      }
+    }
+    
+  }
+}
+
+.clickedButton{
+  color: blue;
+  transform: scale(1.2);
+}

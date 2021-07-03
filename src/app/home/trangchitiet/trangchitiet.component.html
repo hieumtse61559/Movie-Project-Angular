@@ -1,5 +1,5 @@
 <div class="container my-4">
-  <div class="row" style="margin-top: 100px;">
+  <!-- <div class="row" style="margin-top: 100px;">
     <div class="col-lg-5 phim-image text-center">
       <img [src]="chiTietPhim?.hinhAnh" width="100%" alt="Hình ảnh phim">
       <button class="btn btn-outline-light shadow-lg play__trailer" (click)="open(content)">
@@ -12,16 +12,16 @@
         <p>Đánh giá : {{chiTietPhim?.danhGia}} <i class="bx bxs-star"></i></p>
         <p>Ngày khởi chiếu: {{chiTietPhim?.ngayKhoiChieu | date:"dd-MM-yyyy"}}</p>
         <p>Nội dung: {{chiTietPhim?.moTa}}</p>
-        <!-- <p>Trailer: {{chiTietPhim.trailer}}</p> -->
+        <p>Trailer: {{chiTietPhim.trailer}}</p>
       </div>
       
 
       <div class="phim-time">
         <div class="HeThongRap" *ngFor="let heThongRap of chiTietPhim?.heThongRapChieu">
-          <!-- <div class="rapPhim-logo">
+          <div class="rapPhim-logo">
             <img [src]="heThongRap.logo" width="50px" height="50px" alt="Logo hệ thống rạp">
             <span style="font-weight: 600; font-size: 1.4rem;">{{heThongRap.tenHeThongRap}}</span>
-          </div> -->
+          </div>
 
           <div class="rapTheoHeThong-container">
             <div *ngFor="let rapPhim of heThongRap.cumRapChieu">
@@ -38,7 +38,105 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <div class="row justify-content-around" style="margin-top: 100px;">
+    <div class="col-lg-8">
+      <div class="row movie-detail">
+        <div class="col-lg-5 phim-image text-center">
+          <img [src]="chiTietPhim?.hinhAnh" width="100%" alt="Hình ảnh phim">
+          <button class="btn btn-outline-light shadow-lg play__trailer" (click)="open(content)">
+            <i class="fas fa-play"></i>
+          </button>
+        </div>
+
+        <div class="col-lg-7 phim-content">
+          <div class="phim-detail">
+            <p style="text-transform: uppercase; font-size: 27px; font-weight: 500; margin-top: 10px;">{{chiTietPhim?.tenPhim}}</p>
+            <div class="d-flex align-items-center">
+              <span class="me-3">
+                {{chiTietPhim?.danhGia}} <i class="bx bxs-star" style="color: #fac917; font-size: 15px;"></i>
+              </span>
+
+              <button style="color: #ffffff;
+              background-color: #f26b38;
+              border-color: #f26b38;
+              text-transform: uppercase;">Đánh giá</button>
+            </div>
+
+            <div class="data-fake">
+              <!-- C18 với thời lượng chiếu -->
+              <div class="d-flex align-items-center my-3">
+                <div class="me-3" style="background-color: #f26b38; padding: 3px; color: white">C18</div>
+                <div style="color: #fbc917; font-size: larger;">
+                  <i class="fa fa-clock-o me-1" aria-hidden="true"></i>
+                  <span>110 phút</span> 
+                </div>
+              </div>
+
+              <!-- Thông tin ảo -->
+              <div>
+                <p style="color: black; margin-bottom: 10px;"><span style="color: #a0a3a7;">Quốc gia: </span>VNCas</p>
+                <p style="color: black; margin-bottom: 10px;"><span style="color: #a0a3a7;">Nhà sản xuất: </span>PanTrop Cinema</p>
+                <p style="color: black; margin-bottom: 10px;"><span style="color: #a0a3a7;">Thể loại: </span>Hành động, tình cảm</p>
+                <p style="color: black; margin-bottom: 10px;"><span style="color: #a0a3a7;">Diễn viên: </span>Salan Vu, KiryuKi, Nambeta</p>
+                <p style="color: black; margin-bottom: 10px;"><span style="color: #a0a3a7;">Đạo diễn: </span>Saputa Luvis</p>
+                <p style="color: #f26b38;"><span style="color: #a0a3a7;">Ngày khởi chiếu: </span>{{chiTietPhim?.ngayKhoiChieu | date:"dd-MM-yyyy"}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="movie-content">
+        <div class="label-title">NỘI DUNG PHIM</div>
+        <p>{{chiTietPhim?.moTa}} <br> <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. In, atque porro. At, expedita obcaecati nostrum quod est odio dolor nesciunt iste error qui quis tenetur nihil quia vel recusandae distinctio assumenda saepe! Ipsa, consectetur? Ea, aut voluptatibus! Magni ipsum eum nisi asperiores voluptatum, suscipit aliquam sapiente maiores, deleniti ipsam vitae. <br> <br>
+        Phim mới <span style="font-weight: 400; color: #f26b38;">{{chiTietPhim?.tenPhim}}</span> ra mắt tại các rạp chiếu phim từ ngày <span style="color: #f26b38;">{{chiTietPhim?.ngayKhoiChieu | date:"dd-MM-yyyy"}} </span>  
+        </p>
+      </div>
+
+      <div class="movie-showtime">
+        <div class="label-title">LỊCH CHIẾU</div>
+        <div class="phim-time">
+          <div class="HeThongRap" *ngFor="let heThongRap of chiTietPhim?.heThongRapChieu">
+            <!-- <div class="rapPhim-logo">
+              <img [src]="heThongRap.logo" width="50px" height="50px" alt="Logo hệ thống rạp">
+              <span style="font-weight: 600; font-size: 1.4rem;">{{heThongRap.tenHeThongRap}}</span>
+            </div> -->
+            <div class="rapTheoHeThong-container">
+              <div style="margin-bottom: 20px;" *ngFor="let rapPhim of heThongRap.cumRapChieu">
+                <div style="font-size: 1.2rem; font-weight: 500; background-color: #f79c38; border-left: 10px solid black; color: white; padding: 10px; width: 250px;">{{rapPhim.tenCumRap}}</div>
+                <div class="buttons-container">
+                  <div class="row align-items-center">
+                    <div class="col-3" *ngFor="let rap of rapPhim.lichChieuPhim.slice(0,7)">
+                      <button class="btn btn-outline-success my-2 p-1" [routerLink]="['/datve', rap.maLichChieu]">
+                        {{rap.ngayChieuGioChieu | date:"dd/MM-hh:mm"}}
+                      </button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="promotion-container">
+        <div class="label-title">KHUYẾN MÃI</div>
+        <div class="promotion-item">
+          <img src="./../../../assets/images/CGV-POPCORN.jpg" alt="">
+        </div>
+        <div class="promotion-item">
+          <img src="./../../../assets/images/GLX-voucher.jpg" alt="">
+        </div>
+      </div>
+    </div>
   </div>
+
 </div>
 
 <!-- Modal cho TRailer phim -->
@@ -48,8 +146,7 @@ padding-top: 56.25%;">
   <iframe style="
   width: 100%;
   height: 400px;
-  border: none;" [src]="chiTietPhim.trailer | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  border: none;" [src]="chiTietPhim.trailer | safe" title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
 </ng-template>
-
-
-

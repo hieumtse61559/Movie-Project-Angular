@@ -1,0 +1,111 @@
+
+<div id="TinTuc" class="container">
+  <div class="row title-container">
+    <div class="col-12 text-center">
+      <button class="btn-DienAnh" [ngClass]="{'clickedButton': dienAnhStatus}" (click)="hienThiDienAnh()">Điện Ảnh</button>
+      <button class="btn-Review" [ngClass]="{'clickedButton': !dienAnhStatus}" (click)="hienReview()">Review</button>
+    </div>
+  </div>
+  <div class="detail-container">
+    <div class="row dien-anh-container" *ngIf="dienAnhStatus; else review">
+      <div class="col-sm-12 col-md-6">
+        <div class="detail-item">
+          <img src="./../../../assets/images/latmat48h.jpg" alt="">
+          <p class="new-title">Ấn định chắc nịch ngày khởi chiếu 16.04, Lý Hải tung clip Lật Mặt: 48h đậm chất</p>
+          <p class="new-content">
+            Trước thềm khởi chiếu 16.04 này, Lý Hải bất ngờ tung clip rượt đuổi gay cấn thót tim dành cho các fans hâm mộ.
+            Đạo diễn Lý Hải, người được cho là rất “mát tay” trong làng phim Việt, lại càng khẳng định lời đồn đại không ngoa khi cả 5 phần phim của anh đều sở hữu thành công vang dội về mặt thương mại, với tốc độ tăng trưởng doanh thu qua mỗi phần đều đáng kinh ngạc
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="detail-item">
+          <img src="./../../../assets/images/mortal-kombat-tintuc.jpg" alt="">
+          <p class="new-title">[MORTAL KOMBAT: Cuộc chiến sinh tử]- Gọi tên nhwuxng phim điện ảnh nổi tiếng được chuyển thể từ các tựa...</p>
+          <p class="new-content">
+            Bên cạnh những kịch bản gốc mới mẻ và đầy bất ngờ, Hollywood cũng không thiếu những tác phẩm đình đám được chuyển thể từ tiểu thuyết, phim hoạt hình, hay thậm chí là cả trò chơi điện tử.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="detail-item">
+          <img src="./../../../assets/images/kristen.jpg" alt="">
+          <p class="new-title">Nữ diễn viên xinh đẹp trong "Chạng Vạng" vui mừng khi người tình cũ thành công.</p>
+          <p class="new-content">
+            Sau khi kết thúc series của dòng phing đình đám 1 thời, cặp đôi diễn viên chính đã chia tay sau một thời gian quen nhau, đến cuối nắm 2015 cả 2 đã tái hợp tại sự kiện...
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="detail-item">
+          <img src="./../../../assets/images/tranthanh-bogia.jpg" alt="">
+          <p class="new-title">Trấn Thành hóa thân người cha lớn tuổi trong bộ phim điện ảnh "Bố già".</p>
+          <p class="new-content">
+            Trái ngược lại với những hình ảnh là một MC trẻ trung, năng động được mọi người yêu quí, nay MC quốc dân hóa thân vào vai một người cha khắc khổ trong bộ phim...
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="detail-item">
+          <img src="./../../../assets/images/ngothanhvan.jpg" alt="">
+          <p class="new-title">Ngô Thanh Vân sát thủ trong siêu trộm, Ngọa hổ tàng long 2</p>
+          <p class="new-content">
+            Nếu như trong Siêu trộm, Ngô Thanh Vân là một sát thủ máu lạnh cầm súng thì trong bộ phim bom tấn châu Á Ngọa hổ tàng long 2, Ngô Thanh Vân cũng vào vai sát thủ mang tên Đoạn Hồn Oanh (tức sát thủ Mantis). Đây là phim của đạo diễn Viên Hòa Bình, với sự góp mặt của hai ngôi sao Dương Tử Quỳnh, Chân Tử Đan.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #review >
+      <div class="row review-container">
+        <div class="col-sm-12 col-md-6">
+          <div class=" row detail-item">
+            <img src="./../../../assets/images/GozillavsKong.jpg" alt="">
+            <p class="new-title">Godzilla vs Kong phá vỡ mọi kỷ lục phòng vé mùa COVID</p>
+            <p class="new-content">
+              "Godzilla vs. Kong" là phần thứ tư trong loạt phim MonsterVerse của Warner Bros. và Legendary. Bộ phim do Adam Wingard đạo diễn, có sự tham gia diễn xuất của nhiều gương mặt sáng giá như Alexander Skarsgard, Millie Bobby Brown, Rebecca Hall, Brian Tyree Henry, Shun Oguri, Eiza Gonzalez và Julian Dennison. 
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="detail-item">
+            <img src="./../../../assets/images/thienthanhomenh.jpg" alt="">
+            <p class="new-title">Thiên thần hộ mệnh: Lộng lẫy, kịch tính nhưng kiên cường</p>
+            <p class="new-content">
+              Sau loạt phim thương hiệu Scandal, Victor Vũ đã chính thức quay trở lại với dòng phim drama - thriller (kịch tính - kinh dị) sở trường. Tiếp tục khai thác những góc khuất đằng sau ánh hào quang showbiz, Victor Vũ lần này tạo bất ngờ cho khán giả bằng cách thổi vào bộ phim một màu sắc tâm linh mới đến từ búp bê Kumathong.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="detail-item">
+            <img src="./../../../assets/images/macbiet.jpg" alt="">
+            <p class="new-title">Mắt biếc: Một chuyện tình nhiều cung bậc, từ ngộ nghĩnh trẻ con, rồi tình yêu thuở học trò trong sáng</p>
+            <p class="new-content">
+              Phim lấy bối cảnh ở thập niên 1960 và 1970. Nhân vật chính là Ngạn, cậu bé sinh ra và lớn lên tại ngôi làng Đo Đo, tỉnh Quảng Nam (cũng là nguyên quán của tác giả Nguyễn Nhật Ánh). Cậu yêu mến cô bạn tên Hà Lan, người có đôi mắt đẹp tuyệt trần mà Ngạn tự gọi là "mắt biếc". Cả hai cùng trải qua biết bao nhiêu kỷ niệm tại làng quê nghèo này, dần dần trong Ngạn nảy sinh một tình yêu thầm lặng dành cho Hà Lan.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="detail-item">
+            <img src="./../../../assets/images/nguoinhanban.jpg" alt="">
+            <p class="new-title">Siêu phẩm Hàn Quốc “Seobok - Người nhân bản” đã khởi chiếu tại Việt Nam</p>
+            <p class="new-content">
+              “Seobok - Người nhân bản” là câu chuyện kể về Ki-hun (Gong Yoo) đã thực hiện nhiệm vụ quan trọng cuối cùng từ Cơ quan Tình báo. Anh phải chịu trách nhiệm di chuyển Seobok (Park Bo Gum), một người nhân tạo được tạo ra bằng tế bào gốc.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="detail-item">
+            <img src="./../../../assets/images/hungthandaiduong.jpg" alt="">
+            <p class="new-title">Hung Thần Đại Dương: Thảm Sát (47 Meters down: Uncaged)</p>
+            <p class="new-content">
+              Phim là phần tiếp theo của 47 Meters Down ra mắt năm 2017. Sau đàn cá sấu hung tợn trong Crawl, khán giả tiếp tục được chứng kiến một quái vật sông nước khác gieo rắc nỗi kinh hoàng trên màn ảnh rộng.
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    
+    
+  </div>
+</div>

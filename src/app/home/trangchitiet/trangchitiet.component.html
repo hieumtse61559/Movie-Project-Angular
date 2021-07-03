@@ -110,7 +110,7 @@
                 <div class="buttons-container">
                   <div class="row align-items-center">
                     <div class="col-3" *ngFor="let rap of rapPhim.lichChieuPhim.slice(0,7)">
-                      <button class="btn btn-outline-success my-2 p-1" [routerLink]="['/datve', rap.maLichChieu]">
+                      <button class="btn btn-outline-danger my-2 p-1" [routerLink]="['/datve', rap.maLichChieu]">
                         {{rap.ngayChieuGioChieu | date:"dd/MM-hh:mm"}}
                       </button>
                     </div>

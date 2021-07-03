@@ -11,8 +11,8 @@
   .logos__container {
     .logo-cumrap {
       cursor: pointer;
+      margin-bottom: 10px;
       img {
-        padding-bottom: 5px;
         transition: transform 0.3s linear;
       }
       p {
@@ -30,7 +30,7 @@
     p{
       color: #a3270b;
       font-weight: 500;
-      transform: scale(1.3);
+      transform: scale(1.1);
     }
   }
   .CumRap__container {
@@ -45,7 +45,7 @@
           p {
             color: #a3270b;
             font-weight: 500;
-            transform: scale(1.3);
+            transform: scale(1.1);
           }
         }
       }
@@ -86,10 +86,10 @@
   }
   .logos__container {
     .logo-cumrap {
-      display: flex;
-      align-items: center;
+      // display: flex;
+      // align-items: center;
       // justify-content: center;
-      padding-left: 30%;
+      // padding-left: 30%;
       p {
         margin-left: 10px;
       }

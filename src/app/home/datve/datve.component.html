@@ -1,15 +1,31 @@
-<div class="container-fluid py-4" style="margin-top: 100px;">
-  <div class="row">
+<div class="container py-2 mb-3" style="margin-top: 100px;">
+  <!-- <div class="row" *ngIf="fetchDSGhe">
     <div class="col-md-8 col-lg-4">
       <div class="details">
         <p><span>Tên phim:</span> {{movieDetails?.tenPhim}}</p>
-        <p><span>Tên rạp:</span>  {{movieDetails?.tenCumRap}} - {{movieDetails?.tenRap}}</p>
-        <p><span>Địa chỉ:</span>  {{movieDetails?.diaChi}}</p>
+        <p><span>Tên rạp:</span> {{movieDetails?.tenCumRap}} - {{movieDetails?.tenRap}}</p>
+        <p><span>Địa chỉ:</span> {{movieDetails?.diaChi}}</p>
         <p><span>Thời gian chiếu:</span> {{movieDetails?.gioChieu}}, {{movieDetails?.ngayChieu}}</p>
       </div>
     </div>
     <div class="col-md-12 col-lg-8">
       <app-trangdatghe [gheArray]="DanhSachGheNgoi" [maLichChieu]="movieDetails?.maLichChieu"></app-trangdatghe>
     </div>
+  </div> -->
+
+  <div *ngIf="fetchDSGhe">
+    <div class="title">ĐẶT VÉ ONLINE</div>
+    <div class="datve-profile">
+      <p><span>{{movieDetails?.tenPhim}}</span></p>
+      <p>{{movieDetails?.tenCumRap}} | {{movieDetails?.diaChi}} | {{movieDetails?.tenRap}}</p>
+      <p>{{movieDetails?.ngayChieu}} - {{movieDetails?.gioChieu}}</p>
+    </div>
+    <div class="datghe-component">
+      <app-trangdatghe [gheArray]="DanhSachGheNgoi" [maLichChieu]="movieDetails?.maLichChieu"></app-trangdatghe>
+    </div>
+  </div>
+
+  <div *ngIf="!fetchDSGhe">
+    <app-is-loading></app-is-loading>
   </div>
 </div>

@@ -12,6 +12,7 @@ export class DatveComponent implements OnInit {
   public MaLichChieu?:string;
   public DanhSachGheNgoi?:any[] =[];
   movieDetails:any;
+  fetchDSGhe:boolean = false;
   constructor(private activateRoute:ActivatedRoute, private datveSV: DatveService) { }
 
   ngOnInit(): void {
@@ -23,8 +24,10 @@ export class DatveComponent implements OnInit {
           (result) => {
             console.log(result)
             this.movieDetails = result.thongTinPhim;
+
             this.DanhSachGheNgoi = result.danhSachGhe.slice(0,120);
             console.log(this.DanhSachGheNgoi)
+            this.fetchDSGhe = true;
           }
         )
       },

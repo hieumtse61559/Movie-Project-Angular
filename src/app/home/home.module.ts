@@ -24,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TintucComponent } from './tintuc/tintuc.component';
 import { IntroComponent } from './intro/intro.component';
+import { IsLoadingComponent } from './is-loading/is-loading.component';
 
 
 
@@ -48,6 +49,7 @@ import { IntroComponent } from './intro/intro.component';
     ProfileComponent,
     TintucComponent,
     IntroComponent,
+    IsLoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +72,8 @@ import { IntroComponent } from './intro/intro.component';
     TrangDangKyComponent,
     TrangDangNhapComponent,
     HeroCarouselComponent,
+    IsLoadingComponent,
+
   ],
 })
 export class HomeModule { }

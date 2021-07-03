@@ -1,4 +1,23 @@
-span{
-  font-size: 1.3rem;
-  font-weight: 600px;
+.container{
+  .title{
+    text-align: center;
+    padding: 15px 0px;
+    color: white;
+    background-color: black;
+    font-size: 25px;
+    font-weight: 500;
+  }
+  .datve-profile{
+    padding: 8px;
+    background-color: #f26b38;
+    p{
+      font-weight: bold;
+      font-size: 14px;
+      color: #222;
+      line-height: 18px;
+      span{
+        font-size: 20px;
+      }
+    }
+  }
 }

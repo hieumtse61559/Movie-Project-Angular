@@ -75,7 +75,7 @@
             <button class="btn btn-outline-primary"
               [disabled]="formProfile.invalid || (formProfile.value.matKhau != formProfile.value.xacNhanMK) || formProfile.pristine"
               type="submit">Lưu thông tin</button>
-              <button class="btn btn-outline-primary mx-2" type="button" (click)="sendToCancelForm()">Hủy</button>
+              <button class="btn btn-outline-primary mx-2" type="button" (click)="sendToCancelForm()">Đóng</button>
           </div>
         </form>
       </div>
@@ -101,7 +101,6 @@
               <td>{{booked.danhSachGhe.length}}</td>
               <td>{{booked.danhSachGhe.length * booked.giaVe}}</td>
               <td>{{booked.ngayDat | date:'M/d/yy, h:mm a'}}</td>
-
             </tr>
           </tbody>
         </table>

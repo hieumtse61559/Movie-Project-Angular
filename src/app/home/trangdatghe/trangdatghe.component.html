@@ -1,9 +1,9 @@
 <div class="container-fluid mx-auto bg-warning p-4">
-  <div class="text-left">
-    <!-- <p class="lead text-left">Số ghế đã chọn: <span class="font-weight-bold">{{soGheDaChon}}</span></p>
-    <p class="lead text-left">Số ghế còn trống: <span class="font-weight-bold">{{soGheConTrong}}</span></p> -->
+  <!-- <div class="text-left">
+    <p class="lead text-left">Số ghế đã chọn: <span class="font-weight-bold">{{soGheDaChon}}</span></p>
+    <p class="lead text-left">Số ghế còn trống: <span class="font-weight-bold">{{soGheConTrong}}</span></p>
     <p class="text-center" style="font-weight: 700; font-size: 1.5rem;">Vui lòng chọn ghế</p>
-  </div>
+  </div> -->
 
 
   <div class="row">
@@ -38,7 +38,7 @@
 
 <ng-template #bill let-modal class="modal__form">
   <div class="d-flex align-items-center justify-content-center pt-2">
-    <h4 class="modal-title text-center" id="modal-basic-title" style="font-size: 25px; text-transform: uppercase; font-weight: 600;">Hóa đơn xác nhận thanh toán</h4>
+    <h4 class="modal-title text-center" id="modal-basic-title" style="font-size: 25px; text-transform: uppercase; font-weight: 600; margin-top: 10px;">Thông tin vé</h4>
   </div>
 
   <div class="modal-body">
@@ -59,14 +59,14 @@
         <p>{{gheDaChon.tenGhe}}</p>
       </div>
       <div class="col-6 d-flex justify-content-end">
-        <p>{{gheDaChon.giaVe}}</p>
+        <p>{{gheDaChon.giaVe}} (VND)</p>
       </div>
     </div>
 
     <hr>
 
     <div class="d-flex justify-content-end" style="font-size: larger; font-weight: 500;">
-      <p>Tổng số tiền: <span class="text-danger">{{totalCost}}</span> </p>
+      <p>Tổng số tiền: <span class="text-danger">{{totalCost}} (VND)</span> </p>
     </div>
   </div>
 

@@ -59,6 +59,7 @@ export class TrangdatgheComponent implements OnInit, OnChanges {
         if (item.maGhe === gheObj.maGhe) {
           this.totalCost = this.totalCost - gheObj.giaVe;
           this.MangGheDaChon.splice(index, 1);
+          
         }
       })
     }

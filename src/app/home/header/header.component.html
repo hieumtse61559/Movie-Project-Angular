@@ -1,5 +1,5 @@
 <header class="bg-dark">
-  
+
   <a class="header__left d-none d-lg-block" href="#">
     <div class="d-flex align-items-center">
       <img src="../../../assets/images/logo.png" alt="panda_logo" width="75" height="60">
@@ -14,7 +14,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item pt-1">
@@ -30,10 +30,11 @@
           <a class="nav-link" href="#GioiThieu">GIỚI THIỆU</a>
         </li>
         <li class="nav-item">
-          <div class="search__container ml-4">
+          <!-- Search cũ -->
+          <!-- <div class="search__container ml-4">
             <div class="row align-items-center">
               <div class="col-10">
-                <input #search list="movielist" class="search__input" type="text" name="" placeholder="Tìm phim theo tên...">
+                <input #search list="movielist" class="search__input" type="text" placeholder="Tìm phim theo tên...">
                 <datalist id="movielist">
                     <div *ngFor="let phim of danhSachPhim">
                       <option>{{phim.tenPhim}}</option>
@@ -44,7 +45,20 @@
                 <button class="search__icon"  (click)="handleSearch(search)"><i class="fas fa-search"></i></button>
               </div>
             </div>
+          </div> -->
+          <!-- Search mới -->
+          <div class="search-container">
+            <input #search type="text" list="movielist" name="search" class="navbar-search-input" 
+              placeholder="Tìm phim theo tên...">
+            <button (click)="handleSearch(search)"><i class="fas fa-search"></i></button>
+            <datalist id="movielist">
+              <div *ngFor="let phim of danhSachPhim">
+                <option>{{phim.tenPhim}}</option>
+              </div>
+            </datalist>
           </div>
+          
+
         </li>
 
         <!-- <li class="nav-item">
@@ -54,25 +68,10 @@
     </div>
   </nav>
 
-  <!-- <div class="search__container">
-    <div class="row">
-      <div class="col-10">
-        <input #search list="movielist" class="search__input" type="text" name="" placeholder="Tìm phim theo tên...">
-        <datalist id="movielist">
-            <div *ngFor="let phim of danhSachPhim">
-              <option>{{phim.tenPhim}}</option>
-            </div>
-        </datalist>
-      </div>
-      <div class="col-2">
-        <button class="search__icon"  (click)="handleSearch(search)"><i class="fas fa-search"></i></button>
-      </div>
-    </div>
-  </div> -->
   <a href="#" class="logo__temp d-md-block d-lg-none">
     <img src="../../../assets/images/logo.png" width="75" height="60" alt="">
   </a>
-  
+
 
   <div class="header__right">
     <!-- Lưu ý chỗ menu Dropdown này nhớ thêm như bên dưới để hiển thị menu sang bên trái cho đẹp -->
@@ -80,7 +79,7 @@
       <button class="account-user" type="button" id="dropdownMenuButton" ngbDropdownToggle>
         {{hoTenUser}}
       </button>
-      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton" class="dropdown-menu" >
+      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton" class="dropdown-menu">
         <li><a ngbDropdownItem name="Profile" #profile (click)="openVerticallyCentered(content, profile)">Thông tin cá
             nhân</a></li>
         <li><a ngbDropdownItem (click)="logout()">Đăng xuất</a></li>
@@ -113,7 +112,7 @@
   <app-trang-dang-nhap *ngIf='clickedTagName=="Login"' (loginStatus)="getNameFromDangNhap($event)">
   </app-trang-dang-nhap>
   <app-profile (formCancel)="nhanLenhCloseModal($event)" *ngIf='clickedTagName=="Profile"'></app-profile>
-  <app-trang-dang-ky (closeStatus)="nhanLenhCloseModal($event)"  *ngIf='clickedTagName=="SignUp"'></app-trang-dang-ky>
+  <app-trang-dang-ky (closeStatus)="nhanLenhCloseModal($event)" *ngIf='clickedTagName=="SignUp"'></app-trang-dang-ky>
 
 
 

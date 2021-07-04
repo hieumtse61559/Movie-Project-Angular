@@ -23,6 +23,8 @@ header {
     .collapse {
       .navbar-nav {
         li {
+          display: flex;
+          align-items: center;
           a {
             text-transform: uppercase;
             font-weight: 700;
@@ -84,6 +86,31 @@ header {
         background: red;
         color: white;
       }
+    }
+  }
+
+  .search-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    input{
+      width: 300px;
+      padding: 10px;
+      outline: none;
+      border-radius: 20px;
+      border: none;
+      &::-webkit-calendar-picker-indicator{
+        display: none !important;
+      }
+      
+    }
+    button{
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      right: 0px;
+      top: 25%px;
+     
     }
   }
 

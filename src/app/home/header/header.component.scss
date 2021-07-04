@@ -37,6 +37,7 @@ header {
     }
   }
 
+  // Không dùng thằng này nữa
   .search__container {
     // &:hover {
     //   .search__input {
@@ -89,6 +90,7 @@ header {
     }
   }
 
+  // Đang dùng thằng này
   .search-container{
     position: relative;
     display: flex;
@@ -206,4 +208,12 @@ header {
       font-size: 10px !important;
     }
   }
+}
+
+@media screen and (min-width: 1100px) {
+.search-container{
+  input{
+    margin-left: 200px;
+  }
+}
 }

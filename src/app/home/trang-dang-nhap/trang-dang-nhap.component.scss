@@ -1,5 +1,5 @@
 .login__container {
-  
+  box-shadow: 4px 6px black;
   background: #222d32;
   .login-title {
     text-align: center;
@@ -25,6 +25,8 @@
       margin-bottom: 20px;
       padding-left: 0px;
       color: #ecf0f5;
+      box-shadow: 2px 3px black;
+
     }
   }
 }
@@ -64,7 +66,9 @@ label {
   border-radius: 0px;
   font-weight: bold;
   letter-spacing: 1px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 2px 3px black;
+
   &:hover{
     background-color: #0DB8DE;
     right: 0px;
@@ -92,6 +96,8 @@ div.form-right {
     margin: 0.5em 0.1em;
     
     border-radius: 0.3em;
+    box-shadow: 5px 10px black;
+
   }
   
   a.facebook {

@@ -83,7 +83,7 @@
       </div>
     </div>
 
-    <div class="col-sm-12 col-md-12 col-lg-4  d-flex align-items-center">
+    <div class="col-sm-12 col-md-12 col-lg-4  d-flex align-items-center view-higest">
       <div class="p-1" style="background-color: #191919; width: 100%;">
 
         <p style="color: white; padding: 40px 0px; font-size: 25px; font-weight: 700; text-align: center;">Views of the
@@ -184,26 +184,22 @@
             </div>
           </div>
         </div>
-        <div class="d-flex align-items-center justify-content-center">
+        <div class="pie-chart-container d-flex align-items-center justify-content-center">
           <canvas class="pie-chart" baseChart height="350" width="350" [data]="pieChartData" [labels]="pieChartLabels"
             [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
             [colors]="pieChartColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
           </canvas>
         </div>
-
-        <div>
-          <p style="color: white;">The chart shows an overview of the number of all movie genres</p>
-        </div>
       </div>
       
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 mt-1 pb-4">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8 mt-1 pb-4 bar-chart-wrapper">
       <div class="bar-chart-container p-1" style="background-color: #191919;">
         <p class="top-grossing" style="padding: 20px 0px 60px 20px; font-weight: 600; font-size: 24px; color: white;">
           Top grossing movies of the highest
           rating</p>
         <!-- Bar chart -->
-        <div class="chart-wrapper d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
           <canvas baseChart class="bar-chart" style="min-height: 500px;" [datasets]="barChartData"
             [labels]="barChartLabels" [options]="barChartOptions" [options]="barChartOptions" [colors]="barChartColors"
             [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
@@ -216,19 +212,18 @@
 
 
   <!-- Top comment -->
-  <div id="comment-section" class="comment-content">
+  <div id="comment-section" class="comment-content container-fluid">
     <p>Top comments most liked</p>
 
     <div style="overflow-x:auto;">
       <table class="table text-white">
         <thead>
           <tr>
-            <th scope="col">Movie</th>
-            <th scope="col">Viewer</th>
-            <th scope="col" style="width: 40%;">Comment</th>
-            <th scope="col">Like / DisLike</th>
-            <th scope="col">Created Date</th>
-
+            <th >Movie</th>
+            <th >Viewer</th>
+            <th >Comment</th>
+            <th >Like / DisLike</th>
+            <th >Created Date</th>
           </tr>
         </thead>
         <tbody>

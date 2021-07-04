@@ -307,3 +307,11 @@
     }
   }
 }
+
+
+@media screen and (max-width: 450px) {
+  .cinema-name, .nav-item-barIcon{
+    display: none !important;
+  }
+  
+}

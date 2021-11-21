@@ -17,10 +17,12 @@ export class TrangchitietComponent implements OnInit {
   constructor(private activated:ActivatedRoute, private rapphimSV: RapphimService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+
     // params của ActivatedRoute là một Observerable
     // Lấy params trên thanh url và subscribe 
     this.activated.params.subscribe(
       (kq) => {
+        window.scrollTo(0, 0) // Scroll to Top mỗi khi chuyển component 
         this.maPhim = kq.maphim; //maphim này xem bên appRouting
         this.rapphimSV.layThongTinLichChieuPhim(this.maPhim).subscribe(
           (chiTiet)=>{

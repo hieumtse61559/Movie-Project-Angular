@@ -1,8 +1,8 @@
-img {
-  height: 600px;
-  width: 100%;
-  // max-width: 500px;
-}
+// img {
+//   height: 600px;
+//   width: 100%;
+//   // max-width: 500px;
+// }
 
 .slide{
   height: 500px;
@@ -11,4 +11,16 @@ img {
   background-repeat: no-repeat;
   background-image: url(../../../assets/images/slider1__banner.jpg)
   
+}
+
+@media screen and (min-width: 1600px) {
+  .slide{
+    height: 550px !important;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .slide{
+    height: 650px !important;
+  }
 }

@@ -11,6 +11,8 @@ export class HomeLayoutComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0) // Scroll to Top mỗi khi chuyển component 
+
     // Kiểm tra xem Admin đã đăng nhập chưa để navigate tới dashboard khi vào lại trang web
     if (localStorage.getItem("nguoiDungDangNhap")) {
       const userAccount = JSON.parse(localStorage.getItem("nguoiDungDangNhap") as string);

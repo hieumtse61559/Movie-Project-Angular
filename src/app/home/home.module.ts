@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TintucComponent } from './tintuc/tintuc.component';
 import { IntroComponent } from './intro/intro.component';
 import { IsLoadingComponent } from './is-loading/is-loading.component';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -50,6 +50,7 @@ import { IsLoadingComponent } from './is-loading/is-loading.component';
     TintucComponent,
     IntroComponent,
     IsLoadingComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -59,7 +60,7 @@ import { IsLoadingComponent } from './is-loading/is-loading.component';
     PipeModule,
     CarouselModule,
     NgbModule,
-
+    SweetAlert2Module
   ],
   exports: [
     HomeLayoutComponent,

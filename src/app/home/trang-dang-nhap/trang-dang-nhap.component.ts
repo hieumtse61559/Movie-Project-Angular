@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
 
+
 @Component({
   selector: 'app-trang-dang-nhap',
   templateUrl: './trang-dang-nhap.component.html',
@@ -36,7 +37,8 @@ export class TrangDangNhapComponent implements OnInit {
     this.nguoiDungSV.DangNhap(this.formDangNhap.value).subscribe(
       // Đăng nhập thành công
       (success:any) => {
-        console.log("Đăng nhập thành công")
+        
+        console.log("Đăng nhập thành công !!!")
         this.nguoiDungSV.storeUser.next(true);
         if(success.hoTen)
         {

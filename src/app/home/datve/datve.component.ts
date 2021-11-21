@@ -16,6 +16,8 @@ export class DatveComponent implements OnInit {
   constructor(private activateRoute:ActivatedRoute, private datveSV: DatveService) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0) // Scroll to Top mỗi khi chuyển component 
+
     this.activateRoute.params.subscribe(
       // Lấy được mã lịch chiếu
       (kq) => {

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NguoidungService } from 'src/app/services/nguoidung.service';
 import { PhimService } from 'src/app/services/phim.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -26,6 +27,8 @@ export class HeaderComponent implements OnInit {
     if(accountUser && accountUser.maLoaiNguoiDung =="KhachHang"){
       this.hoTenUser = accountUser.taiKhoan;
       this.nguoiDungSV.storeUser.next(true);
+
+      
     }
 
     // Lấy danh sách phim trên store (phim đang chiếu + phim sắp chiếu)
